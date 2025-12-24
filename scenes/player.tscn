@@ -6,8 +6,17 @@
 size = Vector2(10, 10)
 
 [node name="player" type="CharacterBody2D"]
+z_index = 1
 motion_mode = 1
 script = ExtResource("1_3vyb7")
+
+[node name="shade" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.16078432)
+offset_left = -5.0
+offset_top = 5.0
+offset_right = 5.0
+offset_bottom = 8.0
+color = Color(0, 0, 0, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -5.0
@@ -29,8 +38,8 @@ position_smoothing_speed = 7.0
 [node name="ColorRect2" type="ColorRect" parent="."]
 z_index = -100
 custom_minimum_size = Vector2(1000, 1000)
-offset_left = -500.0
-offset_top = -500.0
-offset_right = 500.0
-offset_bottom = 500.0
+offset_left = -512.0
+offset_top = -489.0
+offset_right = 488.0
+offset_bottom = 511.0
 color = Color(0.11858138, 0.11858138, 0.11858138, 1)

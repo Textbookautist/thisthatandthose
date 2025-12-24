@@ -40,7 +40,12 @@ func _ready() -> void:
 		buildH(horizon)
 	if depth != 0:
 		buildY(depth, horizon)
-	detectTiles()
+	#detectTiles()
+	if not isFirst:
+		if randi_range(1,10) == 1:
+			var gate = (load("res://scenes/transportgate.tscn")).instantiate()
+			add_child(gate)
+			
 	
 	
 func buildH(h):

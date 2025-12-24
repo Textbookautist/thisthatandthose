@@ -1,0 +1,123 @@
+[gd_scene load_steps=6 format=3 uid="uid://b27348hddawy6"]
+
+[ext_resource type="Script" uid="uid://pvmrg4v28g02" path="res://scripts/transportgate.gd" id="1_1oamo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvh68"]
+size = Vector2(18, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1oamo"]
+size = Vector2(8, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mu8ni"]
+size = Vector2(8, 3)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvh68"]
+radius = 1853.9039
+
+[node name="transportgate" type="StaticBody2D"]
+z_index = 2
+script = ExtResource("1_1oamo")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.3529412)
+z_as_relative = false
+offset_left = -21.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 2.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="pillar_left" type="ColorRect" parent="."]
+offset_left = -18.0
+offset_top = -29.0
+offset_right = -10.0
+offset_bottom = 1.0
+
+[node name="pillar_left2" type="ColorRect" parent="."]
+offset_left = 10.0
+offset_top = -29.0
+offset_right = 18.0
+offset_bottom = 1.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -24.0
+offset_top = -36.0
+offset_right = 24.0
+offset_bottom = -29.0
+
+[node name="detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_qvh68")
+
+[node name="leftcol" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-14, -0.5)
+shape = SubResource("RectangleShape2D_1oamo")
+
+[node name="rightcol" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(14, -0.5)
+shape = SubResource("RectangleShape2D_mu8ni")
+
+[node name="lower" type="Node2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="upper" type="Node2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.3529412)
+offset_left = -18.0
+offset_top = -29.0
+offset_right = -10.0
+offset_bottom = -26.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.3529412)
+offset_left = 10.0
+offset_top = -29.0
+offset_right = 18.0
+offset_bottom = -26.0
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -12)
+amount = 12
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 11.56
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+color = Color(0, 0.654902, 1, 1)
+
+[node name="pairfinder" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pairfinder"]
+shape = SubResource("CircleShape2D_qvh68")
+
+[node name="finder" type="Timer" parent="pairfinder"]
+wait_time = 0.009999999999999998
+one_shot = true
+autostart = true
+
+[node name="cooldowntimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="pairfinder/finder" to="." method="_on_finder_timeout"]
+[connection signal="timeout" from="cooldowntimer" to="." method="_on_cooldowntimer_timeout"]

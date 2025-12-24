@@ -20,6 +20,6 @@ func _ready() -> void:
 		print("Tile has ", str(tile.neighbors.size()), " neighbors.")
 	
 	var player = playerScene.instantiate()
-	player.dev = true
-	player.global_position = Vector2(-20, 10)
+	player.dev = false
+	player.global_position = Vector2(10, 10)
 	add_child(player)

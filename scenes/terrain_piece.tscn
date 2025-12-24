@@ -26,6 +26,7 @@ script = ExtResource("1_6fbfi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_80jrc")
+disabled = true
 
 [node name="base" type="ColorRect" parent="."]
 offset_left = -20.0
@@ -67,8 +68,7 @@ position = Vector2(0, 25)
 shape = SubResource("RectangleShape2D_6fbfi")
 
 [node name="ColorRect" type="ColorRect" parent="colBottom"]
-z_index = 5
-z_as_relative = false
+z_index = 1
 offset_left = -20.0
 offset_top = -4.0
 offset_right = 20.0
@@ -80,8 +80,7 @@ position = Vector2(-24, 1)
 shape = SubResource("RectangleShape2D_fdgit")
 
 [node name="ColorRect" type="ColorRect" parent="colLeft"]
-z_index = 5
-z_as_relative = false
+z_index = 1
 offset_left = -4.0
 offset_top = -29.0
 offset_right = 4.0
@@ -93,8 +92,7 @@ position = Vector2(24, 1)
 shape = SubResource("RectangleShape2D_ptfl5")
 
 [node name="ColorRect" type="ColorRect" parent="colRight"]
-z_index = 5
-z_as_relative = false
+z_index = 1
 offset_left = -4.0
 offset_top = -29.0
 offset_right = 4.0
@@ -106,8 +104,7 @@ position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_lb241")
 
 [node name="ColorRect" type="ColorRect" parent="colTop"]
-z_index = 5
-z_as_relative = false
+z_index = 1
 offset_left = -20.0
 offset_top = -4.0
 offset_right = 20.0
@@ -115,6 +112,7 @@ offset_bottom = 4.0
 color = Color(1, 0, 0, 1)
 
 [node name="tiledetection" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tiledetection"]
 shape = SubResource("CircleShape2D_6fbfi")

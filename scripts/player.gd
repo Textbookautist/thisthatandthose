@@ -6,10 +6,7 @@ var dev = false
 func _ready() -> void:
 	add_to_group("player")
 	
-	if dev:
-		$CollisionShape2D.disabled = true
-		speed = 600
-		add_to_group("admin")
+	
 
 #gameplay statistics
 var score = 0
@@ -20,6 +17,7 @@ var goingUp = false
 var goingDown = false
 var goingRight = false
 var goingLeft = false
+
 var speed = 60
 func _physics_process(_delta: float) -> void:
 	var movement = Vector2(0,0)
@@ -61,3 +59,19 @@ func _process(_delta: float) -> void:
 		goingRight = true
 	else:
 		goingRight = false
+		
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().reload_current_scene()
+	
+	if Input.is_action_just_pressed("ui_end"):
+		dev = !dev
+		print("Devmode: ", str(dev))
+	
+	if dev and speed == 60:
+		speed = 200
+		$CollisionShape2D.disabled = true
+	elif speed == 200:
+		speed = 60
+		$CollisionShape2D.disabled = false
+	
+	
