@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://o6vi8vwbqfkk"]
+
+[ext_resource type="Script" uid="uid://doql52sbrdn14" path="res://scripts/terrain_piece.gd" id="1_6fbfi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80jrc"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fbfi"]
+size = Vector2(40, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdgit"]
+size = Vector2(8, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptfl5"]
+size = Vector2(8, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lb241"]
+size = Vector2(40, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6fbfi"]
+radius = 39.012817
+
+[node name="terrain_piece" type="StaticBody2D"]
+script = ExtResource("1_6fbfi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_80jrc")
+
+[node name="base" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
+
+[node name="top" type="ColorRect" parent="."]
+self_modulate = Color(0.20392157, 0.30980393, 0.023529412, 0.44313726)
+custom_minimum_size = Vector2(16, 16)
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="foundation" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = 21.0
+offset_right = 20.0
+offset_bottom = 29.0
+color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+
+[node name="connectors" type="Node2D" parent="."]
+
+[node name="left" type="Node2D" parent="connectors"]
+position = Vector2(-20, 0)
+
+[node name="top" type="Node2D" parent="connectors"]
+position = Vector2(0, -19)
+
+[node name="right" type="Node2D" parent="connectors"]
+position = Vector2(20, 0)
+
+[node name="bottom" type="Node2D" parent="connectors"]
+position = Vector2(0, 21)
+
+[node name="colBottom" type="CollisionShape2D" parent="."]
+position = Vector2(0, 25)
+shape = SubResource("RectangleShape2D_6fbfi")
+
+[node name="ColorRect" type="ColorRect" parent="colBottom"]
+z_index = 5
+z_as_relative = false
+offset_left = -20.0
+offset_top = -4.0
+offset_right = 20.0
+offset_bottom = 4.0
+color = Color(1, 0, 0, 1)
+
+[node name="colLeft" type="CollisionShape2D" parent="."]
+position = Vector2(-24, 1)
+shape = SubResource("RectangleShape2D_fdgit")
+
+[node name="ColorRect" type="ColorRect" parent="colLeft"]
+z_index = 5
+z_as_relative = false
+offset_left = -4.0
+offset_top = -29.0
+offset_right = 4.0
+offset_bottom = 28.0
+color = Color(1, 0, 0, 1)
+
+[node name="colRight" type="CollisionShape2D" parent="."]
+position = Vector2(24, 1)
+shape = SubResource("RectangleShape2D_ptfl5")
+
+[node name="ColorRect" type="ColorRect" parent="colRight"]
+z_index = 5
+z_as_relative = false
+offset_left = -4.0
+offset_top = -29.0
+offset_right = 4.0
+offset_bottom = 28.0
+color = Color(1, 0, 0, 1)
+
+[node name="colTop" type="CollisionShape2D" parent="."]
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_lb241")
+
+[node name="ColorRect" type="ColorRect" parent="colTop"]
+z_index = 5
+z_as_relative = false
+offset_left = -20.0
+offset_top = -4.0
+offset_right = 20.0
+offset_bottom = 4.0
+color = Color(1, 0, 0, 1)
+
+[node name="tiledetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiledetection"]
+shape = SubResource("CircleShape2D_6fbfi")
