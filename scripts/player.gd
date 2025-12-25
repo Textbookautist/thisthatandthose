@@ -5,11 +5,16 @@ var dev = false
 
 func _ready() -> void:
 	add_to_group("player")
+	$background.visible = true
+	if maxhp == null:
+		maxhp = hp
 	
 	
 
 #gameplay statistics
 var score = 0
+var lastscore = 0
+var maxhp = null
 var hp = 10
 
 
@@ -74,4 +79,18 @@ func _process(_delta: float) -> void:
 		speed = 60
 		$CollisionShape2D.disabled = false
 	
-	
+	if score > lastscore:
+		var difference = score-lastscore
+		var notif = (load("res://scenes/notification.tscn")).instantiate()
+		notif.content = "+" + str(difference)
+		add_child(notif)
+		lastscore = score
+	if score == 0:
+		$Camera2D/splitter/Score.visible = false
+	else:
+		$Camera2D/splitter/Score.visible = true
+		$Camera2D/splitter/Score/Label.text = str(score)
+	if true:
+		$Camera2D/splitter/HP/Label.text = str(hp)+"/"+str(maxhp)
+		$Camera2D/infobox.size.x = $Camera2D/splitter.size.x+6
+		$Camera2D/infobox.size.y = $Camera2D/splitter.size.y+8

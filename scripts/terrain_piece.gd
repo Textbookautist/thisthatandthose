@@ -41,13 +41,19 @@ func _ready() -> void:
 	if depth != 0:
 		buildY(depth, horizon)
 	#detectTiles()
+	spawnstuff()
+	
+			
+
+func spawnstuff():
 	if not isFirst:
 		if randi_range(1,10) == 1:
 			var gate = (load("res://scenes/transportgate.tscn")).instantiate()
 			add_child(gate)
-			
-	
-	
+		elif randi_range(1,10) >= 9:
+			var coin = (load("res://scenes/coin.tscn")).instantiate()
+			add_child(coin)
+
 func buildH(h):
 	var newHor = h-1
 	var tile = tileScene.instantiate()

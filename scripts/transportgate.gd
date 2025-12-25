@@ -69,6 +69,10 @@ func _on_finder_timeout():
 		if gate.twin == null:
 			twin = gate
 			gate.twin = self
+			#var colors = [randi_range(0,255), randi_range(0,255), randi_range(0,255)]
+			var colors = [randf_range(0.0, 1.0),randf_range(0.0, 1.0),randf_range(0.0, 1.0)]
+			modulate = Color(colors[0], colors[1], colors[2])
+			twin.modulate = Color(colors[0], colors[1], colors[2])
 			break
 	$pairfinder.queue_free()
 	if twin == null:
