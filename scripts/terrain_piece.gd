@@ -15,9 +15,11 @@ var isFirst = true
 var topRow = true
 var firstColumn = true
 var lastRow = false
+var guarantee_gate = null
 
 func _ready() -> void:
 	add_to_group("terrainTile")
+	
 	
 	if topEdge == false or topRow == false:
 		$colTop.queue_free()
@@ -42,6 +44,11 @@ func _ready() -> void:
 		buildY(depth, horizon)
 	#detectTiles()
 	spawnstuff()
+	if guarantee_gate != null:
+		var gate = (load("res://scenes/transportgate.tscn")).instantiate()
+		gate.twin = guarantee_gate
+		guarantee_gate.twin = gate
+		add_child(gate)
 	
 			
 
@@ -53,6 +60,24 @@ func spawnstuff():
 		elif randi_range(1,10) >= 9:
 			var coin = (load("res://scenes/coin.tscn")).instantiate()
 			add_child(coin)
+		elif randi_range(1,10) == 10:
+			var wall = (load("res://scenes/innerwall.tscn")).instantiate()
+			add_child(wall)
+			wall.global_position.y += 1
+		elif randi_range(1,10) == 10:
+			var bomb = (load("res://scenes/bomb.tscn")).instantiate()
+			add_child(bomb)
+		elif randi_range(1,10) == 10:
+			var enemy = (load("res://scenes/enemy.tscn")).instantiate()
+			enemy.global_position = global_position
+			add_sibling(enemy)
+		elif randi_range(1,10) == 10:
+			var spiketrap = (load("res://scenes/spiketrap.tscn")).instantiate()
+			add_child(spiketrap)
+		elif randi_range(1,10) == 10:
+			var cannon = (load("res://scenes/cannon.tscn")).instantiate()
+			$center.add_child(cannon)
+			
 
 func buildH(h):
 	var newHor = h-1

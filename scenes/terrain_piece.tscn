@@ -68,6 +68,7 @@ position = Vector2(0, 25)
 shape = SubResource("RectangleShape2D_6fbfi")
 
 [node name="ColorRect" type="ColorRect" parent="colBottom"]
+visible = false
 z_index = 1
 offset_left = -20.0
 offset_top = -4.0
@@ -80,6 +81,7 @@ position = Vector2(-24, 1)
 shape = SubResource("RectangleShape2D_fdgit")
 
 [node name="ColorRect" type="ColorRect" parent="colLeft"]
+visible = false
 z_index = 1
 offset_left = -4.0
 offset_top = -29.0
@@ -92,6 +94,7 @@ position = Vector2(24, 1)
 shape = SubResource("RectangleShape2D_ptfl5")
 
 [node name="ColorRect" type="ColorRect" parent="colRight"]
+visible = false
 z_index = 1
 offset_left = -4.0
 offset_top = -29.0
@@ -104,6 +107,7 @@ position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_lb241")
 
 [node name="ColorRect" type="ColorRect" parent="colTop"]
+visible = false
 z_index = 1
 offset_left = -20.0
 offset_top = -4.0
@@ -116,3 +120,5 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tiledetection"]
 shape = SubResource("CircleShape2D_6fbfi")
+
+[node name="center" type="Node2D" parent="."]

@@ -25,6 +25,15 @@ offset_right = 2.0
 offset_bottom = 2.0
 color = Color(1, 1, 0, 1)
 
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D/ColorRect"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 5.0
+offset_bottom = 5.0
+color = Color(1, 1, 0.50980395, 1)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 visible = false
 shape = SubResource("CircleShape2D_i64fm")
@@ -32,6 +41,7 @@ disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kahox")
+disabled = true
 
 [node name="detector" type="Area2D" parent="."]
 

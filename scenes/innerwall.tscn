@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4cn45nn7jqhq"]
+
+[ext_resource type="Script" uid="uid://b5d5dghmy2jlb" path="res://scripts/innerwall.gd" id="1_2q03e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05ytl"]
+size = Vector2(40, 30)
+
+[node name="innerwall" type="StaticBody2D"]
+script = ExtResource("1_2q03e")
+
+[node name="lower" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.18359044, 0.18359044, 0.18359044, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_05ytl")
+
+[node name="upper" type="ColorRect" parent="."]
+z_index = 2
+z_as_relative = false
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = -9.0
+color = Color(0.18431373, 0.18431373, 0.18431373, 1)

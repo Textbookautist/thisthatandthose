@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=3 uid="uid://byutelfxownnv"]
+
+[ext_resource type="Script" uid="uid://ch8sewm7kl5x8" path="res://scripts/bomb.gd" id="1_4kkau"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6bl7j"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vpdcx"]
+radius = 50.0
+
+[node name="bomb" type="StaticBody2D"]
+script = ExtResource("1_4kkau")
+
+[node name="main" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 5.0
+offset_bottom = 4.0
+color = Color(0.11858138, 0.11858138, 0.11858138, 1)
+
+[node name="ColorRect" type="ColorRect" parent="main"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 12.0
+offset_bottom = 9.0
+color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="main"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 1.0
+offset_bottom = 9.0
+color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="main"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 9.0
+color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="main"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 10.0
+offset_right = 9.0
+offset_bottom = 12.0
+color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="main"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 9.0
+offset_bottom = 4.0
+color = Color(0.17641926, 0.17641905, 0.17641908, 1)
+
+[node name="last0" type="ColorRect" parent="."]
+offset_left = -1.0
+offset_top = -10.0
+offset_right = 1.0
+offset_bottom = -8.0
+color = Color(0, 0, 0, 1)
+
+[node name="last1" type="ColorRect" parent="last0"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 2.0
+color = Color(0, 0, 0, 1)
+
+[node name="last2" type="ColorRect" parent="last0/last1"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 2.0
+color = Color(0, 0, 0, 1)
+
+[node name="last3" type="ColorRect" parent="last0/last1/last2"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 2.0
+color = Color(0, 0, 0, 1)
+
+[node name="last4" type="ColorRect" parent="last0/last1/last2/last3"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 2.0
+color = Color(0, 0, 0, 1)
+
+[node name="last5" type="ColorRect" parent="last0/last1/last2/last3/last4"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 3.0
+color = Color(0, 0, 0, 1)
+
+[node name="last6" type="ColorRect" parent="last0/last1/last2/last3/last4/last5"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 4.0
+offset_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="last7" type="ColorRect" parent="last0/last1/last2/last3/last4/last5/last6"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_6bl7j")
+
+[node name="boomtimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_vpdcx")
+
+[connection signal="timeout" from="boomtimer" to="." method="_on_boomtimer_timeout"]
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]

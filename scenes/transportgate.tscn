@@ -102,6 +102,8 @@ angular_velocity_min = -10.0
 angular_velocity_max = 10.0
 orbit_velocity_min = -1.0
 orbit_velocity_max = 1.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
 color = Color(0, 0.654902, 1, 1)
 
 [node name="pairfinder" type="Area2D" parent="."]
@@ -111,7 +113,7 @@ visible = false
 shape = SubResource("CircleShape2D_qvh68")
 
 [node name="finder" type="Timer" parent="pairfinder"]
-wait_time = 0.009999999999999998
+wait_time = 0.00999999999999999
 one_shot = true
 autostart = true
 
@@ -119,5 +121,27 @@ autostart = true
 wait_time = 2.0
 one_shot = true
 
+[node name="expansiongate" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="shout" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -44)
+
+[node name="ColorRect" type="ColorRect" parent="shout"]
+offset_left = -2.0
+offset_right = 2.0
+offset_bottom = 4.0
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="shout"]
+offset_left = -2.0
+offset_top = -19.0
+offset_right = 2.0
+offset_bottom = -3.0
+color = Color(1, 0, 0, 1)
+
 [connection signal="timeout" from="pairfinder/finder" to="." method="_on_finder_timeout"]
 [connection signal="timeout" from="cooldowntimer" to="." method="_on_cooldowntimer_timeout"]
+[connection signal="timeout" from="expansiongate" to="." method="_on_expansiongate_timeout"]

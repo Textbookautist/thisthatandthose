@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2a33xkosjvc8"]
+
+[ext_resource type="Script" uid="uid://bku8ntet6u2ej" path="res://scripts/enemy.gd" id="1_7p1mj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tegq"]
+size = Vector2(6, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
+radius = 121.004135
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
+radius = 6.0
+
+[node name="enemy" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_7p1mj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+color = Color(0, 0, 0, 1)
+
+[node name="left_eye" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 3.0
+offset_bottom = 5.0
+
+[node name="right_eye" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 7.0
+offset_bottom = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8tegq")
+
+[node name="detection" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+shape = SubResource("CircleShape2D_md0e3")
+
+[node name="damager" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damager"]
+shape = SubResource("CircleShape2D_7p1mj")
+
+[node name="shout" type="Node2D" parent="."]
+visible = false
+z_index = 2
+
+[node name="ColorRect" type="ColorRect" parent="shout"]
+offset_left = -1.0
+offset_top = -8.0
+offset_right = 1.0
+offset_bottom = -6.0
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="shout"]
+offset_left = -1.0
+offset_top = -15.0
+offset_right = 1.0
+offset_bottom = -9.0
+color = Color(1, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="shout"]
+one_shot = true
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
+[connection signal="body_entered" from="damager" to="." method="_on_damager_body_entered"]
+[connection signal="timeout" from="shout/Timer" to="." method="_on_timer_timeout"]

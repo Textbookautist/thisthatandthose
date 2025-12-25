@@ -1,0 +1,309 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmfo3ifxgflwv"]
+
+[ext_resource type="Script" uid="uid://ckmcr7v54hpc1" path="res://scripts/spiketrap.gd" id="1_2kdua"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3oq0u"]
+radius = 6.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kdua"]
+size = Vector2(10, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3oq0u"]
+size = Vector2(36, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_myr0l"]
+size = Vector2(10, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahsm1"]
+size = Vector2(36, 9)
+
+[node name="spiketrap" type="Node2D"]
+script = ExtResource("1_2kdua")
+
+[node name="deleteme" type="ColorRect" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="holes" type="Node2D" parent="."]
+
+[node name="hole0" type="ColorRect" parent="holes"]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = -14.0
+offset_bottom = -14.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole0"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole0/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole1" type="ColorRect" parent="holes"]
+offset_left = 14.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = -14.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole1"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole1/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole2" type="ColorRect" parent="holes"]
+offset_left = -18.0
+offset_top = 14.0
+offset_right = -14.0
+offset_bottom = 18.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole2"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole2/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole3" type="ColorRect" parent="holes"]
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole3"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole3/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole4" type="ColorRect" parent="holes"]
+offset_left = -18.0
+offset_top = -6.0
+offset_right = -14.0
+offset_bottom = -2.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole4"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole4/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole5" type="ColorRect" parent="holes"]
+offset_left = -18.0
+offset_top = 2.0
+offset_right = -14.0
+offset_bottom = 6.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole5"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole5/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole6" type="ColorRect" parent="holes"]
+offset_left = -6.0
+offset_top = -18.0
+offset_right = -2.0
+offset_bottom = -14.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole6"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole6/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole7" type="ColorRect" parent="holes"]
+offset_left = 2.0
+offset_top = -18.0
+offset_right = 6.0
+offset_bottom = -14.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole7"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole7/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole8" type="ColorRect" parent="holes"]
+offset_left = 14.0
+offset_top = -6.0
+offset_right = 18.0
+offset_bottom = -2.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole8"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole8/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole9" type="ColorRect" parent="holes"]
+offset_left = 14.0
+offset_top = 2.0
+offset_right = 18.0
+offset_bottom = 6.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole9"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole9/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole10" type="ColorRect" parent="holes"]
+offset_left = -6.0
+offset_top = 14.0
+offset_right = -2.0
+offset_bottom = 18.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole10"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole10/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole11" type="ColorRect" parent="holes"]
+offset_left = 2.0
+offset_top = 14.0
+offset_right = 6.0
+offset_bottom = 18.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole11"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole11/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole12" type="ColorRect" parent="holes"]
+offset_left = -12.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 12.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole12"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole12/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole13" type="ColorRect" parent="holes"]
+offset_left = -12.0
+offset_top = -12.0
+offset_right = -8.0
+offset_bottom = -8.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole13"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole13/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole14" type="ColorRect" parent="holes"]
+offset_left = 9.0
+offset_top = -12.0
+offset_right = 13.0
+offset_bottom = -8.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole14"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole14/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hole15" type="ColorRect" parent="holes"]
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 12.0
+offset_bottom = 11.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="holes/hole15"]
+position = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="holes/hole15/Node2D"]
+points = PackedVector2Array(0, -8, 0, 0)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="button" type="ColorRect" parent="."]
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+color = Color(0.09239707, 0.09239706, 0.09239706, 1)
+
+[node name="Area2D" type="Area2D" parent="button"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="button/Area2D"]
+position = Vector2(6, 6)
+shape = SubResource("CircleShape2D_3oq0u")
+
+[node name="traptimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="hurtyTime" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtyTime"]
+position = Vector2(-13, 0)
+shape = SubResource("RectangleShape2D_2kdua")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hurtyTime"]
+position = Vector2(0, -14.5)
+shape = SubResource("RectangleShape2D_3oq0u")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="hurtyTime"]
+position = Vector2(13, 0)
+shape = SubResource("RectangleShape2D_myr0l")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="hurtyTime"]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_ahsm1")
+
+[connection signal="body_entered" from="button/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="traptimer" to="." method="_on_traptimer_timeout"]
+[connection signal="body_entered" from="hurtyTime" to="." method="_on_hurty_time_body_entered"]

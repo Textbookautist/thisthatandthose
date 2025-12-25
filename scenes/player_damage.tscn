@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cawckc1utpayc"]
+
+[ext_resource type="Script" uid="uid://x6b6l4y0u257" path="res://scripts/player_damage.gd" id="1_e2jpp"]
+
+[node name="playerDamage" type="CPUParticles2D"]
+z_index = 2
+emitting = false
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+scale_amount_max = 10.0
+color = Color(1, 0.6, 0, 1)
+script = ExtResource("1_e2jpp")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

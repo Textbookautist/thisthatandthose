@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://3402fjl2t6hr"]
+
+[ext_resource type="Script" uid="uid://dda41nyr0ng7a" path="res://scripts/cannon.gd" id="1_xuqfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ne2b"]
+size = Vector2(10, 10)
+
+[node name="cannon" type="StaticBody2D"]
+script = ExtResource("1_xuqfy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(12, 12)
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+color = Color(0.5764706, 0, 0, 1)
+
+[node name="up" type="Node2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="ColorRect" type="ColorRect" parent="up"]
+offset_left = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+color = Color(0.11764706, 0, 0, 1)
+
+[node name="uptimer" type="Timer" parent="up"]
+one_shot = true
+
+[node name="right" type="Node2D" parent="."]
+position = Vector2(6, 0)
+
+[node name="ColorRect" type="ColorRect" parent="right"]
+offset_left = -1.0
+offset_top = -1.0
+offset_bottom = 1.0
+color = Color(0.11764706, 0, 0, 1)
+
+[node name="righttimer" type="Timer" parent="right"]
+one_shot = true
+
+[node name="down" type="Node2D" parent="."]
+position = Vector2(0, 6)
+
+[node name="ColorRect" type="ColorRect" parent="down"]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+color = Color(0.11764706, 0, 0, 1)
+
+[node name="downtimer" type="Timer" parent="down"]
+one_shot = true
+
+[node name="left" type="Node2D" parent="."]
+position = Vector2(-6, 0)
+
+[node name="ColorRect" type="ColorRect" parent="left"]
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+color = Color(0.11764706, 0, 0, 1)
+
+[node name="lefttimer" type="Timer" parent="left"]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1ne2b")
+
+[connection signal="timeout" from="up/uptimer" to="." method="_on_uptimer_timeout"]
+[connection signal="timeout" from="right/righttimer" to="." method="_on_righttimer_timeout"]
+[connection signal="timeout" from="down/downtimer" to="." method="_on_downtimer_timeout"]
+[connection signal="timeout" from="left/lefttimer" to="." method="_on_lefttimer_timeout"]

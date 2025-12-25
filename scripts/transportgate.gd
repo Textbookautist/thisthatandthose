@@ -33,6 +33,9 @@ func teleport_twin(t, direction):
 func _process(_delta):
 	if twin == null:
 		return
+	else:
+		if find_child("expansiongate"):
+			$expansiongate.queue_free()
 	if cooldown:
 		$CPUParticles2D.emitting = false
 	else:
@@ -40,11 +43,17 @@ func _process(_delta):
 			$CPUParticles2D.emitting = true
 	var things = $detect.get_overlapping_bodies()
 	for t in things:
-		if t.is_in_group("player"):
+		if t.is_in_group("player") or t.is_in_group("alive"):
 			var playerdir = t.velocity.y
 			if playerdir > 0:
 				teleport_twin(t, "down")
 			elif playerdir < 0:
+				teleport_twin(t, "up")
+		elif t.is_in_group("bullet"):
+			var dir = t.linear_velocity.y
+			if dir > 0:
+				teleport_twin(t, "down")
+			elif dir < 0:
 				teleport_twin(t, "up")
 
 func _on_finder_timeout():
@@ -77,8 +86,22 @@ func _on_finder_timeout():
 	$pairfinder.queue_free()
 	if twin == null:
 		$CPUParticles2D.emitting = false
+	else:
+		$expansiongate.queue_free()
 			
 
 
 func _on_cooldowntimer_timeout():
 	cooldown = false
+
+
+func _on_expansiongate_timeout():
+	var tile = (load("res://scenes/terrain_piece.tscn")).instantiate()
+	tile.horizon = randi_range(3,10)
+	tile.depth = randi_range(3,10)
+	tile.guarantee_gate = self
+	tile.tileType = "mountain"
+	tile.global_position = global_position - Vector2(-1000, -1000)
+	var par = get_parent().get_parent()
+	par.add_child(tile)
+	$shout.visible = true
