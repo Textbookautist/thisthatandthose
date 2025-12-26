@@ -38,6 +38,8 @@ func explode():
 			if "active" in t:
 				if t.active:
 					t.toggle()
+		if "destroyObstacle" in t:
+			t.destroyObstacle()
 	queue_free()
 
 func _on_boomtimer_timeout():

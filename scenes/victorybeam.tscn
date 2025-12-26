@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2hntm52g0pqu"]
+
+[ext_resource type="Script" uid="uid://cr1awac4t48pa" path="res://scripts/victorybeam.gd" id="1_ayqs5"]
+
+[node name="beam" type="Node2D"]
+z_index = 10
+z_as_relative = false
+script = ExtResource("1_ayqs5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1.0
+offset_top = -500.0
+offset_right = 1.0
+offset_bottom = 500.0

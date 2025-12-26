@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://dn3bn2bimcr5e" path="res://scripts/spinner.gd" id="1_i3bsr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkf07"]
-size = Vector2(30, 30)
+size = Vector2(22, 22)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3bsr"]
 radius = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78gc6"]
-size = Vector2(28, 4)
+size = Vector2(31, 4)
 
 [node name="spinner" type="StaticBody2D"]
 z_index = 2
@@ -71,7 +71,7 @@ shape = SubResource("CircleShape2D_i3bsr")
 [node name="damager" type="Area2D" parent="spinner/spinner1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spinner/spinner1/damager"]
-position = Vector2(21, -2)
+position = Vector2(22.5, -2)
 shape = SubResource("RectangleShape2D_78gc6")
 
 [connection signal="body_entered" from="spinner/spinner1/damager" to="." method="_on_damager_body_entered"]

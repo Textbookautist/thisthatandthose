@@ -4,12 +4,20 @@ var damaged = preload("res://scenes/player_damage.tscn")
 
 var dev = false
 
+var root = null
+
 func _ready() -> void:
 	add_to_group("player")
 	$background.visible = true
 	if maxhp == null:
 		maxhp = hp
-	
+	root = get_tree().root.get_child(0)
+
+func healing(amount):
+	hp += amount
+	if hp > maxhp:
+		hp = maxhp
+
 func die():
 	var cam = Camera2D.new()
 	cam.zoom = Vector2(2,2)
@@ -28,6 +36,7 @@ var score = 0
 var lastscore = 0
 var maxhp = null
 var hp = 10
+var lasthp = 10
 var invulnerable = false
 
 func invulnerability(state):
@@ -67,10 +76,14 @@ func _physics_process(_delta: float) -> void:
 
 var timer = 0
 func _process(_delta: float) -> void:
+	checkCollapse()
 	timer += 1
 	if timer >= 1000:
 		print(str(global_position))
 		timer = 0
+	
+	if Input.is_action_just_pressed("ui_home"):
+		trigger_victory()
 	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("w"):
 		goingUp = true
 	else:
@@ -105,17 +118,34 @@ func _process(_delta: float) -> void:
 		speed = 60
 		$CollisionShape2D.disabled = false
 	
+	if hp > lasthp:
+		var difference = hp - lasthp
+		var notif = (load("res://scenes/notification.tscn")).instantiate()
+		notif.notificationType = "health"
+		notif.content = "+" + str(difference)
+		add_child(notif)
+		lasthp = hp
+	elif hp < lasthp:
+		var difference = lasthp - hp
+		var notif = (load("res://scenes/notification.tscn")).instantiate()
+		notif.notificationType = "healthbad"
+		notif.content = "-"+str(difference)
+		add_child(notif)
+		lasthp = hp
+	
 	if score > lastscore:
 		var difference = score-lastscore
 		var notif = (load("res://scenes/notification.tscn")).instantiate()
 		notif.content = "+" + str(difference)
 		add_child(notif)
 		lastscore = score
+		if score == root.mapScore:
+			trigger_victory()
 	if score == 0:
 		$Camera2D/splitter/Score.visible = false
 	else:
 		$Camera2D/splitter/Score.visible = true
-		$Camera2D/splitter/Score/Label.text = str(score)
+		$Camera2D/splitter/Score/Label.text = str(score) + "/"+str(root.mapScore)
 	if true:
 		$Camera2D/splitter/HP/Label.text = str(hp)+"/"+str(maxhp)
 		$Camera2D/infobox.size.x = $Camera2D/splitter.size.x+6
@@ -124,6 +154,15 @@ func _process(_delta: float) -> void:
 var dashCooldown = false
 func _on_dashtimer_timeout():
 	dashCooldown = false
+
+var checksDone = 0
+func checkCollapse():
+	if checksDone > 100:
+		var value = Engine.get_frames_per_second()
+		if value < 10:
+			get_tree().quit()
+	else:
+		checksDone += 1
 
 func take_damage(amount):
 	if invulnerable:
@@ -138,3 +177,13 @@ func take_damage(amount):
 	add_sibling(particle)
 	if dead:
 		die()
+
+var vicTriggered = false
+func trigger_victory():
+	if vicTriggered:
+		return
+	else:
+		vicTriggered = true
+	$background.color = Color("yellow")
+	var beam = (load("res://scenes/victorybeam.tscn")).instantiate()
+	add_child(beam)

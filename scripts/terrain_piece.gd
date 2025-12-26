@@ -43,12 +43,13 @@ func _ready() -> void:
 	if depth != 0:
 		buildY(depth, horizon)
 	#detectTiles()
-	spawnstuff()
 	if guarantee_gate != null:
-		var gate = (load("res://scenes/transportgate.tscn")).instantiate()
+		var gate = await (load("res://scenes/transportgate.tscn")).instantiate()
 		gate.twin = guarantee_gate
 		guarantee_gate.twin = gate
 		add_child(gate)
+	spawnstuff()
+	
 	
 			
 
@@ -83,7 +84,9 @@ func spawnstuff():
 		elif randi_range(1,10) == 10:
 			var spinner = (load("res://scenes/spinner.tscn")).instantiate()
 			$center.add_child(spinner)
-			
+		elif randi_range(1,10) == 10:
+			var health = (load("res://scenes/health.tscn")).instantiate()
+			add_child(health)
 
 func buildH(h):
 	var newHor = h-1

@@ -1,14 +1,25 @@
 extends Node2D
 
+var mapScore := 0
+
 var tileScene = preload("res://scenes/terrain_piece.tscn")
 
 var playerScene = preload("res://scenes/player.tscn")
 
-var sizes = [[2,6], [4,8], [6, 10]]
+var sizes = [[5,6], [5,13], [9, 9]]
 var types = ["mountain", "field", "snow"]
 var coordinates = [Vector2(10,10), Vector2(-500, -500), Vector2(-300, 500)]
 
+
+func makesize():
+	return [randi_range(5,10), randi_range(5,10)]
+
+
 func _ready() -> void:
+	sizes = []
+	for i in range(3):
+		var list = makesize()
+		sizes.append(list)
 	for i in range(3):
 		var index = i-1
 		var tile = tileScene.instantiate()

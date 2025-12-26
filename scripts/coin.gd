@@ -8,6 +8,8 @@ func _ready():
 		spindirection = 1
 	else:
 		spindirection = -1
+	
+	get_tree().root.get_child(0).mapScore += 1
 
 func _process(_delta):
 	$RigidBody2D.angular_velocity = spindirection
