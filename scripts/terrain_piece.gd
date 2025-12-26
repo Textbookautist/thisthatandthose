@@ -80,6 +80,9 @@ func spawnstuff():
 		elif randi_range(1,10) == 10:
 			var shield = (load("res://scenes/shield_tile.tscn")).instantiate()
 			$center.add_child(shield)
+		elif randi_range(1,10) == 10:
+			var spinner = (load("res://scenes/spinner.tscn")).instantiate()
+			$center.add_child(spinner)
 			
 
 func buildH(h):

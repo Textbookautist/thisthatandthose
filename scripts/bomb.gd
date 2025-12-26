@@ -34,6 +34,10 @@ func explode():
 		if t.is_in_group("bomb"):
 			if t.phase == 0:
 				t.trigger()
+		if t.is_in_group("hazard"):
+			if "active" in t:
+				if t.active:
+					t.toggle()
 	queue_free()
 
 func _on_boomtimer_timeout():

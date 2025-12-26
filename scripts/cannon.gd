@@ -12,10 +12,15 @@ func _ready():
 	add_to_group("cannon")
 	add_to_group("obstacle")
 	
-	var sides = [sUp, sRight, sLeft, sDown]
-	for s in sides:
-		if randi_range(1,3) > 1:
-			s = false
+	if randi_range(1,3) == 1:
+		sUp = false
+	if randi_range(1,3) == 1:
+		sRight = false
+	if randi_range(1,3) == 1:
+		sDown = false
+	if randi_range(1,3) == 1:
+		sLeft = false
+	
 	
 	if sUp == false:
 		$up.queue_free()
