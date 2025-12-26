@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://b730yhmshthn0" path="res://scenes/particles/explosive.gd" id="1_5eacd"]
 
 [node name="explosive" type="CPUParticles2D"]
+z_index = 2
+z_as_relative = false
 emitting = false
 amount = 16
 one_shot = true

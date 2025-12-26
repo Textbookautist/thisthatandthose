@@ -28,7 +28,10 @@ var score = 0
 var lastscore = 0
 var maxhp = null
 var hp = 10
+var invulnerable = false
 
+func invulnerability(state):
+	invulnerable = state
 
 var goingUp = false
 var goingDown = false
@@ -123,6 +126,8 @@ func _on_dashtimer_timeout():
 	dashCooldown = false
 
 func take_damage(amount):
+	if invulnerable:
+		return
 	hp -= amount
 	var dead = false
 	if hp <= 0:

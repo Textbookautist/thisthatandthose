@@ -5,7 +5,11 @@ var playerLastSeen = null
 
 var deadnimation = preload("res://scenes/particles/explosive.tscn")
 
+var invulnerable = false
 var hp = 4
+
+func invulnerability(state):
+	invulnerable = state
 
 func die():
 	var explosive = deadnimation.instantiate()
@@ -16,6 +20,8 @@ func die():
 	queue_free()
 
 func take_damage(amount):
+	if invulnerable:
+		return
 	hp -= amount
 	if hp <= 0:
 		die()
