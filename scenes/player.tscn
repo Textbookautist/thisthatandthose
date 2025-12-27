@@ -23,9 +23,9 @@ script = ExtResource("1_3vyb7")
 
 [node name="shade" type="ColorRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.16078432)
-offset_left = -5.0
-offset_top = 5.0
-offset_right = 5.0
+offset_left = -6.0
+offset_top = 6.0
+offset_right = 6.0
 offset_bottom = 8.0
 color = Color(0, 0, 0, 1)
 
@@ -34,7 +34,16 @@ offset_left = -5.0
 offset_top = -5.0
 offset_right = 5.0
 offset_bottom = 5.0
-color = Color(1, 0.6, 0, 1)
+color = Color(0.6713229, 0.673428, 0.9738408, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 11.0
+offset_bottom = 11.0
+color = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_u8vuu")

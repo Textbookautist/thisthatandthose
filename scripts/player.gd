@@ -189,6 +189,7 @@ func take_damage(amount):
 	var particle = damaged.instantiate()
 	particle.dead = dead
 	particle.global_position = global_position
+	particle.color = $ColorRect.color
 	add_sibling(particle)
 	if dead:
 		die()
