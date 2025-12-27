@@ -88,6 +88,11 @@ func _process(_delta: float) -> void:
 		print(str(global_position))
 		timer = 0
 	
+	if damageCooldown:
+		$ColorRect.modulate.a = 0.5
+	else:
+		$ColorRect.modulate.a = 1.0
+	
 	if Input.is_action_just_pressed("ui_home"):
 		trigger_victory()
 	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("w"):
@@ -170,9 +175,13 @@ func checkCollapse():
 	else:
 		checksDone += 1
 
+var damageCooldown = false
 func take_damage(amount):
-	if invulnerable:
+	if invulnerable or damageCooldown:
 		return
+	damageCooldown = true
+	if $damagetimer.is_stopped():
+		$damagetimer.start()
 	hp -= amount
 	var dead = false
 	if hp <= 0:
@@ -190,6 +199,12 @@ func trigger_victory():
 		return
 	else:
 		vicTriggered = true
+	root.victory()
 	$background.color = Color("yellow")
 	var beam = (load("res://scenes/victorybeam.tscn")).instantiate()
 	add_child(beam)
+
+
+func _on_damagetimer_timeout():
+	if damageCooldown:
+		damageCooldown = !damageCooldown

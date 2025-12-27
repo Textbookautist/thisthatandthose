@@ -129,4 +129,9 @@ scale = Vector2(0.265625, 0.25878906)
 energy = 33.35
 texture = SubResource("NoiseTexture2D_3vyb7")
 
+[node name="damagetimer" type="Timer" parent="."]
+wait_time = 0.125
+one_shot = true
+
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
+[connection signal="timeout" from="damagetimer" to="." method="_on_damagetimer_timeout"]

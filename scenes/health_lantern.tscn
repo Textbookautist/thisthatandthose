@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt6e356sbxevo"]
+
+[ext_resource type="Script" uid="uid://bsxrbquvheo20" path="res://scripts/health_lantern.gd" id="1_qftqr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wk8x3"]
+size = Vector2(18, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgjsi"]
+radius = 24.0
+
+[node name="healthLantern" type="StaticBody2D"]
+script = ExtResource("1_qftqr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
+z_as_relative = false
+offset_left = -7.0
+offset_top = -22.0
+offset_right = 7.0
+offset_bottom = -3.0
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = -6.0
+offset_right = 16.0
+color = Color(0.13682577, 0.13682574, 0.13682571, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect"]
+z_as_relative = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = 19.0
+offset_right = 16.0
+offset_bottom = 25.0
+color = Color(0.13682577, 0.13682574, 0.13682571, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wk8x3")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 3
+z_as_relative = false
+position = Vector2(0, -13)
+amount = 12
+emission_shape = 1
+emission_sphere_radius = 22.11
+gravity = Vector2(0, 0)
+color = Color(1, 0, 0, 1)
+
+[node name="detection" type="Area2D" parent="."]
+position = Vector2(0, -4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_jgjsi")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

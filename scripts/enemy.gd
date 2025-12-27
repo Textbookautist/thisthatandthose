@@ -74,6 +74,12 @@ func checkGs():
 
 func _process(_delta):
 	
+	if collisionCooldown:
+		$CollisionShape2D.disabled = true
+	else:
+		if $CollisionShape2D.disabled:
+			$CollisionShape2D.disabled = false
+	
 	checkGs()
 	
 	
@@ -148,6 +154,7 @@ func checkIfDamager():
 		if t.is_in_group("player"):
 			_on_damager_body_entered(t)
 
+
 var damageCooldown = 0
 func _on_damager_body_entered(body):
 	if damageCooldown > 0:
@@ -155,7 +162,13 @@ func _on_damager_body_entered(body):
 	if body == player:
 		player.take_damage(1)
 		damageCooldown = 100
+		collisionCooldown = true
+		$CollisionShape2D/collisionTimer.start()
 
 
 func _on_timer_timeout():
 	$shout.visible = false
+
+var collisionCooldown = false
+func _on_collision_timer_timeout():
+	collisionCooldown = false

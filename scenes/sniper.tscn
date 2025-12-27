@@ -1,0 +1,153 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgcl4ydkk5nhq"]
+
+[ext_resource type="Script" uid="uid://bqxg76w6os8jc" path="res://scripts/sniper.gd" id="1_uyybc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rgo68"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wwo37"]
+radius = 150.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uyybc"]
+radius = 13.038404
+
+[node name="sniper" type="RigidBody2D"]
+z_index = 3
+z_as_relative = false
+gravity_scale = 0.0
+inertia = 10.0
+script = ExtResource("1_uyybc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rgo68")
+disabled = true
+
+[node name="reticle" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="reticle"]
+offset_left = -2.0
+offset_top = -28.0
+offset_right = 2.0
+offset_bottom = -14.0
+
+[node name="ColorRect2" type="ColorRect" parent="reticle"]
+offset_left = 16.0
+offset_top = -2.0
+offset_right = 30.0
+offset_bottom = 2.0
+
+[node name="ColorRect4" type="ColorRect" parent="reticle"]
+offset_left = -30.0
+offset_top = -2.0
+offset_right = -16.0
+offset_bottom = 2.0
+
+[node name="ColorRect3" type="ColorRect" parent="reticle"]
+offset_left = -2.0
+offset_top = 16.0
+offset_right = 2.0
+offset_bottom = 30.0
+
+[node name="ColorRect5" type="ColorRect" parent="reticle"]
+offset_left = -6.0
+offset_top = -1.0
+offset_right = 6.0
+offset_bottom = 1.0
+
+[node name="ColorRect6" type="ColorRect" parent="reticle"]
+offset_left = -1.0
+offset_top = -6.0
+offset_right = 1.0
+offset_bottom = 6.0
+
+[node name="corners" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="corners"]
+offset_left = 22.0
+offset_top = -23.0
+offset_right = 25.0
+offset_bottom = -20.0
+
+[node name="ColorRect2" type="ColorRect" parent="corners"]
+offset_left = 22.0
+offset_top = -20.0
+offset_right = 25.0
+offset_bottom = -17.0
+
+[node name="ColorRect3" type="ColorRect" parent="corners"]
+offset_left = 19.0
+offset_top = -23.0
+offset_right = 22.0
+offset_bottom = -20.0
+
+[node name="ColorRect4" type="ColorRect" parent="corners"]
+offset_left = -25.0
+offset_top = -23.0
+offset_right = -22.0
+offset_bottom = -20.0
+
+[node name="ColorRect5" type="ColorRect" parent="corners"]
+offset_left = -22.0
+offset_top = -23.0
+offset_right = -19.0
+offset_bottom = -20.0
+
+[node name="ColorRect6" type="ColorRect" parent="corners"]
+offset_left = -25.0
+offset_top = -20.0
+offset_right = -22.0
+offset_bottom = -17.0
+
+[node name="ColorRect7" type="ColorRect" parent="corners"]
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 25.0
+offset_bottom = 25.0
+
+[node name="ColorRect8" type="ColorRect" parent="corners"]
+offset_left = 19.0
+offset_top = 22.0
+offset_right = 22.0
+offset_bottom = 25.0
+
+[node name="ColorRect9" type="ColorRect" parent="corners"]
+offset_left = 22.0
+offset_top = 19.0
+offset_right = 25.0
+offset_bottom = 22.0
+
+[node name="ColorRect10" type="ColorRect" parent="corners"]
+offset_left = -25.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = 25.0
+
+[node name="ColorRect11" type="ColorRect" parent="corners"]
+offset_left = -22.0
+offset_top = 22.0
+offset_right = -19.0
+offset_bottom = 25.0
+
+[node name="ColorRect12" type="ColorRect" parent="corners"]
+offset_left = -25.0
+offset_top = 19.0
+offset_right = -22.0
+offset_bottom = 22.0
+
+[node name="detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+shape = SubResource("CircleShape2D_wwo37")
+
+[node name="shooty" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shooty"]
+shape = SubResource("CircleShape2D_uyybc")
+
+[node name="Timer" type="Timer" parent="shooty"]
+wait_time = 3.0
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
+[connection signal="body_entered" from="shooty" to="." method="_on_shooty_body_entered"]
+[connection signal="body_exited" from="shooty" to="." method="_on_shooty_body_exited"]
+[connection signal="timeout" from="shooty/Timer" to="." method="_on_timer_timeout"]

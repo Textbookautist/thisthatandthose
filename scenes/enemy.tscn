@@ -40,6 +40,10 @@ offset_bottom = 5.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8tegq")
 
+[node name="collisionTimer" type="Timer" parent="CollisionShape2D"]
+wait_time = 0.1
+one_shot = true
+
 [node name="detection" type="Area2D" parent="."]
 visible = false
 
@@ -72,6 +76,7 @@ color = Color(1, 0, 0, 1)
 [node name="Timer" type="Timer" parent="shout"]
 one_shot = true
 
+[connection signal="timeout" from="CollisionShape2D/collisionTimer" to="." method="_on_collision_timer_timeout"]
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
 [connection signal="body_entered" from="damager" to="." method="_on_damager_body_entered"]

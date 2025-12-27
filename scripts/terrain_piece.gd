@@ -1,5 +1,18 @@
 extends StaticBody2D
 
+@onready var gateScene = preload("res://scenes/transportgate.tscn")
+@onready var coinScene = preload("res://scenes/coin.tscn")
+@onready var innerwallScene = preload("res://scenes/innerwall.tscn")
+@onready var bombScene = preload("res://scenes/bomb.tscn")
+@onready var enemyScene = preload("res://scenes/enemy.tscn")
+@onready var spikeScene = preload("res://scenes/spiketrap.tscn")
+@onready var cannonScene = preload("res://scenes/cannon.tscn")
+@onready var shieldScene = preload("res://scenes/shield_tile.tscn")
+@onready var spinnerScene = preload("res://scenes/spinner.tscn")
+@onready var healthScene = preload("res://scenes/health.tscn")
+@onready var sniperScene = preload("res://scenes/sniper.tscn")
+@onready var healingShrineScene = preload("res://scenes/health_lantern.tscn")
+
 var tileScene = preload("res://scenes/terrain_piece.tscn")
 
 var base = null
@@ -49,6 +62,8 @@ func _ready() -> void:
 		guarantee_gate.twin = gate
 		add_child(gate)
 	spawnstuff()
+	if find_child("colBottom"):
+		$colBottom.position.y = 26
 	
 	
 			
@@ -56,37 +71,43 @@ func _ready() -> void:
 func spawnstuff():
 	if not isFirst:
 		if randi_range(1,10) == 1:
-			var gate = (load("res://scenes/transportgate.tscn")).instantiate()
+			var gate = gateScene.instantiate()
 			add_child(gate)
 		elif randi_range(1,10) >= 9:
-			var coin = (load("res://scenes/coin.tscn")).instantiate()
+			var coin = coinScene.instantiate()
 			add_child(coin)
 		elif randi_range(1,10) == 10:
-			var wall = (load("res://scenes/innerwall.tscn")).instantiate()
+			var wall = innerwallScene.instantiate()
 			add_child(wall)
 			wall.global_position.y += 1
 		elif randi_range(1,10) == 10:
-			var bomb = (load("res://scenes/bomb.tscn")).instantiate()
+			var bomb = bombScene.instantiate()
 			add_child(bomb)
 		elif randi_range(1,10) == 10:
-			var enemy = (load("res://scenes/enemy.tscn")).instantiate()
+			var enemy = enemyScene.instantiate()
 			enemy.global_position = global_position
 			add_sibling(enemy)
 		elif randi_range(1,10) == 10:
-			var spiketrap = (load("res://scenes/spiketrap.tscn")).instantiate()
+			var spiketrap = spikeScene.instantiate()
 			add_child(spiketrap)
 		elif randi_range(1,10) == 10:
-			var cannon = (load("res://scenes/cannon.tscn")).instantiate()
+			var cannon = cannonScene.instantiate()
 			$center.add_child(cannon)
 		elif randi_range(1,10) == 10:
-			var shield = (load("res://scenes/shield_tile.tscn")).instantiate()
+			var shield = shieldScene.instantiate()
 			$center.add_child(shield)
 		elif randi_range(1,10) == 10:
-			var spinner = (load("res://scenes/spinner.tscn")).instantiate()
+			var spinner = spinnerScene.instantiate()
 			$center.add_child(spinner)
 		elif randi_range(1,10) == 10:
-			var health = (load("res://scenes/health.tscn")).instantiate()
+			var health = healthScene.instantiate()
 			add_child(health)
+		elif randi_range(1,20) == 1:
+			var sniper = sniperScene.instantiate()
+			add_child(sniper)
+		elif randi_range(1,20) == 1:
+			var lantern = healingShrineScene.instantiate()
+			add_child(lantern)
 
 func buildH(h):
 	var newHor = h-1

@@ -2,7 +2,7 @@ extends RigidBody2D
 
 
 var direction = Vector2(1, 0)
-var speed = 400
+var speed = 300
 var damage = 2
 
 var parent = null
@@ -17,6 +17,7 @@ func destroy():
 
 var prevCoordinates
 func _process(_delta):
+
 	if global_position == prevCoordinates:
 		destroy()
 	prevCoordinates = global_position
@@ -42,6 +43,8 @@ func _on_detector_body_entered(body):
 		body.trigger()
 		destroy()
 
+func take_damage(_amount):
+	destroy()
 
 func _on_lifetimer_timeout():
 	destroy()

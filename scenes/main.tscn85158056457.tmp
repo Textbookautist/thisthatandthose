@@ -1,35 +1,31 @@
-@tool
-extends Node2D
+[gd_scene load_steps=2 format=3 uid="uid://dt65cb74r1fwd"]
+
+[sub_resource type="GDScript" id="GDScript_sgp6g"]
+script/source = "extends Node2D
 
 var mapScore := 0
 
-var myData: Resource = load("res://files/savedata.tres")
-var oldPoints = 0
+var data:MySaveData = load(\"res://files/points.tres\")
 
-var tileScene = preload("res://scenes/terrain_piece.tscn")
+var tileScene = preload(\"res://scenes/terrain_piece.tscn\")
 
-var playerScene = preload("res://scenes/player.tscn")
+var playerScene = preload(\"res://scenes/player.tscn\")
 
 var sizes = [[5,6], [5,13], [9, 9]]
-var types = ["mountain", "field", "snow"]
+var types = [\"mountain\", \"field\", \"snow\"]
 var coordinates = [Vector2(10,10), Vector2(-500, -500), Vector2(-300, 500)]
 
 
 func victory():
-	print("Victory achieved")
-	var old = oldPoints
-	var new = mapScore
-	var total = old + new
-	myData.collectedPoints = total
-	ResourceSaver.save(myData, "res://files/savedata.tres")
+	var old = get_meta(\"savescore\")
+	var new = old + mapScore
+	set_meta(\"savescore\", new)
 	
 func makesize():
 	return [randi_range(5,10), randi_range(5,10)]
 
 
 func _ready() -> void:
-	oldPoints = myData.collectedPoints
-	print("Old points: ", str(oldPoints))
 	sizes = []
 	for i in range(3):
 		var list = makesize()
@@ -42,9 +38,14 @@ func _ready() -> void:
 		tile.tileType = types[index]
 		tile.global_position = coordinates[index]
 		add_child(tile)
-		print("Tile has ", str(tile.neighbors.size()), " neighbors.")
+		print(\"Tile has \", str(tile.neighbors.size()), \" neighbors.\")
 	
 	var player = playerScene.instantiate()
 	player.dev = false
 	player.global_position = Vector2(10, 10)
 	add_child(player)
+"
+
+[node name="main" type="Node2D"]
+script = SubResource("GDScript_sgp6g")
+metadata/savescore = 0
