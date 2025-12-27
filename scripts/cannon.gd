@@ -7,6 +7,11 @@ var sRight = true
 var sLeft = true
 var sDown = true
 
+var active = true
+
+func toggle():
+	active = !active
+
 func _ready():
 	add_to_group("hazard")
 	add_to_group("cannon")
@@ -45,7 +50,34 @@ func _ready():
 	
 	if sUp == false and sRight == false and sLeft == false and sDown == false:
 		queue_free()
-	
+
+func _process(_delta):
+	if active != true:
+		$CPUParticles2D.emitting = true
+		if sUp:
+			$up/uptimer.stop()
+		if sLeft:
+			$left/lefttimer.stop()
+		if sRight:
+			$right/righttimer.stop()
+		if sDown:
+			$down/downtimer.stop()
+		return
+	else:
+		$CPUParticles2D.emitting = false
+		if sUp:
+			if $up/uptimer.is_stopped():
+				$up/uptimer.start()
+		if sLeft:
+			if $left/lefttimer.is_stopped():
+				$left/lefttimer.start()
+		if sRight:
+			if $right/righttimer.is_stopped():
+				$right/righttimer.start()
+		if sDown:
+			if $down/downtimer.is_stopped():
+				$down/downtimer.start()
+			
 
 func make_bullet(dir, pos):
 	var bullet = bulletscene.instantiate()

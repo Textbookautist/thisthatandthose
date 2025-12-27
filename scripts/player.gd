@@ -20,16 +20,22 @@ func healing(amount):
 
 func die():
 	var cam = Camera2D.new()
-	cam.zoom = Vector2(2,2)
+	cam.zoom = Vector2(2, 2)
 	cam.global_position = global_position
 	add_sibling(cam)
+
 	var timeri = Timer.new()
 	timeri.wait_time = 1.0
 	timeri.connect("timeout", Callable(get_tree(), "reload_current_scene"))
-	$background.reparent(cam)
 	cam.add_child(timeri)
 	timeri.start()
-	queue_free()
+
+	# SAFELY reparent after the current frame
+	$background.call_deferred("reparent", cam)
+
+	# SAFELY free after the current frame
+	call_deferred("queue_free")
+
 
 #gameplay statistics
 var score = 0

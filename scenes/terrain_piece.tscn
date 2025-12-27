@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://o6vi8vwbqfkk"]
+[gd_scene load_steps=10 format=3 uid="uid://o6vi8vwbqfkk"]
 
 [ext_resource type="Script" uid="uid://doql52sbrdn14" path="res://scripts/terrain_piece.gd" id="1_6fbfi"]
 
@@ -20,7 +20,13 @@ size = Vector2(40, 8)
 [sub_resource type="CircleShape2D" id="CircleShape2D_6fbfi"]
 radius = 39.012817
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6fbfi"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6fbfi"]
+noise = SubResource("FastNoiseLite_6fbfi")
+
 [node name="terrain_piece" type="StaticBody2D"]
+z_as_relative = false
 script = ExtResource("1_6fbfi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -64,7 +70,7 @@ position = Vector2(20, 0)
 position = Vector2(0, 21)
 
 [node name="colBottom" type="CollisionShape2D" parent="."]
-position = Vector2(0, 25)
+position = Vector2(0, 26)
 shape = SubResource("RectangleShape2D_6fbfi")
 
 [node name="ColorRect" type="ColorRect" parent="colBottom"]
@@ -122,3 +128,10 @@ visible = false
 shape = SubResource("CircleShape2D_6fbfi")
 
 [node name="center" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, 1.5000004)
+scale = Vector2(0.07812501, 0.080078125)
+blend_mode = 1
+texture = SubResource("NoiseTexture2D_6fbfi")

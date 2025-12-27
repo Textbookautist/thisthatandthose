@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmhmur0cjt3hm"]
+[gd_scene load_steps=7 format=3 uid="uid://cmhmur0cjt3hm"]
 
 [ext_resource type="Script" uid="uid://b27x63330x1xf" path="res://scripts/player.gd" id="1_3vyb7"]
 
@@ -8,6 +8,13 @@ size = Vector2(10, 10)
 [sub_resource type="LabelSettings" id="LabelSettings_3vyb7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g2els"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3vyb7"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3vyb7"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_3vyb7")
 
 [node name="player" type="CharacterBody2D"]
 z_index = 1
@@ -115,5 +122,11 @@ color = Color(0, 0, 0, 1)
 
 [node name="dashtimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(0.265625, 0.25878906)
+energy = 33.35
+texture = SubResource("NoiseTexture2D_3vyb7")
 
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
