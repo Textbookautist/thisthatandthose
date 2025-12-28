@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc5dhv71dsywb"]
+
+[ext_resource type="Script" uid="uid://k0uoeux477mk" path="res://menus/hub_parts/hub_player.gd" id="1_0a21h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2u1cn"]
+size = Vector2(10, 10)
+
+[node name="hubPlayer" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_0a21h")
+
+[node name="back" type="ColorRect" parent="."]
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+color = Color(0, 0, 0, 1)
+
+[node name="base" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2u1cn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)

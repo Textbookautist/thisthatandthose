@@ -51,7 +51,7 @@ func _on_btn_start_pressed():
 		$structures/back/btn_start.visible = false
 		$structures/colors.visible = true
 		return
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://menus/hub.tscn")
 
 
 func select_color(rgb):

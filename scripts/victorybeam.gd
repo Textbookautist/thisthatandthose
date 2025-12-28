@@ -18,5 +18,5 @@ func _process(_delta: float) -> void:
 		$ColorRect.size.x -= 2
 		$ColorRect.position.x += 1
 	if phase >= 99:
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://menus/hub.tscn")
 	phase += 1

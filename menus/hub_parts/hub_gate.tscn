@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://c16o4coswoppr"]
+
+[ext_resource type="Script" uid="uid://dl2v48a7tjn8p" path="res://menus/hub_parts/hub_gate.gd" id="1_ukljg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukljg"]
+size = Vector2(15.25, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvlem"]
+size = Vector2(64, 15)
+
+[node name="hubGate" type="StaticBody2D"]
+script = ExtResource("1_ukljg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-40, -4)
+shape = SubResource("RectangleShape2D_ukljg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(40.375, -4)
+shape = SubResource("RectangleShape2D_ukljg")
+
+[node name="parts" type="Node2D" parent="."]
+
+[node name="ColorRect4" type="ColorRect" parent="parts"]
+offset_left = -57.0
+offset_top = -3.0
+offset_right = 57.0
+offset_bottom = 4.0
+color = Color(0, 0, 0, 0.3529412)
+
+[node name="rightPillar" type="ColorRect" parent="parts"]
+offset_left = 32.0
+offset_top = -64.0
+offset_right = 48.0
+
+[node name="rightPillar2" type="ColorRect" parent="parts"]
+offset_left = -48.0
+offset_top = -64.0
+offset_right = -32.0
+
+[node name="ColorRect" type="ColorRect" parent="parts"]
+offset_left = -60.0
+offset_top = -72.0
+offset_right = 60.0
+offset_bottom = -64.0
+
+[node name="ColorRect2" type="ColorRect" parent="parts"]
+offset_left = -48.0
+offset_top = -64.0
+offset_right = -32.0
+offset_bottom = -59.0
+color = Color(0, 0, 0, 0.3529412)
+
+[node name="ColorRect3" type="ColorRect" parent="parts"]
+offset_left = 32.0
+offset_top = -64.0
+offset_right = 48.0
+offset_bottom = -59.0
+color = Color(0, 0, 0, 0.3529412)
+
+[node name="enter" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enter"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_rvlem")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="enter"]
+position = Vector2(0, -23)
+emission_shape = 1
+emission_sphere_radius = 38.55
+gravity = Vector2(0, 0)
+
+[connection signal="body_entered" from="enter" to="." method="_on_enter_body_entered"]
