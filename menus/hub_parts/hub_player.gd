@@ -33,6 +33,8 @@ func _ready():
 
 var speed = 60
 func _physics_process(_delta: float) -> void:
+	if lockedInPlace:
+		return
 	var sprinting = false
 	var movement = Vector2(0,0)
 	if goingUp:
@@ -50,13 +52,17 @@ func _physics_process(_delta: float) -> void:
 		if sprinting:
 			movement = movement*10
 		else:
-			movement = movement*50
+			movement = movement*30
 	velocity = movement
 	
 	#print(str(velocity))
 	move_and_slide()
 
+var lockedInPlace = false
 func _process(_delta):
+	
+	if lockedInPlace:
+		return
 	
 	$Camera2D/Label.text = "Collected points: "+str(points)
 	
@@ -82,3 +88,8 @@ func _process(_delta):
 		
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().reload_current_scene()
+
+func changeColor(c):
+	$base.color = c
+	data.selectedColor = c
+	ResourceSaver.save(data, "res://files/savedata.tres")

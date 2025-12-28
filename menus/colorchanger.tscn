@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwbiq34gw6r1q"]
+
+[ext_resource type="Script" uid="uid://d26xo1iqard4m" path="res://menus/colorchanger.gd" id="1_2h3a8"]
+
+[node name="colorchanger" type="Node2D"]
+z_index = 10
+z_as_relative = false
+script = ExtResource("1_2h3a8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -633.0
+offset_top = -378.0
+offset_right = 777.0
+offset_bottom = 384.0
+color = Color(0, 0, 0, 1)
+
+[node name="base" type="ColorRect" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="ColorRect" type="ColorRect" parent="base"]
+z_index = -1
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 68.0
+offset_bottom = 68.0
+color = Color(0, 0, 0, 1)
+
+[node name="btns" type="Node2D" parent="."]
+
+[node name="colors" type="HBoxContainer" parent="btns"]
+offset_left = -35.0
+offset_top = 44.0
+offset_right = 36.0
+offset_bottom = 60.0
+alignment = 1
+
+[node name="lefter" type="ColorRect" parent="btns/colors"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="center" type="ColorRect" parent="btns/colors"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="righter" type="ColorRect" parent="btns/colors"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="left" type="Button" parent="btns"]
+offset_left = -84.0
+offset_top = 68.0
+offset_right = -4.0
+offset_bottom = 98.0
+text = "Left"
+
+[node name="right" type="Button" parent="btns"]
+offset_left = 4.0
+offset_top = 68.0
+offset_right = 84.0
+offset_bottom = 98.0
+text = "right"
+
+[node name="close" type="Button" parent="btns"]
+offset_left = -38.0
+offset_top = 104.0
+offset_right = 39.0
+offset_bottom = 131.0
+text = "CLOSE"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = -97.0
+offset_top = -82.0
+offset_right = 97.0
+offset_bottom = -63.0
+text = "You own X colors"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="btns/left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="btns/right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="btns/close" to="." method="_on_close_pressed"]

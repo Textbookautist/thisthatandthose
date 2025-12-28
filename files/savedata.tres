@@ -31,16 +31,15 @@ script/source = "extends Resource
 
 [resource]
 script = SubResource("GDScript_2bx05")
-selectedColor = Color(0, 0, 1, 1)
-primeColor = Color(0, 0, 1, 1)
-ownedColors = [Color(0.29411766, 0.21568628, 0.48235294, 1), Color(1, 0.043137256, 0.5254902, 1), Color(0.29411766, 0.21568628, 0.48235294, 1), Color(0.29411766, 0.21568628, 0.48235294, 1), Color(0.74509805, 0.9529412, 0.019607844, 1), Color(0.89411765, 0.5882353, 0.34117648, 1), Color(0.76862746, 0.61960787, 0.79607844, 1)]
-collectedPoints = 4370
-lifetimePoints = 94
-runs = 3
+selectedColor = Color(0.6862745, 0.03529412, 0.10980392, 1)
+primeColor = Color(0, 1, 0, 1)
+ownedColors = [Color(0.2627451, 0.72156864, 0.80784315, 1), Color(0.6862745, 0.03529412, 0.10980392, 1), Color(0.63529414, 0.7137255, 0.42352942, 1)]
+collectedPoints = 49790
+lifetimePoints = 75
+runs = 1
 wins = 1
-losses = 2
-highestPoints = 59
-averagePoints = 31
+highestPoints = 75
+averagePoints = 75
 restock = false
 c1 = null
 c2 = null
