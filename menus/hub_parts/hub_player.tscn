@@ -27,3 +27,12 @@ shape = SubResource("RectangleShape2D_2u1cn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_left = -279.0
+offset_top = -152.0
+offset_right = -148.0
+offset_bottom = -129.0
+text = "Points collected: "

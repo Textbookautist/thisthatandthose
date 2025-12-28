@@ -16,6 +16,7 @@ var coordinates = [Vector2(10,10), Vector2(-500, -500), Vector2(-300, 500)]
 
 
 func victory():
+	return
 	print("Victory achieved")
 	var old = oldPoints
 	var new = mapScore

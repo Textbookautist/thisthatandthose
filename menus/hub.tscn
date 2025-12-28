@@ -9,10 +9,8 @@ script = ExtResource("1_0uyqe")
 
 [node name="tiles" type="Node2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="hubGate" parent="." instance=ExtResource("2_hluti")]
 position = Vector2(268, 78)
 
 [node name="hubPlayer" parent="." instance=ExtResource("3_re5vl")]
-position = Vector2(273, 216)
+position = Vector2(269, 126)
