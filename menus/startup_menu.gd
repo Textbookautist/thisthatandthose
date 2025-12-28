@@ -62,11 +62,11 @@ func select_color(rgb):
 	$structures/colors.visible = false
 
 func _on_btn_r_pressed():
-	select_color(Color("red"))
+	select_color(Color8(255,0,0))
 func _on_btn_g_pressed():
-	select_color(Color("green"))
+	select_color(Color8(0,255,0))
 func _on_btn_b_pressed():
-	select_color(Color("blue"))
+	select_color(Color8(0,0,255))
 
 
 func _on_colortimer_timeout():

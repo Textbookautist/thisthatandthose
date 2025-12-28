@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmhmur0cjt3hm"]
+[gd_scene load_steps=6 format=3 uid="uid://cmhmur0cjt3hm"]
 
 [ext_resource type="Script" uid="uid://b27x63330x1xf" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://bgc46janotjfc" path="res://scenes/shoptracker.tscn" id="2_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8vuu"]
 size = Vector2(10, 10)
@@ -8,13 +9,6 @@ size = Vector2(10, 10)
 [sub_resource type="LabelSettings" id="LabelSettings_3vyb7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g2els"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_3vyb7"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3vyb7"]
-width = 256
-height = 256
-noise = SubResource("FastNoiseLite_3vyb7")
 
 [node name="player" type="CharacterBody2D"]
 z_index = 1
@@ -132,15 +126,11 @@ color = Color(0, 0, 0, 1)
 [node name="dashtimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-scale = Vector2(0.265625, 0.25878906)
-energy = 33.35
-texture = SubResource("NoiseTexture2D_3vyb7")
-
 [node name="damagetimer" type="Timer" parent="."]
 wait_time = 0.125
 one_shot = true
+
+[node name="shoptracker" parent="." instance=ExtResource("2_g2els")]
 
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
 [connection signal="timeout" from="damagetimer" to="." method="_on_damagetimer_timeout"]

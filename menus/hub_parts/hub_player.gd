@@ -13,6 +13,11 @@ var goingDown = false
 var goingRight = false
 var goingLeft = false
 
+func updatePoints():
+	data = load("res://files/savedata.tres")
+	points = data.collectedPoints
+	ownedColors = data.ownedColors
+
 func _ready():
 	add_to_group("player")
 	primeColor = data.primeColor
@@ -52,6 +57,8 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _process(_delta):
+	
+	$Camera2D/Label.text = "Collected points: "+str(points)
 	
 	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("w"):
 		goingUp = true

@@ -1,0 +1,174 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtq1r3j6diabm"]
+
+[ext_resource type="Script" uid="uid://mtvu7f1kwp1h" path="res://scripts/store_podium.gd" id="1_7txw2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a51h3"]
+size = Vector2(28, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrl4l"]
+size = Vector2(34, 15)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7txw2"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_wrl4l"]
+font_size = 10
+font_color = Color(1, 1, 0, 1)
+
+[node name="storePodium" type="StaticBody2D"]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_7txw2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -14.0
+offset_top = -2.0
+offset_right = 14.0
+offset_bottom = 4.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -8.0
+offset_right = 24.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 3.0
+color = Color(0, 0, 0, 0.3529412)
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect"]
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = -3.0
+offset_top = -10.0
+offset_right = 31.0
+offset_bottom = -8.0
+
+[node name="ColorRect3" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 26.0
+offset_bottom = 8.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect3"]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 2.0
+color = Color(0, 0, 0, 0.3529412)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_a51h3")
+
+[node name="square" type="Node2D" parent="."]
+z_index = 2
+z_as_relative = false
+position = Vector2(0, -28)
+
+[node name="core" type="ColorRect" parent="square"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="ColorRect" type="ColorRect" parent="square/core"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0, 0, 0, 1)
+
+[node name="detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_wrl4l")
+
+[node name="colors" type="Node2D" parent="."]
+visible = false
+z_index = 4
+z_as_relative = false
+position = Vector2(21, -45)
+
+[node name="container" type="VBoxContainer" parent="colors"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="r" type="HBoxContainer" parent="colors/container"]
+layout_mode = 2
+
+[node name="rBox" type="ColorRect" parent="colors/container/r"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="colors/container/r"]
+layout_mode = 2
+text = "000"
+label_settings = SubResource("LabelSettings_7txw2")
+
+[node name="g" type="HBoxContainer" parent="colors/container"]
+layout_mode = 2
+
+[node name="gBox" type="ColorRect" parent="colors/container/g"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+color = Color(0, 1, 0, 1)
+
+[node name="Label" type="Label" parent="colors/container/g"]
+layout_mode = 2
+text = "000"
+label_settings = SubResource("LabelSettings_7txw2")
+
+[node name="b" type="HBoxContainer" parent="colors/container"]
+layout_mode = 2
+
+[node name="bBox" type="ColorRect" parent="colors/container/b"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+color = Color(0, 0, 1, 1)
+
+[node name="Label" type="Label" parent="colors/container/b"]
+layout_mode = 2
+text = "000"
+label_settings = SubResource("LabelSettings_7txw2")
+
+[node name="ColorRect" type="ColorRect" parent="colors"]
+z_index = -1
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 42.0
+offset_bottom = 49.0
+color = Color(0, 0, 0, 1)
+
+[node name="cost" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -71)
+
+[node name="container" type="VBoxContainer" parent="cost"]
+offset_left = -20.0
+offset_top = 4.0
+offset_right = 20.0
+offset_bottom = 44.0
+
+[node name="c" type="HBoxContainer" parent="cost/container"]
+layout_mode = 2
+
+[node name="pointBox" type="ColorRect" parent="cost/container/c"]
+custom_minimum_size = Vector2(13, 13)
+layout_mode = 2
+color = Color(1, 1, 0, 1)
+
+[node name="Label" type="Label" parent="cost/container/c"]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_wrl4l")
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

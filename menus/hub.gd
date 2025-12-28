@@ -38,3 +38,7 @@ func _ready():
 	ownedColors = data.ownedColors
 	
 	buildmain()
+
+@onready var player = $hubPlayer
+func update_points():
+	player.updatePoints()

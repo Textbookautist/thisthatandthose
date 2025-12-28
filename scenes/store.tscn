@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ukifwmki2oyf"]
+
+[ext_resource type="Script" uid="uid://3h5pddtnvh7w" path="res://scripts/store.gd" id="1_jmp1n"]
+
+[node name="store" type="Node2D"]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_jmp1n")
+
+[node name="restockchecker" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="pods" type="Node2D" parent="."]
+
+[connection signal="timeout" from="restockchecker" to="." method="_on_restockchecker_timeout"]

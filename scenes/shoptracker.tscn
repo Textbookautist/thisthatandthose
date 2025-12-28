@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgc46janotjfc"]
+
+[ext_resource type="Script" uid="uid://bmc6mi2ls216v" path="res://scripts/shoptracker.gd" id="1_fwkol"]
+
+[node name="shoptracker" type="Node2D"]
+script = ExtResource("1_fwkol")
+
+[node name="restockTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="restockTimer" to="." method="_on_restock_timer_timeout"]

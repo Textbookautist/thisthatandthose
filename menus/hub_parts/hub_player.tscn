@@ -6,6 +6,8 @@
 size = Vector2(10, 10)
 
 [node name="hubPlayer" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
 motion_mode = 1
 script = ExtResource("1_0a21h")
 
@@ -36,3 +38,12 @@ offset_top = -152.0
 offset_right = -148.0
 offset_bottom = -129.0
 text = "Points collected: "
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+z_index = -10
+z_as_relative = false
+offset_left = -559.0
+offset_top = -329.0
+offset_right = 372.0
+offset_bottom = 265.0
+color = Color(0, 0, 0, 1)

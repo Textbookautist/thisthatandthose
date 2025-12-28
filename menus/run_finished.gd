@@ -1,36 +1,71 @@
 extends Node2D
 
 @onready var data = load("res://files/savedata.tres")
+@onready var multText = $multiplier
+@onready var runText = $collected
+@onready var totalText = $total
 
 var runPoints = 0
 var runEnding = 0
 var totalPoints = 0
+
+var lifetimePoints = 0
+var runs = 0
+var wins = 0
+var losses = 0
+var highestPoints = 0
+var averagePoints = 0
 
 const winMult = 1.2
 const lossMult = 0.5
 
 
 func _ready():
+	#new data
 	runPoints = data.runPoints
 	runEnding = data.runEnding
 	totalPoints = data.collectedPoints
+	#old data
+	lifetimePoints = data.lifetimePoints
+	runs = data.runs
+	wins = data.wins
+	losses = data.losses
+	highestPoints = data.highestPoints
+	
+	if runPoints > highestPoints:
+		data.highestPoints = runPoints
+	
+	lifetimePoints += runPoints
+	data.lifetimePoints = lifetimePoints
+	runs += 1
+	data.runs = runs
+	
+	averagePoints = round(lifetimePoints / runs)
+	data.averagePoints = averagePoints
 	
 	var newTotal = totalPoints
-	$collected.text = "Collected: "+str(runPoints)
+	runText.text = "Collected: "+str(runPoints)
 	
 	if runEnding == -1:
 		var newPoints = int(runPoints*lossMult)
-		$multiplier.modulate = Color("darkred")
-		$multiplier.text = "Multiplier: "+str(lossMult)
+		multText.modulate = Color("darkred")
+		multText.text = "Multiplier: "+str(lossMult)
 		newTotal += newPoints
+		losses += 1
+		data.losses = losses
+		if runPoints > 10:
+			data.restock = true
 
 	elif runEnding == 1:
 		var newPoints = int(float(runPoints)*winMult)
-		$multiplier.modulate = Color("gold")
-		$multiplier.text = "Multiplier: "+str(winMult)
+		multText.modulate = Color("gold")
+		multText.text = "Multiplier: "+str(winMult)
 		newTotal += newPoints
+		wins += 1
+		data.wins = wins
+		data.restock = true
 
-	$total.text = "New total: "+str(newTotal)
+	totalText.text = "New total: "+str(newTotal)
 	data.collectedPoints = newTotal
 	data.runPoints = 0
 	data.runEnding = 0

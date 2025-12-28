@@ -7,8 +7,11 @@ var active = true
 func toggle():
 	active = !active
 
-func teleport():
+func _do_teleport():
 	get_tree().change_scene_to_file(playScene)
+
+func teleport():
+	call_deferred("_do_teleport")
 
 func _process(_delta):
 	if active != true:

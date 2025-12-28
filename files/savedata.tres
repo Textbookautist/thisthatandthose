@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c7poj8i50w333"]
+[gd_resource type="Resource" load_steps=2 format=3]
 
 [sub_resource type="GDScript" id="GDScript_2bx05"]
 script/source = "extends Resource
@@ -12,9 +12,36 @@ script/source = "extends Resource
 @export var collectedPoints = 0
 @export var runPoints = 0
 @export var runEnding = 0
+@export var lifetimePoints = 0
+
+# Game data
+@export var runs = 0
+@export var wins = 0
+@export var losses = 0
+@export var highestPoints = 0
+@export var averagePoints = 0.0
+
+#storedata
+@export var restock = true
+@export var c1 = null
+@export var c2 = null
+@export var c3 = null
+@export var restockTime = 60
 "
 
 [resource]
 script = SubResource("GDScript_2bx05")
-selectedColor = null
-primeColor = null
+selectedColor = Color(0, 0, 1, 1)
+primeColor = Color(0, 0, 1, 1)
+ownedColors = [Color(0.29411766, 0.21568628, 0.48235294, 1), Color(1, 0.043137256, 0.5254902, 1), Color(0.29411766, 0.21568628, 0.48235294, 1), Color(0.29411766, 0.21568628, 0.48235294, 1), Color(0.74509805, 0.9529412, 0.019607844, 1), Color(0.89411765, 0.5882353, 0.34117648, 1), Color(0.76862746, 0.61960787, 0.79607844, 1)]
+collectedPoints = 4370
+lifetimePoints = 94
+runs = 3
+wins = 1
+losses = 2
+highestPoints = 59
+averagePoints = 31
+restock = false
+c1 = null
+c2 = null
+c3 = null

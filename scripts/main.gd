@@ -17,12 +17,7 @@ var coordinates = [Vector2(10,10), Vector2(-500, -500), Vector2(-300, 500)]
 
 func victory():
 	return
-	print("Victory achieved")
-	var old = oldPoints
-	var new = mapScore
-	var total = old + new
-	myData.collectedPoints = total
-	ResourceSaver.save(myData, "res://files/savedata.tres")
+	
 	
 func makesize():
 	return [randi_range(5,10), randi_range(5,10)]
