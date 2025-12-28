@@ -28,23 +28,28 @@ func healing(amount):
 	if hp > maxhp:
 		hp = maxhp
 
+func _on_death_timeout():
+	print("Has died.")
+	get_tree().change_scene_to_file("res://menus/run_finished.tscn")
+
+
 func die():
-	var cam = Camera2D.new()
-	cam.zoom = Vector2(2, 2)
-	cam.global_position = global_position
-	add_sibling(cam)
+	
+	data.runPoints = score
+	data.runEnding = -1
+	ResourceSaver.save(data, "res://files/savedata.tres")
+	
 
 	var timeri = Timer.new()
 	timeri.wait_time = 1.0
-	timeri.connect("timeout", Callable(get_tree(), "reload_current_scene"))
-	cam.add_child(timeri)
+	timeri.connect("timeout", Callable(self, "_on_death_timeout"))
+	add_child(timeri)
 	timeri.start()
-
-	# SAFELY reparent after the current frame
-	$background.call_deferred("reparent", cam)
-
-	# SAFELY free after the current frame
-	call_deferred("queue_free")
+	
+	$shade.visible = false
+	$ColorRect.visible = false
+	
+	dead = true
 
 
 #gameplay statistics
@@ -54,6 +59,7 @@ var maxhp = null
 var hp = 10
 var lasthp = 10
 var invulnerable = false
+var dead = false
 
 func invulnerability(state):
 	invulnerable = state
@@ -65,6 +71,8 @@ var goingLeft = false
 
 var speed = 60
 func _physics_process(_delta: float) -> void:
+	if dead:
+		return
 	var sprinting = false
 	var movement = Vector2(0,0)
 	if goingUp:
@@ -92,6 +100,8 @@ func _physics_process(_delta: float) -> void:
 
 var timer = 0
 func _process(_delta: float) -> void:
+	if dead:
+		return
 	checkCollapse()
 	timer += 1
 	if timer >= 1000:
@@ -210,6 +220,9 @@ func trigger_victory():
 		return
 	else:
 		vicTriggered = true
+	data.runPoints = score
+	data.runEnding = 1
+	ResourceSaver.save(data, "res://files/savedata.tres")
 	root.victory()
 	$background.color = Color("yellow")
 	var beam = (load("res://scenes/victorybeam.tscn")).instantiate()

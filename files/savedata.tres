@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://xlyaifyhdnyy"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c7poj8i50w333"]
 
 [sub_resource type="GDScript" id="GDScript_2bx05"]
 script/source = "extends Resource
@@ -10,6 +10,8 @@ script/source = "extends Resource
 @export var ownedColors = []
 
 @export var collectedPoints = 0
+@export var runPoints = 0
+@export var runEnding = 0
 "
 
 [resource]
