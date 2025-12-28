@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@onready var data = load("res://files/savedata.tres")
+@onready var pColor = $ColorRect
+
 var damaged = preload("res://scenes/player_damage.tscn")
 
 var dev = false
@@ -8,6 +11,13 @@ var root = null
 
 func _ready() -> void:
 	add_to_group("player")
+	
+	if data.selectedColor != null:
+		pColor.color = data.selectedColor
+	else:
+		data.selectedColor = data.primeColor
+		ResourceSaver.save(data, "res://files/savedata.tres")
+		pColor.color = data.primeColor
 	$background.visible = true
 	if maxhp == null:
 		maxhp = hp
