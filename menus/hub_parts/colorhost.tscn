@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ndnyhowjt1he"]
+
+[ext_resource type="Script" uid="uid://cx3cwqbrq6fw2" path="res://menus/hub_parts/colorhost.gd" id="1_6q28q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fagc2"]
+size = Vector2(6, 6)
+
+[node name="colorhost" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+motion_mode = 1
+script = ExtResource("1_6q28q")
+
+[node name="base" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fagc2")
+disabled = true

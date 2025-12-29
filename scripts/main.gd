@@ -45,7 +45,7 @@ func _process(_delta):
 
 func _ready() -> void:
 	oldPoints = myData.collectedPoints
-	print("Old points: ", str(oldPoints))
+	#print("Old points: ", str(oldPoints))
 	sizes = []
 	for i in range(3):
 		var list = makesize()
@@ -61,7 +61,7 @@ func _ready() -> void:
 		tile.tileType = types[index]
 		tile.global_position = coordinates[index]
 		add_child(tile)
-		print("Tile has ", str(tile.neighbors.size()), " neighbors.")
+		#print("Tile has ", str(tile.neighbors.size()), " neighbors.")
 	await get_tree().process_frame
 	var player = playerScene.instantiate()
 	player.dev = false

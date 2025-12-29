@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@onready var datapath = "user://files/savedata.tres"
-@onready var data = load(datapath)
+var datapath = "user://files/savedata.tres"
+@onready var data = load_or_create_savedata()
 @onready var pColor = $ColorRect
 
 var damaged = preload("res://scenes/player_damage.tscn")
@@ -9,6 +9,26 @@ var damaged = preload("res://scenes/player_damage.tscn")
 var dev = false
 
 var root = null
+
+func load_or_create_savedata():
+	var user_path = "user://files/savedata.tres"
+	var default_path = "res://files/savedata.tres"
+
+	# Ensure directory exists
+	var dir := DirAccess.open("user://")
+	if not dir.dir_exists("files"):
+		dir.make_dir("files")
+
+	# Load user save if it exists
+	if FileAccess.file_exists(user_path):
+		return load(user_path)
+
+	# Otherwise load default and save it
+	var d = load(default_path)
+	ResourceSaver.save(user_path, d)
+	return d
+
+
 
 func _ready() -> void:
 	add_to_group("player")
@@ -30,7 +50,7 @@ func healing(amount):
 		hp = maxhp
 
 func _on_death_timeout():
-	print("Has died.")
+	#print("Has died.")
 	get_tree().change_scene_to_file("res://menus/run_finished.tscn")
 
 
@@ -38,7 +58,7 @@ func die():
 	
 	data.runPoints = score
 	data.runEnding = -1
-	ResourceSaver.save(data, "res://files/savedata.tres")
+	ResourceSaver.save(data, datapath)
 	
 
 	var timeri = Timer.new()
@@ -118,7 +138,7 @@ func _process(_delta: float) -> void:
 	checkCollapse()
 	timer += 1
 	if timer >= 1000:
-		print(str(global_position))
+		#print(str(global_position))
 		timer = 0
 	
 	if damageCooldown:
@@ -153,7 +173,7 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("ui_end"):
 		dev = !dev
-		print("Devmode: ", str(dev))
+		#print("Devmode: ", str(dev))
 	
 	if dev and speed == 60:
 		speed = 200

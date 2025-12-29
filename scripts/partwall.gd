@@ -21,6 +21,8 @@ func _ready():
 			remove(w)
 
 func destroyObstacle():
+	if walls.size() == 0:
+		queue_free()
 	walls.shuffle()
 	remove(walls[0])
 

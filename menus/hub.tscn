@@ -22,3 +22,13 @@ position = Vector2(27, 171)
 
 [node name="hubPlayer" parent="." instance=ExtResource("3_re5vl")]
 position = Vector2(269, 126)
+
+[node name="lilspawner" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="hosts" type="Node2D" parent="."]
+position = Vector2(231, 228)
+
+[connection signal="timeout" from="lilspawner" to="." method="_on_lilspawner_timeout"]

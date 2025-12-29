@@ -39,7 +39,19 @@ func _ready():
 	ownedColors = data.ownedColors
 	
 	buildmain()
+	
 
 @onready var player = $hubPlayer
 func update_points():
 	player.updatePoints()
+
+@onready var guyScene = preload("res://menus/hub_parts/colorhost.tscn")
+func _on_lilspawner_timeout():
+	if ownedColors.size() == 0:
+		return
+	for i in range(10):
+		var guy = guyScene.instantiate()
+		var list = ownedColors
+		list.shuffle()
+		guy.color = list[0]
+		$hosts.add_child(guy)

@@ -44,6 +44,8 @@ vertical_alignment = 1
 
 [node name="doors" type="Node2D" parent="structures"]
 visible = false
+z_index = 5
+z_as_relative = false
 
 [node name="right" type="ColorRect" parent="structures/doors"]
 offset_top = -335.0
@@ -86,15 +88,24 @@ layout_mode = 2
 text = "B"
 
 [node name="Label" type="Label" parent="structures/colors"]
-offset_left = -129.0
+offset_left = -179.0
 offset_top = -92.0
-offset_right = 129.0
+offset_right = 180.0
 offset_bottom = -62.0
 text = "Choose your starter color"
 label_settings = SubResource("LabelSettings_1wl7q")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="colortimer" type="Timer" parent="structures/colors"]
 one_shot = true
+
+[node name="fullwipeBtn" type="Button" parent="."]
+offset_left = 484.0
+offset_top = 293.0
+offset_right = 567.0
+offset_bottom = 316.0
+text = "FullWIPE"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -103,3 +114,4 @@ one_shot = true
 [connection signal="pressed" from="structures/colors/cContainer/btn_G" to="." method="_on_btn_g_pressed"]
 [connection signal="pressed" from="structures/colors/cContainer/btn_B" to="." method="_on_btn_b_pressed"]
 [connection signal="timeout" from="structures/colors/colortimer" to="." method="_on_colortimer_timeout"]
+[connection signal="pressed" from="fullwipeBtn" to="." method="_on_fullwipe_btn_pressed"]

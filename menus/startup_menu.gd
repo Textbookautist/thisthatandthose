@@ -7,6 +7,17 @@ var datapath = "user://files/savedata.tres"
 var data: Resource
 var color = null
 
+func fullWipe():
+	var user_path = "user://files/savedata.tres"
+
+	# Delete the file if it exists
+	if FileAccess.file_exists(user_path):
+		DirAccess.remove_absolute(user_path)
+
+	# Reload the scene so load_or_create_savedata() runs again
+	get_tree().reload_current_scene()
+
+
 func load_or_create_savedata():
 	var user_path = "user://files/savedata.tres"
 	var default_path = "res://files/savedata.tres"
@@ -27,6 +38,7 @@ func load_or_create_savedata():
 
 
 func _ready():
+	$structures/back/btn_start.visible = false
 	data = load_or_create_savedata()   # <-- THIS IS THE FIX
 	$structures/doors.visible = true
 
@@ -51,7 +63,8 @@ func startup():
 		$structures/doors/right.position.x += 3
 		$structures/doors/left.position.x -= 3
 	if phase >= 200:
-		$structures/back/btn_start.disabled = false
+		if $structures/back/btn_start:
+			$structures/back/btn_start.disabled = false
 		started = true
 
 
@@ -64,6 +77,9 @@ func _process(_delta):
 		$structures/doors/left.position.x -= 550
 	startup()
 	if started:
+		if $structures/colors.visible == false:
+			if $structures/back/btn_start:
+				$structures/back/btn_start.visible = true
 		RGB.shuffle()
 		var direction = randi_range(0,1)
 		if direction == 1:
@@ -82,6 +98,7 @@ func _on_btn_start_pressed():
 
 
 func select_color(rgb):
+	$structures/back/btn_start.queue_free()
 	color = rgb
 	data.primeColor = rgb
 	ResourceSaver.save(data, datapath)
@@ -99,3 +116,7 @@ func _on_btn_b_pressed():
 func _on_colortimer_timeout():
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 	
+
+
+func _on_fullwipe_btn_pressed():
+	fullWipe()

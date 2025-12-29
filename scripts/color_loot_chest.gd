@@ -69,11 +69,11 @@ func _process(_delta):
 func _on_detector_body_entered(body):
 	if body.is_in_group("player"):
 		if body.sprinting:
-			open()
+			call_deferred("open")
 
 
 func _on_test_timer_timeout():
-	open()
+	call_deferred("open")
 
 
 func _on_killtimer_timeout():

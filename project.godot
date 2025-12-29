@@ -13,7 +13,8 @@ config_version=5
 config/name="thisthatandthose"
 run/main_scene="uid://btlc50u4bidcd"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="uid://cgh4ad1pihe2b"
+config/icon="uid://vb0fhqbdyrsy"
 
 [display]
 

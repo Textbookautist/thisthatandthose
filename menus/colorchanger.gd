@@ -41,7 +41,7 @@ func _ready():
 		if c8 in colors:
 			continue
 		colors.append(c8)
-		print("Added to colors: "+str(c8))
+		#print("Added to colors: "+str(c8))
 
 	if colorsData.size() == 2:
 		$btns/colors/lefter.color = selectedColor

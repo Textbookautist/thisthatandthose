@@ -173,7 +173,7 @@ var neighbors = []
 func detectTiles():
 	var surrounding = $tiledetection.get_overlapping_areas()
 	for s in surrounding:
-		print(str(s))
+		#print(str(s))
 		if s == self:
 			continue
 		elif s.is_in_group("terrainTile"):
