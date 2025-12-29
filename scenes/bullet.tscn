@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4cm1g4gm81x5"]
+[gd_scene load_steps=5 format=3 uid="uid://b4cm1g4gm81x5"]
 
 [ext_resource type="Script" uid="uid://cq5ngj67le2v0" path="res://scripts/bullet.gd" id="1_mkf8s"]
+[ext_resource type="AudioStream" uid="uid://d3dw860bg7jiw" path="res://audio/478057__abacagi__hit.wav" id="2_y25gk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mkf8s"]
 radius = 2.0
@@ -39,6 +40,10 @@ shape = SubResource("CircleShape2D_y25gk")
 [node name="lifetimer" type="Timer" parent="."]
 wait_time = 8.0
 autostart = true
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_y25gk")
+max_distance = 300.0
 
 [connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
 [connection signal="timeout" from="lifetimer" to="." method="_on_lifetimer_timeout"]

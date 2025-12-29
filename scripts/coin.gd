@@ -8,6 +8,8 @@ func _ready():
 		spindirection = 1
 	else:
 		spindirection = -1
+	var newPitch = randf_range(0.9, 1.1)
+	$pick.pitch_scale = newPitch
 	
 	get_tree().root.get_child(0).mapScore += 1
 
@@ -18,5 +20,9 @@ func _process(_delta):
 	detection.erase(self)
 	for e in detection:
 		if e.is_in_group("player"):
+			var aud = $pick.duplicate()
+			aud.connect("finished", Callable(aud, "queue_free"))
+			add_sibling(aud)
+			aud.play()
 			e.score += 1
 			queue_free()

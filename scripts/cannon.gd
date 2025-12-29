@@ -2,6 +2,9 @@ extends StaticBody2D
 
 var bulletscene = preload("res://scenes/bullet.tscn")
 
+@onready var root = get_tree().root.get_child(0)
+var paused = false
+
 var sUp = true
 var sRight = true
 var sLeft = true
@@ -13,6 +16,7 @@ func toggle():
 	active = !active
 
 func _ready():
+	root.pauseables.append(self)
 	add_to_group("hazard")
 	add_to_group("cannon")
 	add_to_group("obstacle")
@@ -52,6 +56,8 @@ func _ready():
 		queue_free()
 
 func _process(_delta):
+	if paused:
+		return
 	if active != true:
 		$CPUParticles2D.emitting = true
 		if sUp:
@@ -80,6 +86,8 @@ func _process(_delta):
 			
 
 func make_bullet(dir, pos):
+	if paused:
+		return
 	var bullet = bulletscene.instantiate()
 	bullet.direction = dir
 	bullet.parent = self
@@ -87,28 +95,43 @@ func make_bullet(dir, pos):
 	bullet.global_position = pos
 	
 
+func shootNoise():
+	if paused:
+		return
+	var shot = $shot.duplicate()
+	var pitch = randf_range(0.9, 1.1)
+	shot.pitch_scale = pitch
+	shot.connect("finished", Callable(shot, "queue_free"))
+	shot.global_position = global_position
+	add_sibling(shot)
+	shot.play()
+
 func getnewtime():
 	return randf_range(0.8, 1.6)
 
 func _on_uptimer_timeout():
+	shootNoise()
 	make_bullet(Vector2(0, -1), $up.global_position)
 	$up/uptimer.wait_time = getnewtime()
 	$up/uptimer.start()
 
 
 func _on_righttimer_timeout():
+	shootNoise()
 	make_bullet(Vector2(1, 0), $right.global_position)
 	$right/righttimer.wait_time = getnewtime()
 	$right/righttimer.start()
 
 
 func _on_downtimer_timeout():
+	shootNoise()
 	make_bullet(Vector2(0, 1), $down.global_position)
 	$down/downtimer.wait_time = getnewtime()
 	$down/downtimer.start()
 
 
 func _on_lefttimer_timeout():
+	shootNoise()
 	make_bullet(Vector2(-1, 0), $left.global_position)
 	$left/lefttimer.wait_time = getnewtime()
 	$left/lefttimer.start()

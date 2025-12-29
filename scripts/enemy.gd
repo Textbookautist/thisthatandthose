@@ -4,6 +4,7 @@ var player = null
 var playerLastSeen = null
 
 var deadnimation = preload("res://scenes/particles/explosive.tscn")
+@onready var root = get_tree().root.get_child(0)
 
 var invulnerable = false
 var hp = 4
@@ -27,6 +28,7 @@ func take_damage(amount):
 		die()
 
 func _ready():
+	root.pauseables.append(self)
 	add_to_group("enemy")
 	add_to_group("hazard")
 	add_to_group("alive")
@@ -72,8 +74,10 @@ func checkGs():
 	
 	
 
+var paused = false
 func _process(_delta):
-	
+	if paused:
+		return
 	if collisionCooldown:
 		$CollisionShape2D.disabled = true
 	else:
@@ -103,6 +107,8 @@ var aggro = false
 var patroltimer = 0
 var patroldirection = Vector2(0,0)
 func _physics_process(_delta):
+	if paused:
+		return
 	
 	var pos = global_position
 	var pos2 = patroldirection

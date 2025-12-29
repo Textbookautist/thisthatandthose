@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://3402fjl2t6hr"]
+[gd_scene load_steps=4 format=3 uid="uid://3402fjl2t6hr"]
 
 [ext_resource type="Script" uid="uid://dda41nyr0ng7a" path="res://scripts/cannon.gd" id="1_xuqfy"]
+[ext_resource type="AudioStream" uid="uid://bg4j7ysl63cja" path="res://audio/458398__breviceps__balloon-pop-christmas-cracker-confetti-cannon.wav" id="2_pxhkx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ne2b"]
 size = Vector2(10, 10)
@@ -78,6 +79,12 @@ angular_velocity_min = -103.92
 angular_velocity_max = 163.3
 scale_amount_max = 2.0
 color = Color(0.099985994, 0.09998601, 0.099985965, 1)
+
+[node name="shot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_pxhkx")
+volume_db = 1.0
+max_distance = 500.0
+attenuation = 0.59460354
 
 [connection signal="timeout" from="up/uptimer" to="." method="_on_uptimer_timeout"]
 [connection signal="timeout" from="right/righttimer" to="." method="_on_righttimer_timeout"]

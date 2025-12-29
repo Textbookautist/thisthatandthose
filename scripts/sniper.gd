@@ -2,10 +2,18 @@ extends RigidBody2D
 
 var speed = 40
 
+@onready var root = get_tree().root.get_child(0)
+var paused = false
 func _ready():
+	root.pauseables.append(self)
 	add_to_group("hazard")
+	var newPitch = randf_range(0.9,1.1)
+	$shot.pitch_scale = newPitch
 
 func _process(_delta):
+	if paused:
+		linear_velocity = Vector2(0,0)
+		return
 	var pos = global_position
 	var pos2 = null
 	var _distance = null
@@ -63,5 +71,9 @@ func _on_timer_timeout():
 	var bodies = $shooty.get_overlapping_bodies()
 	for b in bodies:
 		if b == player:
+			var s = $shot.duplicate()
+			s.connect("finished", Callable(s, "queue_free"))
+			add_sibling(s)
+			s.play()
 			b.take_damage(5)
 			queue_free()

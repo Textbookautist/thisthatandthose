@@ -11,6 +11,9 @@ func _ready():
 	if data.primeColor != null:
 		color = data.primeColor
 		$structures/back/btn_start.modulate = color
+	if data.selectedColor != null:
+		var col = data.selectedColor
+		$structures/back.color = col
 
 
 var phase = 0
@@ -21,19 +24,20 @@ func startup():
 	if phase < 15:
 		pass
 	elif phase < 300:
-		$structures/doors/right.position.x += 2
-		$structures/doors/left.position.x -= 2
-	if phase >= 300:
+		$structures/doors/right.position.x += 3
+		$structures/doors/left.position.x -= 3
+	if phase >= 200:
 		$structures/back/btn_start.disabled = false
 		started = true
 
 
 func _process(_delta):
+	
 	if Input.is_action_just_pressed("space"):
 		started = true
 		phase = 300
-		$structures/doors/right.position.x += 500
-		$structures/doors/left.position.x -= 500
+		$structures/doors/right.position.x += 550
+		$structures/doors/left.position.x -= 550
 	startup()
 	if started:
 		RGB.shuffle()
@@ -42,8 +46,7 @@ func _process(_delta):
 			RGB[1] += 0.1
 		else:
 			RGB[1] -= 0.1
-		print(str(back.color))
-	
+
 
 
 func _on_btn_start_pressed():

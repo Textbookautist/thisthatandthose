@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://byutelfxownnv"]
+[gd_scene load_steps=7 format=3 uid="uid://byutelfxownnv"]
 
 [ext_resource type="Script" uid="uid://ch8sewm7kl5x8" path="res://scripts/bomb.gd" id="1_4kkau"]
+[ext_resource type="AudioStream" uid="uid://ciijojjhhh4y6" path="res://audio/369524__johandeecke__long-decay-explosion-1.wav" id="2_j15uc"]
+[ext_resource type="Script" uid="uid://c4w8ixfxrw6nh" path="res://scenes/minorScripts/boom.gd" id="3_84slv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6bl7j"]
 radius = 8.0
@@ -8,7 +10,12 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_vpdcx"]
 radius = 50.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j15uc"]
+size = Vector2(150, 150)
+
 [node name="bomb" type="StaticBody2D"]
+z_index = 1
+z_as_relative = false
 script = ExtResource("1_4kkau")
 
 [node name="main" type="ColorRect" parent="."]
@@ -118,10 +125,32 @@ shape = SubResource("CircleShape2D_6bl7j")
 wait_time = 0.3
 
 [node name="detector" type="Area2D" parent="."]
+z_index = 2
+z_as_relative = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_vpdcx")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="detector"]
+shape = SubResource("RectangleShape2D_j15uc")
+
+[node name="ColorRect" type="ColorRect" parent="detector/CollisionShape2D2"]
+z_index = -1
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+color = Color(1, 0, 0, 0)
+
+[node name="boom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_j15uc")
+volume_db = 1.0
+max_distance = 500.0
+attenuation = 0.3789293
+script = ExtResource("3_84slv")
 
 [connection signal="timeout" from="boomtimer" to="." method="_on_boomtimer_timeout"]
 [connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
+[connection signal="finished" from="boom" to="boom" method="_on_finished"]

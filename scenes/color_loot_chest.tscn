@@ -1,0 +1,177 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2bncyjgdsvma"]
+
+[ext_resource type="Script" uid="uid://bepx8tjoh7maw" path="res://scripts/color_loot_chest.gd" id="1_kbohf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf35n"]
+size = Vector2(30, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbohf"]
+size = Vector2(28, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yy2l"]
+size = Vector2(40, 34)
+
+[node name="colorLootChest" type="StaticBody2D"]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_kbohf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_uf35n")
+
+[node name="frame" type="Node2D" parent="."]
+
+[node name="base" type="ColorRect" parent="frame"]
+offset_left = -16.0
+offset_top = -11.0
+offset_right = 16.0
+offset_bottom = 4.0
+color = Color(0.10747976, 0.10747973, 0.10747973, 1)
+
+[node name="ColorRect" type="ColorRect" parent="frame/base"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 31.0
+offset_bottom = 15.0
+color = Color(0.14767182, 0.14767179, 0.14767179, 1)
+
+[node name="ColorRect" type="ColorRect" parent="frame/base/ColorRect"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 1.0
+offset_right = 16.0
+offset_bottom = 5.0
+color = Color(1, 1, 0, 1)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, -11)
+node_a = NodePath("..")
+node_b = NodePath("../lid")
+bias = 0.9
+
+[node name="lid" type="RigidBody2D" parent="."]
+position = Vector2(0, -16)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lid"]
+visible = false
+shape = SubResource("RectangleShape2D_kbohf")
+disabled = true
+
+[node name="ColorRect" type="ColorRect" parent="lid"]
+z_index = -1
+offset_left = -16.0
+offset_top = -5.0
+offset_right = 16.0
+offset_bottom = 5.0
+color = Color(0.28118682, 0.28118688, 0.28118682, 1)
+
+[node name="ColorRect" type="ColorRect" parent="lid/ColorRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 8.0
+offset_right = 31.0
+offset_bottom = 10.0
+color = Color(0.24477637, 0.2447764, 0.24477637, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="lid/ColorRect"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 5.0
+color = Color(0, 0, 0, 0.1764706)
+
+[node name="ColorRect3" type="ColorRect" parent="lid/ColorRect"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 3.0
+color = Color(0, 0, 0, 0.1764706)
+
+[node name="ColorRect4" type="ColorRect" parent="lid/ColorRect"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 2.0
+color = Color(0, 0, 0, 0.1764706)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -8)
+zoom = Vector2(3, 3)
+
+[node name="detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_4yy2l")
+
+[node name="test_timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="left_particle" type="CPUParticles2D" parent="."]
+position = Vector2(-18, -12)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.9
+emission_shape = 1
+emission_sphere_radius = 7.6
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(-10, -5)
+initial_velocity_max = 10.0
+angular_velocity_min = -59.38
+angular_velocity_max = 103.92
+scale_amount_max = 2.0
+
+[node name="right_particle" type="CPUParticles2D" parent="."]
+position = Vector2(18, -12)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.9
+emission_shape = 1
+emission_sphere_radius = 7.6
+spread = 0.0
+gravity = Vector2(10, -5)
+initial_velocity_max = 10.0
+angular_velocity_min = -59.38
+angular_velocity_max = 103.92
+scale_amount_max = 2.0
+
+[node name="loot" type="Node2D" parent="."]
+z_index = -1
+z_as_relative = false
+
+[node name="color" type="ColorRect" parent="loot"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(1, 1, 1, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="loot/color"]
+z_index = 3
+z_as_relative = false
+position = Vector2(8, 8)
+emitting = false
+amount = 16
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 16.83
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+
+[node name="killtimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
+[connection signal="timeout" from="test_timer" to="." method="_on_test_timer_timeout"]
+[connection signal="timeout" from="killtimer" to="." method="_on_killtimer_timeout"]

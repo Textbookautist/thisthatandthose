@@ -1,13 +1,20 @@
 extends StaticBody2D
 
+
+@onready var root = get_tree().root.get_child(0)
+var paused = false
 var particle = preload("res://scenes/particles/explosive.tscn")
 
 var phase = 0
 
 func _ready():
+	root.pauseables.append(self)
 	add_to_group("hazard")
 	add_to_group("explosive")
 	add_to_group("bomb")
+	var newpitch = randf_range(0.9, 1.1)
+	$boom.pitch_scale = newpitch
+
 
 func _on_detector_body_entered(body):
 	if phase != 0:
@@ -23,6 +30,11 @@ func trigger():
 	$boomtimer.start()
 
 func explode():
+	var parent = get_parent()
+	var boom = $boom.duplicate()
+	parent.add_child(boom)
+	boom.connect("finished", Callable(boom, "queue_free"))
+	boom.play()
 	var playable = particle.instantiate()
 	add_sibling(playable)
 	var things = $detector.get_overlapping_bodies()
@@ -43,6 +55,9 @@ func explode():
 	queue_free()
 
 func _on_boomtimer_timeout():
+	if paused:
+		return
+	$detector/CollisionShape2D2/ColorRect.color.a += 0.02
 	match phase:
 		1:
 			$last0/last1/last2/last3/last4/last5/last6/last7.queue_free()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://baqivl7ewnyrp"]
+[gd_scene load_steps=6 format=3 uid="uid://baqivl7ewnyrp"]
 
 [ext_resource type="Script" uid="uid://dn3bn2bimcr5e" path="res://scripts/spinner.gd" id="1_i3bsr"]
+[ext_resource type="AudioStream" uid="uid://bbjvgu74alokx" path="res://audio/807248__waymonds__whirling-flying-disc-toy.wav" id="2_78gc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkf07"]
 size = Vector2(22, 22)
@@ -74,4 +75,23 @@ shape = SubResource("CircleShape2D_i3bsr")
 position = Vector2(22.5, -2)
 shape = SubResource("RectangleShape2D_78gc6")
 
+[node name="spinnoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_78gc6")
+volume_db = 2.0
+autoplay = true
+max_distance = 500.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, -10)
+angular_velocity_min = -103.92
+angular_velocity_max = 163.3
+scale_amount_max = 2.0
+color = Color(0.099985994, 0.09998601, 0.099985965, 1)
+
 [connection signal="body_entered" from="spinner/spinner1/damager" to="." method="_on_damager_body_entered"]
+[connection signal="finished" from="spinnoise" to="." method="_on_spinnoise_finished"]

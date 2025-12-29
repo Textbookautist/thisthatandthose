@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgcl4ydkk5nhq"]
+[gd_scene load_steps=6 format=3 uid="uid://cgcl4ydkk5nhq"]
 
 [ext_resource type="Script" uid="uid://bqxg76w6os8jc" path="res://scripts/sniper.gd" id="1_uyybc"]
+[ext_resource type="AudioStream" uid="uid://b5moetnnsutny" path="res://audio/163460__lemudcrab__sniper-shot.wav" id="2_wwo37"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rgo68"]
 
@@ -29,11 +30,29 @@ offset_top = -28.0
 offset_right = 2.0
 offset_bottom = -14.0
 
+[node name="ColorRect" type="ColorRect" parent="reticle/ColorRect"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 5.0
+offset_bottom = 15.0
+color = Color(0, 0, 0, 1)
+
 [node name="ColorRect2" type="ColorRect" parent="reticle"]
 offset_left = 16.0
 offset_top = -2.0
 offset_right = 30.0
 offset_bottom = 2.0
+
+[node name="ColorRect" type="ColorRect" parent="reticle/ColorRect2"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 15.0
+offset_bottom = 5.0
+color = Color(0, 0, 0, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="reticle"]
 offset_left = -30.0
@@ -41,11 +60,29 @@ offset_top = -2.0
 offset_right = -16.0
 offset_bottom = 2.0
 
+[node name="ColorRect" type="ColorRect" parent="reticle/ColorRect4"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 15.0
+offset_bottom = 5.0
+color = Color(0, 0, 0, 1)
+
 [node name="ColorRect3" type="ColorRect" parent="reticle"]
 offset_left = -2.0
 offset_top = 16.0
 offset_right = 2.0
 offset_bottom = 30.0
+
+[node name="ColorRect" type="ColorRect" parent="reticle/ColorRect3"]
+z_index = -1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 5.0
+offset_bottom = 15.0
+color = Color(0, 0, 0, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="reticle"]
 offset_left = -6.0
@@ -145,6 +182,10 @@ shape = SubResource("CircleShape2D_uyybc")
 
 [node name="Timer" type="Timer" parent="shooty"]
 wait_time = 3.0
+
+[node name="shot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_wwo37")
+volume_db = 10.0
 
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

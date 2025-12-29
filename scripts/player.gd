@@ -70,10 +70,10 @@ var goingRight = false
 var goingLeft = false
 
 var speed = 60
+var sprinting = false
 func _physics_process(_delta: float) -> void:
-	if dead:
+	if dead or paused:
 		return
-	var sprinting = false
 	var movement = Vector2(0,0)
 	if goingUp:
 		movement.y = -1*speed
@@ -86,6 +86,8 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("shift"):
 		movement = movement*2
 		sprinting = true
+	else:
+		sprinting = false
 	if Input.is_action_pressed("space") and dashCooldown == false:
 		if sprinting:
 			movement = movement*10
@@ -98,9 +100,19 @@ func _physics_process(_delta: float) -> void:
 	#print(str(velocity))
 	move_and_slide()
 
+var paused = false
 var timer = 0
 func _process(_delta: float) -> void:
-	if dead:
+	if invulnerable:
+		$shield.visible = true
+		$shield.rotation_degrees += 6
+	else:
+		$shield.visible = false
+		$shield.rotation_degrees = 0
+	root.paused = paused
+	if dead or paused:
+		if Input.is_action_just_pressed("ui_cancel") and paused:
+			paused = false
 		return
 	checkCollapse()
 	timer += 1
@@ -136,7 +148,7 @@ func _process(_delta: float) -> void:
 		goingRight = false
 		
 	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().reload_current_scene()
+		paused = !paused
 	
 	if Input.is_action_just_pressed("ui_end"):
 		dev = !dev
@@ -197,13 +209,14 @@ func checkCollapse():
 
 var damageCooldown = false
 func take_damage(amount):
-	if invulnerable or damageCooldown:
+	if invulnerable or damageCooldown or dead:
 		return
 	damageCooldown = true
+	$damageFX.play()
 	if $damagetimer.is_stopped():
 		$damagetimer.start()
 	hp -= amount
-	var dead = false
+	$Camera2D/splitter/HP/Label.text = str(hp)+"/"+str(maxhp)
 	if hp <= 0:
 		dead = true
 	var particle = damaged.instantiate()

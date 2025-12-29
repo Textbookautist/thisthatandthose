@@ -5,24 +5,42 @@ var direction = Vector2(1, 0)
 var speed = 300
 var damage = 2
 
+@onready var root = get_tree().root.get_child(0)
+var paused = false
+
 var parent = null
 
 func _ready():
+	root.pauseables.append(self)
+	if root.paused:
+		paused = true
 	add_to_group("bullet")
 	add_to_group("hazard")
+	var newPitch = randf_range(0.9, 1.1)
+	$hit.pitch_scale = newPitch
 
 func destroy():
+	var aud = $hit.duplicate()
+	aud.connect("finished", Callable(aud, "queue_free"))
+	add_sibling(aud)
+	aud.play()
 	queue_free()
 
 
 var prevCoordinates
 func _process(_delta):
+	$ColorRect.rotation_degrees += 1
+	$ColorRect2.rotation_degrees += 1
+	if paused:
+		return
 
 	if global_position == prevCoordinates:
 		destroy()
 	prevCoordinates = global_position
 
 func _physics_process(_delta):
+	if paused:
+		return
 	linear_velocity = direction*speed
 
 

@@ -18,7 +18,13 @@ func _ready():
 func activate():
 	if cooldown:
 		return
+	var pitch = randf_range(0.9,1.1)
+	$noise.pitch_scale = pitch
+	$noise.play()
 	$traptimer.start()
+	
+	
+		
 	for spike in spikes:
 		spike.visible = true
 		hurtyTime = true
@@ -29,6 +35,8 @@ func _on_area_2d_body_entered(body):
 		return
 	if body.is_in_group("player") or body.is_in_group("alive"):
 		activate()
+		if body in $hurtyTime.get_overlapping_bodies():
+			_on_hurty_time_body_entered(body)
 
 
 func _on_hurty_time_body_entered(body):

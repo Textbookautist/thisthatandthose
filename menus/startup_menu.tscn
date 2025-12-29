@@ -5,7 +5,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_fr6ne"]
 font_size = 64
 font_color = Color(0, 0, 0, 1)
-outline_size = 24
+outline_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_1wl7q"]
 font_size = 21

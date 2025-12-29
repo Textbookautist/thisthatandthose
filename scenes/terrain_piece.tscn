@@ -65,7 +65,7 @@ position = Vector2(20, 0)
 position = Vector2(0, 21)
 
 [node name="colBottom" type="CollisionShape2D" parent="."]
-position = Vector2(0, 26)
+position = Vector2(0, 29)
 shape = SubResource("RectangleShape2D_6fbfi")
 
 [node name="ColorRect" type="ColorRect" parent="colBottom"]

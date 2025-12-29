@@ -30,6 +30,8 @@ func _ready():
 	colors.append(primecolor)
 	if primecolor != selectedColor:
 		colors.append(selectedColor)
+	else:
+		colIndex = 0
 	var colorsData = data.ownedColors
 	
 	for c1 in colorsData:
@@ -63,9 +65,37 @@ func _ready():
 	$Label.text = "You own "+str(colors.size())+" colors"
 	if colors.size() == 1:
 		$Label.text = "You own "+str(colors.size())+" color"
+	
+	var total = 256 * 256 * 256
+	var percentage = float(colorsData.size() + 1) / total * 100.0
+
+	$tiplabel.text = "%d / %d : %.6f%%" % [
+		colorsData.size() + 1,
+		total,
+		percentage
+	]
+
 
 func _process(_delta):
 	$base.color = $btns/colors/center.color
+	
+	if Input.is_action_just_pressed("a"):
+		_on_left_pressed()
+		
+	if Input.is_action_just_pressed("d"):
+		_on_right_pressed()
+	
+	if Input.is_action_just_pressed("space"):
+		close()
+	
+	
+
+	var col = $btns/colors/center.color
+	$rgbs/container/r_text.text = str(int(col.r * 255))
+	$rgbs/container/g_text.text = str(int(col.g * 255))
+	$rgbs/container/b_text.text = str(int(col.b * 255))
+
+	
 
 func get_color(value):
 	var c: Color = value

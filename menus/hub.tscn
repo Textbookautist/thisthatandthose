@@ -14,11 +14,11 @@ script = ExtResource("1_0uyqe")
 [node name="hubGate" parent="." instance=ExtResource("2_hluti")]
 position = Vector2(255, 88)
 
-[node name="store" parent="." instance=ExtResource("4_scqd4")]
-position = Vector2(40, 174)
-
 [node name="colorstationBtn" parent="." instance=ExtResource("4_740q0")]
-position = Vector2(473, 199)
+position = Vector2(336, 214)
+
+[node name="store" parent="." instance=ExtResource("4_scqd4")]
+position = Vector2(27, 171)
 
 [node name="hubPlayer" parent="." instance=ExtResource("3_re5vl")]
 position = Vector2(269, 126)

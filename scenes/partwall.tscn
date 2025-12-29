@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxodexqioh7ag"]
+
+[ext_resource type="Script" uid="uid://dpxx41l1a7uys" path="res://scripts/partwall.gd" id="1_y171d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5y1uw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y171d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g68hm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72xlr"]
+
+[node name="partwall" type="StaticBody2D"]
+script = ExtResource("1_y171d")
+
+[node name="base" type="ColorRect" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="colUL" type="CollisionShape2D" parent="."]
+position = Vector2(-10, -10)
+shape = SubResource("RectangleShape2D_5y1uw")
+
+[node name="colUR" type="CollisionShape2D" parent="."]
+position = Vector2(10, -10)
+shape = SubResource("RectangleShape2D_y171d")
+
+[node name="colBL" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 10)
+shape = SubResource("RectangleShape2D_g68hm")
+
+[node name="colBR" type="CollisionShape2D" parent="."]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_72xlr")
+
+[node name="walls" type="Node2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="colorUL" type="ColorRect" parent="walls"]
+offset_left = -20.0
+offset_top = -20.0
+color = Color(0.18431373, 0.18431373, 0.18431373, 1)
+
+[node name="shade" type="ColorRect" parent="walls/colorUL"]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 22.0
+color = Color(0, 0, 0, 0.1764706)
+
+[node name="colorUR" type="ColorRect" parent="walls"]
+offset_top = -20.0
+offset_right = 20.0
+color = Color(0.18431373, 0.18431373, 0.18431373, 1)
+
+[node name="shade" type="ColorRect" parent="walls/colorUR"]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 22.0
+color = Color(0, 0, 0, 0.1764706)
+
+[node name="colorBL" type="ColorRect" parent="walls"]
+offset_left = -20.0
+offset_bottom = 22.0
+color = Color(0.18431373, 0.18431373, 0.18431373, 1)
+
+[node name="shade" type="ColorRect" parent="walls/colorBL"]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 22.0
+color = Color(0, 0, 0, 0.1764706)
+
+[node name="colorBR" type="ColorRect" parent="walls"]
+offset_right = 20.0
+offset_bottom = 22.0
+color = Color(0.18431373, 0.18431373, 0.18431373, 1)
+
+[node name="shade" type="ColorRect" parent="walls/colorBR"]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 22.0
+color = Color(0, 0, 0, 0.1764706)

@@ -12,6 +12,8 @@ extends StaticBody2D
 @onready var healthScene = preload("res://scenes/health.tscn")
 @onready var sniperScene = preload("res://scenes/sniper.tscn")
 @onready var healingShrineScene = preload("res://scenes/health_lantern.tscn")
+@onready var colorChestScene = preload("res://scenes/color_loot_chest.tscn")
+@onready var partWallScene = preload("res://scenes/partwall.tscn")
 
 var tileScene = preload("res://scenes/terrain_piece.tscn")
 
@@ -108,6 +110,13 @@ func spawnstuff():
 		elif randi_range(1,20) == 1:
 			var lantern = healingShrineScene.instantiate()
 			add_child(lantern)
+		elif randi_range(1,20) == 1:
+			var chest = colorChestScene.instantiate()
+			add_child(chest)
+		elif randi_range(1,20 < 3):
+			var wall = partWallScene.instantiate()
+			add_child(wall)
+			wall.position.y += 1
 
 func buildH(h):
 	var newHor = h-1

@@ -83,6 +83,54 @@ text = "You own X colors"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="rgbs" type="Node2D" parent="."]
+position = Vector2(0, -120)
+
+[node name="container" type="HBoxContainer" parent="rgbs"]
+offset_left = -194.0
+offset_top = 64.0
+offset_right = 194.0
+offset_bottom = 84.0
+alignment = 1
+
+[node name="r" type="ColorRect" parent="rgbs/container"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(1, 0, 0, 1)
+
+[node name="r_text" type="Label" parent="rgbs/container"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="g" type="ColorRect" parent="rgbs/container"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0, 1, 0, 1)
+
+[node name="g_text" type="Label" parent="rgbs/container"]
+layout_mode = 2
+text = "000"
+
+[node name="b" type="ColorRect" parent="rgbs/container"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0, 0, 1, 1)
+
+[node name="b_text" type="Label" parent="rgbs/container"]
+layout_mode = 2
+text = "000"
+
+[node name="tiplabel" type="Label" parent="."]
+offset_left = -349.0
+offset_top = -125.0
+offset_right = 349.0
+offset_bottom = -110.0
+text = "XY / XN     : 0.00220"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="btns/left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="btns/right" to="." method="_on_right_pressed"]
 [connection signal="pressed" from="btns/close" to="." method="_on_close_pressed"]
