@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var data = load("res://files/savedata.tres")
+var datapath = "user://files/savedata.tres"
+@onready var data = load(datapath)
 @onready var base = $base
 
 @onready var player = get_parent()

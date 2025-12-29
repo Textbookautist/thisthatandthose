@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
 
-@onready var data: Resource = load("res://files/savedata.tres")
+var datapath = "user://files/savedata.tres"
+@onready var data: Resource = load(datapath)
 var points = 0
 var primeColor = null
 var selectedColor = null
@@ -14,7 +15,7 @@ var goingRight = false
 var goingLeft = false
 
 func updatePoints():
-	data = load("res://files/savedata.tres")
+	data = load(datapath)
 	points = data.collectedPoints
 	ownedColors = data.ownedColors
 
@@ -92,4 +93,4 @@ func _process(_delta):
 func changeColor(c):
 	$base.color = c
 	data.selectedColor = c
-	ResourceSaver.save(data, "res://files/savedata.tres")
+	ResourceSaver.save(data, datapath)

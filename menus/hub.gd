@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var data: Resource = load("res://files/savedata.tres")
+@onready var datapath = "user://files/savedata.tres"
+@onready var data: Resource = load(datapath)
 
 @onready var tile = preload("res://menus/hub_parts/hubtile.tscn")
 

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@onready var data = load("res://files/savedata.tres")
+@onready var datapath = "user://files/savedata.tres"
+@onready var data = load(datapath)
 @onready var pColor = $ColorRect
 
 var damaged = preload("res://scenes/player_damage.tscn")
@@ -16,7 +17,7 @@ func _ready() -> void:
 		pColor.color = data.selectedColor
 	else:
 		data.selectedColor = data.primeColor
-		ResourceSaver.save(data, "res://files/savedata.tres")
+		ResourceSaver.save(data, datapath)
 		pColor.color = data.primeColor
 	$background.visible = true
 	if maxhp == null:
@@ -235,7 +236,7 @@ func trigger_victory():
 		vicTriggered = true
 	data.runPoints = score
 	data.runEnding = 1
-	ResourceSaver.save(data, "res://files/savedata.tres")
+	ResourceSaver.save(data, datapath)
 	root.victory()
 	$background.color = Color("yellow")
 	var beam = (load("res://scenes/victorybeam.tscn")).instantiate()

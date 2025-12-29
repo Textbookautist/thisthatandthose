@@ -1,19 +1,43 @@
 extends Node2D
 
-@onready var data: Resource = load("res://files/savedata.tres")
+var datapath = "user://files/savedata.tres"
 @onready var back = $structures/back
 @onready var RGB = [back.color.r, back.color.g, back.color.b]
 
+var data: Resource
 var color = null
 
+func load_or_create_savedata():
+	var user_path = "user://files/savedata.tres"
+	var default_path = "res://files/savedata.tres"
+
+	# Ensure directory exists
+	var dir := DirAccess.open("user://")
+	if not dir.dir_exists("files"):
+		dir.make_dir("files")
+
+	# If user save exists, load it
+	if FileAccess.file_exists(user_path):
+		return load(user_path)
+
+	# Otherwise load default and save it to user://
+	var default_data := load(default_path)
+	ResourceSaver.save(default_data, user_path)
+	return default_data
+
+
 func _ready():
+	data = load_or_create_savedata()   # <-- THIS IS THE FIX
 	$structures/doors.visible = true
+
 	if data.primeColor != null:
 		color = data.primeColor
 		$structures/back/btn_start.modulate = color
+
 	if data.selectedColor != null:
 		var col = data.selectedColor
 		$structures/back.color = col
+
 
 
 var phase = 0
@@ -60,7 +84,7 @@ func _on_btn_start_pressed():
 func select_color(rgb):
 	color = rgb
 	data.primeColor = rgb
-	ResourceSaver.save(data, "res://files/savedata.tres")
+	ResourceSaver.save(data, datapath)
 	$structures/colors/colortimer.start()
 	$structures/colors.visible = false
 

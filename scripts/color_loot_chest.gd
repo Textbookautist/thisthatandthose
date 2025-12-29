@@ -1,6 +1,7 @@
 extends StaticBody2D
 
-@onready var data = load("res://files/savedata.tres")
+var datapath = "user://files/savedata.tres"
+@onready var data = load(datapath)
 
 var testing = false
 
@@ -63,7 +64,7 @@ func _process(_delta):
 			colordata.append(convertedColor)
 			colordata.sort()
 			data.ownedColors = colordata
-			ResourceSaver.save(data, "res://files/savedata.tres")
+			ResourceSaver.save(data, datapath)
 	
 func _on_detector_body_entered(body):
 	if body.is_in_group("player"):

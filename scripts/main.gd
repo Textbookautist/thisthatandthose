@@ -5,7 +5,9 @@ var mapScore := 0
 var pauseables := []
 var paused = false
 
-var myData: Resource = load("res://files/savedata.tres")
+var datapath = "user://files/savedata.tres"
+
+@onready var myData: Resource = load(datapath)
 var oldPoints = 0
 
 var tileScene = preload("res://scenes/terrain_piece.tscn")

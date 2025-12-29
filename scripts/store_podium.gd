@@ -5,7 +5,7 @@ var color = Color8(0,0,0)
 
 var points = 0
 var cost = 100
-var datapath = "res://files/savedata.tres"
+var datapath = "user://files/savedata.tres"
 @onready var data = load(datapath)
 @onready var box = $square/core
 @onready var parent = get_parent().get_parent()

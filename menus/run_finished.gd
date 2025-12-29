@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var data = load("res://files/savedata.tres")
+var datapath = "user://files/savedata.tres"
+@onready var data = load(datapath)
 @onready var multText = $multiplier
 @onready var runText = $collected
 @onready var totalText = $total
@@ -69,7 +70,7 @@ func _ready():
 	data.collectedPoints = newTotal
 	data.runPoints = 0
 	data.runEnding = 0
-	ResourceSaver.save(data, "res://files/savedata.tres")
+	ResourceSaver.save(data, datapath)
 
 var timer = 0
 func _process(_delta):

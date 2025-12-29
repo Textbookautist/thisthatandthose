@@ -1,6 +1,6 @@
 extends Node2D
 
-var datapath = "res://files/savedata.tres"
+var datapath = "user://files/savedata.tres"
 @onready var podiumScene = preload("res://scenes/store_podium.tscn")
 @onready var data = load(datapath)
 @onready var base = $pods
