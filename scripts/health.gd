@@ -6,7 +6,7 @@ func _ready() -> void:
 	add_to_group("hp")
 
 func _process(_delta: float) -> void:
-	$spinme.rotation_degrees += 1
+	$spinme.rotation_degrees += 60*_delta
 
 
 

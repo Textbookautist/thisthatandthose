@@ -23,19 +23,19 @@ var status = 0
 var hanging = 0
 func _process(_delta):
 	if reloading:
-		$pommel.position.y -= 1
-		$pommel.modulate.a -= 0.01
+		$pommel.position.y -= 60 * _delta
+		$pommel.modulate.a -= 0.60 * _delta
 		$CollisionShape2D.disabled = true
 		$pommel/CollisionShape2D.disabled = true
 	else:
 		slam()
 	if waiting != true:
-		status += 1
+		status += 60 * _delta
 		if status > 500:
 			status = 0
 			reloading = false
 	else:
-		hanging += 1
+		hanging += 60  * _delta
 		if hanging > 500:
 			hanging = 0
 			waiting = false

@@ -44,8 +44,7 @@ func _process(_delta):
 	var things = $detect.get_overlapping_bodies()
 	for t in things:
 		if t.is_in_group("player") or t.is_in_group("alive"):
-			if t.is_in_group("player"):
-				t.teleporting = true
+			t.teleporting = true
 			var playerdir = t.velocity.y
 			if playerdir > 0:
 				teleport_twin(t, "down")

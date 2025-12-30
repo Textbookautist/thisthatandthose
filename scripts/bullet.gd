@@ -2,7 +2,7 @@ extends RigidBody2D
 
 
 var direction = Vector2(1, 0)
-var speed = 300
+var speed = 18000
 var damage = 2
 
 @onready var root = get_tree().root.get_child(0)
@@ -31,8 +31,8 @@ func destroy():
 var prevCoordinates
 func _process(_delta):
 	
-	$ColorRect.rotation_degrees += 1
-	$ColorRect2.rotation_degrees += 1
+	$ColorRect.rotation_degrees += 1*_delta
+	$ColorRect2.rotation_degrees += 1*_delta
 	if paused:
 		return
 
@@ -44,7 +44,7 @@ func _physics_process(_delta):
 	
 	if paused:
 		return
-	linear_velocity = direction*speed
+	linear_velocity = direction*speed*_delta
 
 
 func _on_detector_body_entered(body):

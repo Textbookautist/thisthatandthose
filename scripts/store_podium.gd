@@ -41,7 +41,7 @@ func get_color():
 	return c8
 
 func _process(_delta):
-	$square.rotation_degrees += randi_range(1,2)
+	$square.rotation_degrees += randi_range(1,2)*60*_delta
 	if displayed and hasStock:
 		var boxColor = get_color()
 		$colors/container/r/Label.text = str(int(boxColor.r*255))

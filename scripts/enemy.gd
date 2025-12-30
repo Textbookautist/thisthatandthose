@@ -9,6 +9,7 @@ var deadnimation = preload("res://scenes/particles/explosive.tscn")
 var invulnerable = false
 var hp = 4
 
+
 func invulnerability(state):
 	invulnerable = state
 
@@ -71,13 +72,10 @@ func checkGs():
 	$ColorRect/left_eye.visible = true
 	$ColorRect/right_eye.visible = true
 
-	
-var tiles = []
+
 var curTiles = []
 var teleporting = false
 func safeMove(tile, mode):
-	#if lifetime < 10:
-		#return
 	match mode:
 		1:
 			curTiles.append(tile)
@@ -119,7 +117,7 @@ func _process(_delta):
 				aggro = false
 		checktime = 0
 
-var speed = 55
+var speed = 3300
 var aggro = false
 var patroltimer = 0
 var patroldirection = Vector2(0,0)
@@ -149,11 +147,11 @@ func _physics_process(_delta):
 	
 	var direction = (pos2 - pos).normalized()
 	if aggro:
-		velocity = direction*speed
+		velocity = direction*speed * _delta
 	else:
-		velocity = direction*(speed*0.2)
+		velocity = direction*(speed*0.2) * _delta
 	if pos.distance_to(patroldirection) < 1.0:
-		velocity = Vector2.ZERO
+		velocity = Vector2.ZERO * _delta
 
 	move_and_slide()
 

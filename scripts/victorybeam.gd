@@ -15,11 +15,11 @@ func _process(_delta: float) -> void:
 		parent.invulnerable = true
 	
 	if phase < 50:
-		$ColorRect.size.x += 2
-		$ColorRect.position.x -= 1
+		$ColorRect.size.x += 120*_delta
+		$ColorRect.position.x -= 60*_delta
 	else:
-		$ColorRect.size.x -= 2
-		$ColorRect.position.x += 1
+		$ColorRect.size.x -= 120*_delta
+		$ColorRect.position.x += 60*_delta
 	if phase >= 99:
 		get_tree().change_scene_to_file("res://menus/run_finished.tscn")
 	phase += 1

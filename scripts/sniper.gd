@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var speed = 40
+var speed = 2400
 
 @onready var root = get_tree().root.get_child(0)
 var paused = false
@@ -12,7 +12,6 @@ func _ready():
 
 func _process(_delta):
 	if paused:
-		linear_velocity = Vector2(0,0)
 		return
 	var pos = global_position
 	var pos2 = null
@@ -22,13 +21,13 @@ func _process(_delta):
 		_distance = pos.distance_to(pos2)
 		
 	if _distance != null and _distance < 4.0:
-		speed = 5
+		speed = 5*60
 	else:
-		speed = randi_range(30,40)
+		speed = randi_range(30,40)*60
 	
 	if pos2 != null and seesPlayer:
 		var direction = (pos2 - pos).normalized()
-		linear_velocity = direction*speed
+		linear_velocity = direction*speed*_delta
 
 var player = null
 var seesPlayer = false

@@ -2,6 +2,8 @@ extends StaticBody2D
 
 var blades = []
 
+var speed = 900
+
 var active = true
 
 @onready var root = get_tree().root.get_child(0)
@@ -33,7 +35,7 @@ func _process(_delta: float) -> void:
 		$CPUParticles2D.emitting = true
 		return
 	for b in blades:
-		b.rotation_degrees -= 15
+		b.rotation_degrees -= speed * _delta
 
 
 

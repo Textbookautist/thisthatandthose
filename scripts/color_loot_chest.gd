@@ -45,14 +45,14 @@ func _process(_delta):
 		spinning = true
 	
 	if opened:
-		$lid.modulate.a -= 0.01
+		$lid.modulate.a -= 0.60 * _delta
 	
 	if opened and spinning:
 		if raised < 300:
-			$loot.position.y -= 0.1
+			$loot.position.y -= 6 * _delta
 		if raised > 100:
-			$loot/color.color.a += 0.01
-			$loot.z_index = 2
+			$loot/color.color.a += 0.60 * _delta
+			$loot.z_index = 120 * _delta
 		raised += 1
 		if spinphase > 400 and ending == false:
 			ending = true

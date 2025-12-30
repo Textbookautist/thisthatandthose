@@ -15,7 +15,7 @@ func _ready():
 var timesran = 0
 func _process(_delta):
 	
-	global_position.y -= timesran
+	global_position.y -= timesran*60*_delta
 	timesran += 1
 	
 	if timesran >= 100:

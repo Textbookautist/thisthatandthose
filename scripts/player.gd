@@ -109,7 +109,7 @@ var goingDown = false
 var goingRight = false
 var goingLeft = false
 
-var speed = 60
+var speed = 3600
 var sprinting = false
 func _physics_process(_delta: float) -> void:
 	if dead or paused:
@@ -137,7 +137,7 @@ func _physics_process(_delta: float) -> void:
 			movement = movement*50
 		dashCooldown = true
 		$dashtimer.start()
-	velocity = movement
+	velocity = movement * _delta
 	
 	#print(str(velocity))
 	move_and_slide()
@@ -148,7 +148,7 @@ func _process(_delta: float) -> void:
 	#lifetime += 1
 	if invulnerable:
 		$shield.visible = true
-		$shield.rotation_degrees += 6
+		$shield.rotation_degrees += 6*60*_delta
 	else:
 		$shield.visible = false
 		$shield.rotation_degrees = 0
@@ -162,11 +162,6 @@ func _process(_delta: float) -> void:
 	if timer >= 1000:
 		#print(str(global_position))
 		timer = 0
-	
-	if damageCooldown:
-		$ColorRect.modulate.a = 0.5
-	else:
-		$ColorRect.modulate.a = 1.0
 	
 	if Input.is_action_just_pressed("ui_home"):
 		trigger_victory()
@@ -198,10 +193,10 @@ func _process(_delta: float) -> void:
 		#print("Devmode: ", str(dev))
 	
 	if dev and speed == 60:
-		speed = 200
+		speed = 200*60
 		$CollisionShape2D.disabled = true
 	elif speed == 200:
-		speed = 60
+		speed = 60*60
 		$CollisionShape2D.disabled = false
 	
 	if hp > lasthp:
