@@ -89,10 +89,10 @@ color = Color(1, 0, 0, 1)
 
 [node name="Label" type="Label" parent="Camera2D/splitter/HP"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 17.0
-offset_right = 51.0
-offset_bottom = 40.0
+offset_left = -24.0
+offset_top = 18.0
+offset_right = 136.0
+offset_bottom = 41.0
 scale = Vector2(0.5, 0.5)
 text = "10/10"
 label_settings = SubResource("LabelSettings_3vyb7")
@@ -114,10 +114,10 @@ color = Color(1, 1, 0, 1)
 
 [node name="Label" type="Label" parent="Camera2D/splitter/Score"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 16.0
-offset_right = 46.0
-offset_bottom = 39.0
+offset_left = -15.0
+offset_top = 17.0
+offset_right = 111.0
+offset_bottom = 40.0
 scale = Vector2(0.5, 0.5)
 text = "0"
 label_settings = SubResource("LabelSettings_g2els")

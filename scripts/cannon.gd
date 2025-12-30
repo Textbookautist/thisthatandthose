@@ -117,6 +117,7 @@ func _on_uptimer_timeout():
 
 
 func _on_righttimer_timeout():
+	
 	shootNoise()
 	make_bullet(Vector2(1, 0), $right.global_position)
 	$right/righttimer.wait_time = getnewtime()

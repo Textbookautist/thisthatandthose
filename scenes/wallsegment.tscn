@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://7g7s8gx4o6fu"]
+
+[ext_resource type="Script" uid="uid://cf7doiv2ev27h" path="res://scenes/minorScripts/wallsegment.gd" id="1_kuop3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2snq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kuop3"]
+size = Vector2(24, 24)
+
+[node name="wallsegment" type="StaticBody2D"]
+script = ExtResource("1_kuop3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.18431373, 0.18431373, 0.18431373, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q2snq")
+
+[node name="detection" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+shape = SubResource("RectangleShape2D_kuop3")
+
+[node name="particles" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 5.0
+one_shot = true
+speed_scale = 4.96
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 36.03
+direction = Vector2(0, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+scale_amount_max = 10.0
+color = Color(0.18431373, 0.18431373, 0.18431373, 1)
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]

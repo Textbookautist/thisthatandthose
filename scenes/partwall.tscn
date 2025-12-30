@@ -1,17 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxodexqioh7ag"]
+[gd_scene load_steps=4 format=3 uid="uid://cxodexqioh7ag"]
 
 [ext_resource type="Script" uid="uid://dpxx41l1a7uys" path="res://scripts/partwall.gd" id="1_y171d"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5y1uw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y171d"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g68hm"]
+[ext_resource type="PackedScene" uid="uid://7g7s8gx4o6fu" path="res://scenes/wallsegment.tscn" id="2_g68hm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_72xlr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mg615"]
-size = Vector2(46, 47)
 
 [node name="partwall" type="StaticBody2D"]
 script = ExtResource("1_y171d")
@@ -23,93 +15,18 @@ offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 
-[node name="colUL" type="CollisionShape2D" parent="."]
-position = Vector2(-10, -10)
-shape = SubResource("RectangleShape2D_5y1uw")
-
-[node name="colUR" type="CollisionShape2D" parent="."]
-position = Vector2(10, -10)
-shape = SubResource("RectangleShape2D_y171d")
-
-[node name="colBL" type="CollisionShape2D" parent="."]
-position = Vector2(-10, 10)
-shape = SubResource("RectangleShape2D_g68hm")
-
-[node name="colBR" type="CollisionShape2D" parent="."]
+[node name="wallsegment" parent="." instance=ExtResource("2_g68hm")]
 position = Vector2(10, 10)
+
+[node name="wallsegment2" parent="." instance=ExtResource("2_g68hm")]
+position = Vector2(-10, 10)
+
+[node name="wallsegment3" parent="." instance=ExtResource("2_g68hm")]
+position = Vector2(-10, -10)
+
+[node name="wallsegment4" parent="." instance=ExtResource("2_g68hm")]
+position = Vector2(10, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_72xlr")
-
-[node name="walls" type="Node2D" parent="."]
-position = Vector2(0, -2)
-
-[node name="colorUL" type="ColorRect" parent="walls"]
-offset_left = -20.0
-offset_top = -20.0
-color = Color(0.18431373, 0.18431373, 0.18431373, 1)
-
-[node name="shade" type="ColorRect" parent="walls/colorUL"]
-layout_mode = 0
-offset_top = 20.0
-offset_right = 20.0
-offset_bottom = 22.0
-color = Color(0, 0, 0, 0.1764706)
-
-[node name="colorUR" type="ColorRect" parent="walls"]
-offset_top = -20.0
-offset_right = 20.0
-color = Color(0.18431373, 0.18431373, 0.18431373, 1)
-
-[node name="shade" type="ColorRect" parent="walls/colorUR"]
-layout_mode = 0
-offset_top = 20.0
-offset_right = 20.0
-offset_bottom = 22.0
-color = Color(0, 0, 0, 0.1764706)
-
-[node name="colorBL" type="ColorRect" parent="walls"]
-offset_left = -20.0
-offset_bottom = 22.0
-color = Color(0.18431373, 0.18431373, 0.18431373, 1)
-
-[node name="shade" type="ColorRect" parent="walls/colorBL"]
-layout_mode = 0
-offset_top = 20.0
-offset_right = 20.0
-offset_bottom = 22.0
-color = Color(0, 0, 0, 0.1764706)
-
-[node name="colorBR" type="ColorRect" parent="walls"]
-offset_right = 20.0
-offset_bottom = 22.0
-color = Color(0.18431373, 0.18431373, 0.18431373, 1)
-
-[node name="shade" type="ColorRect" parent="walls/colorBR"]
-layout_mode = 0
-offset_top = 20.0
-offset_right = 20.0
-offset_bottom = 22.0
-color = Color(0, 0, 0, 0.1764706)
-
-[node name="destruction" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="destruction"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_mg615")
-
-[node name="particles" type="CPUParticles2D" parent="."]
-emitting = false
-lifetime = 5.0
-one_shot = true
-speed_scale = 4.96
-explosiveness = 1.0
-emission_shape = 1
-emission_sphere_radius = 36.03
-direction = Vector2(0, 1)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 20.0
-scale_amount_max = 10.0
-color = Color(0.18431373, 0.18431373, 0.18431373, 1)
-
-[connection signal="body_entered" from="destruction" to="." method="_on_destruction_body_entered"]
+disabled = true

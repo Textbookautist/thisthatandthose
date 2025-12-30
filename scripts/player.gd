@@ -54,8 +54,9 @@ func _on_death_timeout():
 	get_tree().change_scene_to_file("res://menus/run_finished.tscn")
 
 
-func die():
-	
+func die(source="unknown"):
+	if source != "unknown":
+		data.deathSource = source
 	data.runPoints = score
 	data.runEnding = -1
 	ResourceSaver.save(data, datapath)
@@ -72,6 +73,24 @@ func die():
 	
 	dead = true
 
+var curTiles = []
+var teleporting = false
+func safeMove(tile, mode):
+	#if lifetime < 10:
+		#return
+	match mode:
+		1:
+			curTiles.append(tile)
+			teleporting = false
+		-1:
+			curTiles.erase(tile)
+	
+	if curTiles.size() == 0:
+		if teleporting:
+			teleporting = false
+			return
+		take_damage(10, "Fell from color")
+		
 
 #gameplay statistics
 var score = 0
@@ -126,6 +145,7 @@ func _physics_process(_delta: float) -> void:
 var paused = false
 var timer = 0
 func _process(_delta: float) -> void:
+	#lifetime += 1
 	if invulnerable:
 		$shield.visible = true
 		$shield.rotation_degrees += 6
@@ -231,7 +251,7 @@ func checkCollapse():
 		checksDone += 1
 
 var damageCooldown = false
-func take_damage(amount):
+func take_damage(amount, source="unknown"):
 	if invulnerable or damageCooldown or dead:
 		return
 	damageCooldown = true
@@ -248,7 +268,10 @@ func take_damage(amount):
 	particle.color = $ColorRect.color
 	add_sibling(particle)
 	if dead:
-		die()
+		if source != "unknown":
+			die(source)
+		else:
+			die()
 
 var vicTriggered = false
 func trigger_victory():

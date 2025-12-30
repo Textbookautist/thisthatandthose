@@ -42,7 +42,7 @@ func explode():
 		if t.is_in_group("player") or t.is_in_group("alive"):
 			var dist = global_position.distance_to(t.global_position)
 			var damage = 10 - int(dist/10)
-			t.take_damage(damage)
+			t.take_damage(damage, "Bomb explosion")
 		if t.is_in_group("bomb"):
 			if t.phase == 0:
 				t.trigger()

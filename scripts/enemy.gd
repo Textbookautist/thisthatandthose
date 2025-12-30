@@ -17,10 +17,10 @@ func die():
 	explosive.amount = 12
 	explosive.global_position = global_position
 	
-	add_sibling(explosive)
+	add_sibling.call_deferred(explosive)
 	queue_free()
 
-func take_damage(amount):
+func take_damage(amount, _source=null):
 	if invulnerable:
 		return
 	hp -= amount
@@ -72,7 +72,24 @@ func checkGs():
 	$ColorRect/right_eye.visible = true
 
 	
+var tiles = []
+var curTiles = []
+var teleporting = false
+func safeMove(tile, mode):
+	#if lifetime < 10:
+		#return
+	match mode:
+		1:
+			curTiles.append(tile)
+			teleporting = false
+		-1:
+			curTiles.erase(tile)
 	
+	if curTiles.size() == 0:
+		if teleporting:
+			teleporting = false
+			return
+		take_damage(10)
 
 var paused = false
 func _process(_delta):
@@ -166,7 +183,7 @@ func _on_damager_body_entered(body):
 	if damageCooldown > 0:
 		return
 	if body == player:
-		player.take_damage(1)
+		player.take_damage(1, "Hit by an enemy")
 		damageCooldown = 100
 		collisionCooldown = true
 		$CollisionShape2D/collisionTimer.start()

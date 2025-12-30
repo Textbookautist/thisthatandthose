@@ -20,9 +20,13 @@ var averagePoints = 0
 const winMult = 1.2
 const lossMult = 0.5
 
+var deathMessage = "Cause of death: Unknown"
 
 func _ready():
 	#new data
+	if data.deathSource != "unknown":
+		deathMessage = data.deathSource
+	$death.text = deathMessage
 	runPoints = data.runPoints
 	runEnding = data.runEnding
 	totalPoints = data.collectedPoints
@@ -68,6 +72,7 @@ func _ready():
 
 	totalText.text = "New total: "+str(newTotal)
 	data.collectedPoints = newTotal
+	data.deathSource = "unknown"
 	data.runPoints = 0
 	data.runEnding = 0
 	ResourceSaver.save(data, datapath)

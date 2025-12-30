@@ -41,7 +41,7 @@ func _on_damager_body_entered(body: Node2D) -> void:
 	if active != true:
 		return
 	if body.is_in_group("player") or body.is_in_group("alive"):
-		body.take_damage(1)
+		body.take_damage(1, "Spinner takedown")
 
 
 func _on_spinnoise_finished():

@@ -44,6 +44,8 @@ func _process(_delta):
 	var things = $detect.get_overlapping_bodies()
 	for t in things:
 		if t.is_in_group("player") or t.is_in_group("alive"):
+			if t.is_in_group("player"):
+				t.teleporting = true
 			var playerdir = t.velocity.y
 			if playerdir > 0:
 				teleport_twin(t, "down")
@@ -96,12 +98,22 @@ func _on_cooldowntimer_timeout():
 
 
 func _on_expansiongate_timeout():
-	var tile = (load("res://scenes/terrain_piece.tscn")).instantiate()
-	tile.horizon = randi_range(3,10)
-	tile.depth = randi_range(3,10)
-	tile.guarantee_gate = self
+	print("Expanding to the world")
+	var tile = (load("res://scenes/tiles/tilePlus.tscn")).instantiate()
+	tile.horizon = randi_range(3,6)
+	tile.depth = randi_range(3,6)
 	tile.tileType = "mountain"
-	tile.global_position = global_position - Vector2(-1000, -1000)
-	var par = get_parent().get_parent()
-	par.add_child(tile)
+	tile.dontGate = true
+	var randx = randi_range(1000, 2000)
+	var randy = randi_range(1000, 2000)
+	if randi_range(1,2) == 1:
+		randx = -1*randx
+	if randi_range(1,2) == 1:
+		randy = -1*randy
+	tile.global_position = global_position + Vector2(randx, randy)
+	get_parent().add_sibling(tile)
+	var gate = (load("res://scenes/transportgate.tscn")).instantiate()
+	tile.add_child(gate)
+	gate.twin = self
+	twin = gate
 	$shout.visible = true

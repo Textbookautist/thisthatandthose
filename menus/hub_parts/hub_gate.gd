@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var playScene = "res://scenes/main.tscn"
+var playScene = "res://scenes/main_2.tscn"
 
 var active = true
 

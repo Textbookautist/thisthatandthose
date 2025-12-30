@@ -20,7 +20,8 @@ var opened = false
 func open():
 	if opened:
 		return
-	$lid/CollisionShape2D.disabled = false
+	$lid/CollisionShape2D.disabled = true
+	$CollisionShape2D.disabled = true
 	$left_particle.emitting = true
 	$right_particle.emitting = true
 	opened = true

@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://lesy7octexhk"]
+[gd_scene load_steps=4 format=3 uid="uid://lesy7octexhk"]
 
 [ext_resource type="Script" uid="uid://dgd6i4ac7hhgl" path="res://scenes/tiles/tile_plus.gd" id="1_cjm6x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjm6x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3k1o"]
+size = Vector2(40, 40)
 
 [node name="tile" type="StaticBody2D"]
 z_as_relative = false
@@ -18,4 +21,10 @@ offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="safe" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="safe"]
+shape = SubResource("RectangleShape2D_h3k1o")
+
+[connection signal="body_entered" from="safe" to="." method="_on_safe_body_entered"]
+[connection signal="body_exited" from="safe" to="." method="_on_safe_body_exited"]

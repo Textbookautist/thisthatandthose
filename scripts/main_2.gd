@@ -1,0 +1,72 @@
+@tool
+extends Node2D
+
+var mapScore := 0
+var pauseables := []
+var paused = false
+
+var datapath = "user://files/savedata.tres"
+
+@onready var myData: Resource = load(datapath)
+var oldPoints = 0
+
+var tileScene = preload("res://scenes/tiles/tilePlus.tscn")
+
+var playerScene = preload("res://scenes/player.tscn")
+
+var sizes = [[5,6], [5,13], [9, 9]]
+var types = ["mountain", "field", "snow"]
+
+var massive = [11, 11]
+
+func victory():
+	return
+	
+
+var tiles = []
+
+func makesize():
+	return [randi_range(5,10), randi_range(5,10)]
+
+func _process(_delta):
+	if paused:
+		for p in pauseables:
+			if p:
+				if p.paused != true:
+					p.paused = true
+			else:
+				pauseables.erase(p)
+	else:
+		for p in pauseables:
+			if p:
+				if p.paused:
+					p.paused = false
+			else:
+				pauseables.erase(p)
+
+func _ready() -> void:
+	oldPoints = myData.collectedPoints
+	#print("Old points: ", str(oldPoints))
+	sizes = []
+	for i in range(3):
+		var list = makesize()
+		sizes.append(list)
+
+	var tile = tileScene.instantiate()
+	tile.color = Color8(randi_range(0,255), randi_range(0,255), randi_range(0,255))
+	var value = sizes[0]
+	
+	tile.horizon = value[0]
+	tile.depth = value[1]
+	add_child(tile)
+	
+	
+
+
+func _on_spawntimer_timeout():
+	$Camera2D.queue_free()
+	var player = playerScene.instantiate()
+	player.dev = false
+	player.global_position = Vector2(0,0)
+	add_child(player)
+	$spawntimer.queue_free()

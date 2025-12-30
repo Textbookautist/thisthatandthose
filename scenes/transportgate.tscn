@@ -12,7 +12,7 @@ size = Vector2(8, 3)
 size = Vector2(8, 3)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvh68"]
-radius = 1853.9039
+radius = 215.08
 
 [node name="transportgate" type="StaticBody2D"]
 z_index = 2
@@ -35,24 +35,31 @@ offset_right = 20.0
 offset_bottom = 20.0
 
 [node name="pillar_left" type="ColorRect" parent="."]
+z_index = 4
+z_as_relative = false
 offset_left = -18.0
 offset_top = -29.0
 offset_right = -10.0
 offset_bottom = 1.0
 
 [node name="pillar_left2" type="ColorRect" parent="."]
+z_index = 4
+z_as_relative = false
 offset_left = 10.0
 offset_top = -29.0
 offset_right = 18.0
 offset_bottom = 1.0
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 5
+z_as_relative = false
 offset_left = -24.0
 offset_top = -36.0
 offset_right = 24.0
 offset_bottom = -29.0
 
 [node name="detect" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detect"]
 position = Vector2(0, -0.5)
@@ -69,10 +76,10 @@ position = Vector2(14, -0.5)
 shape = SubResource("RectangleShape2D_mu8ni")
 
 [node name="lower" type="Node2D" parent="."]
-position = Vector2(0, 16)
+position = Vector2(0, 5)
 
 [node name="upper" type="Node2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -6)
 
 [node name="ColorRect4" type="ColorRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.3529412)

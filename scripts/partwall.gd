@@ -1,34 +1,41 @@
 extends StaticBody2D
 
 
-@onready var wallUL = [$colUL, $walls/colorUL]
-@onready var wallUR = [$colUR, $walls/colorUR]
-@onready var wallBL = [$colBL, $walls/colorBL]
-@onready var wallBR = [$colBR, $walls/colorBR]
+@onready var wall1 = $wallsegment
+@onready var wall2 = $wallsegment2
+@onready var wall3 = $wallsegment3
+@onready var wall4 = $wallsegment4
 
-@onready var walls = [wallUL, wallUR, wallBL, wallBR]
+@onready var walls = [wall1, wall2, wall3, wall4]
 
 
 func remove(w):
-	for part in w:
-		part.queue_free()
-		walls.erase(w)
-		var party = $particles.duplicate()
-		party.connect("finished", Callable(part, "queue_free"))
-		add_sibling(party)
-		party.emitting = true
+	walls.erase(w)
+	if walls.size() == 0:
+		queue_free()
 
 func _ready():
 	add_to_group("obstacle")
 	for w in walls:
 		if randi_range(1,3) == 1:
-			remove(w)
+			w.destroyObstacle()
+	if walls.size() == 0:
+		queue_free()
 
 func destroyObstacle():
 	if walls.size() == 0:
 		queue_free()
 	walls.shuffle()
-	remove(walls[0])
+	var to_remove = []
+	
+	for w in walls:
+		if randi_range(1,3) == 1:
+			to_remove.append(w)
+
+	for w in to_remove:
+		remove(w)
+
+	
 	
 
 func _process(_delta):

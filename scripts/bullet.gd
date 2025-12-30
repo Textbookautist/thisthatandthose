@@ -10,6 +10,7 @@ var paused = false
 
 var parent = null
 
+
 func _ready():
 	root.pauseables.append(self)
 	if root.paused:
@@ -29,6 +30,7 @@ func destroy():
 
 var prevCoordinates
 func _process(_delta):
+	
 	$ColorRect.rotation_degrees += 1
 	$ColorRect2.rotation_degrees += 1
 	if paused:
@@ -39,6 +41,7 @@ func _process(_delta):
 	prevCoordinates = global_position
 
 func _physics_process(_delta):
+	
 	if paused:
 		return
 	linear_velocity = direction*speed
@@ -48,7 +51,7 @@ func _on_detector_body_entered(body):
 	if body == self or body == parent:
 		return
 	if body.is_in_group("player") or body.is_in_group("alive"):
-		body.take_damage(damage)
+		body.take_damage(damage, "Hit by a bullet")
 		destroy()
 	elif body.is_in_group("obstacle"):
 		destroy()

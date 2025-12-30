@@ -75,5 +75,5 @@ func _on_timer_timeout():
 			s.connect("finished", Callable(s, "queue_free"))
 			add_sibling(s)
 			s.play()
-			b.take_damage(5)
+			b.take_damage(5, "Sniper takedown")
 			queue_free()

@@ -78,7 +78,7 @@ func _process(_delta):
 	startup()
 	if started:
 		if $structures/colors.visible == false:
-			if $structures/back/btn_start:
+			if $structures/back/btn_start.disabled != true:
 				$structures/back/btn_start.visible = true
 		RGB.shuffle()
 		var direction = randi_range(0,1)
@@ -98,7 +98,7 @@ func _on_btn_start_pressed():
 
 
 func select_color(rgb):
-	$structures/back/btn_start.queue_free()
+	$structures/back/btn_start.disabled = true
 	color = rgb
 	data.primeColor = rgb
 	ResourceSaver.save(data, datapath)
@@ -114,7 +114,7 @@ func _on_btn_b_pressed():
 
 
 func _on_colortimer_timeout():
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/main_2.tscn")
 	
 
 
