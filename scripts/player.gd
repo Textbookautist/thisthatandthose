@@ -109,6 +109,8 @@ func _physics_process(_delta: float) -> void:
 		sprinting = true
 	else:
 		sprinting = false
+	if (goingUp and goingLeft) or (goingUp and goingRight) or (goingDown and goingLeft) or (goingDown and goingRight):
+		movement = movement*0.75
 	if Input.is_action_pressed("space") and dashCooldown == false:
 		if sprinting:
 			movement = movement*10

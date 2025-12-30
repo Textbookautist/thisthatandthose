@@ -69,15 +69,15 @@ offset_bottom = 158.0
 color = Color(0.06735103, 0.051796302, 0.14461392, 1)
 
 [node name="splitter" type="HBoxContainer" parent="Camera2D"]
-offset_left = -260.0
-offset_top = 102.0
-offset_right = -192.0
-offset_bottom = 134.0
+offset_left = -258.0
+offset_top = 100.0
+offset_right = -190.0
+offset_bottom = 132.0
 
 [node name="HP" type="ColorRect" parent="Camera2D/splitter"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0.3529412)
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/splitter/HP"]
 layout_mode = 0
@@ -102,7 +102,7 @@ vertical_alignment = 1
 [node name="Score" type="ColorRect" parent="Camera2D/splitter"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0.3529412)
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/splitter/Score"]
 layout_mode = 0
@@ -123,6 +123,66 @@ text = "0"
 label_settings = SubResource("LabelSettings_g2els")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="frame" type="Node2D" parent="Camera2D"]
+
+[node name="left" type="ColorRect" parent="Camera2D/frame"]
+offset_left = -308.0
+offset_top = -182.0
+offset_right = -268.0
+offset_bottom = 182.0
+color = Color(0, 0, 0, 1)
+
+[node name="right" type="ColorRect" parent="Camera2D/frame"]
+offset_left = 268.0
+offset_top = -182.0
+offset_right = 308.0
+offset_bottom = 182.0
+color = Color(0, 0, 0, 1)
+
+[node name="top" type="ColorRect" parent="Camera2D/frame"]
+offset_left = -268.0
+offset_top = -182.0
+offset_right = 268.0
+offset_bottom = -142.0
+color = Color(0, 0, 0, 1)
+
+[node name="bottom" type="ColorRect" parent="Camera2D/frame"]
+offset_left = -268.0
+offset_top = 142.0
+offset_right = 268.0
+offset_bottom = 182.0
+color = Color(0, 0, 0, 1)
+
+[node name="subframe" type="Node2D" parent="Camera2D/frame"]
+
+[node name="leftsub" type="ColorRect" parent="Camera2D/frame/subframe"]
+offset_left = -268.0
+offset_top = -142.0
+offset_right = -260.0
+offset_bottom = 142.0
+color = Color(0.646029, 0.646029, 0.646029, 1)
+
+[node name="rightsub" type="ColorRect" parent="Camera2D/frame/subframe"]
+offset_left = 260.0
+offset_top = -142.0
+offset_right = 268.0
+offset_bottom = 141.0
+color = Color(0.646029, 0.646029, 0.646029, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/frame/subframe"]
+offset_left = -260.0
+offset_top = -142.0
+offset_right = 260.0
+offset_bottom = -134.0
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Camera2D/frame/subframe"]
+offset_left = -260.0
+offset_top = 134.0
+offset_right = 260.0
+offset_bottom = 142.0
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
 
 [node name="background" type="ColorRect" parent="."]
 visible = false

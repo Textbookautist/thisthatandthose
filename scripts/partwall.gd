@@ -13,6 +13,10 @@ func remove(w):
 	for part in w:
 		part.queue_free()
 		walls.erase(w)
+		var party = $particles.duplicate()
+		party.connect("finished", Callable(part, "queue_free"))
+		add_sibling(party)
+		party.emitting = true
 
 func _ready():
 	add_to_group("obstacle")
@@ -25,7 +29,21 @@ func destroyObstacle():
 		queue_free()
 	walls.shuffle()
 	remove(walls[0])
+	
 
 func _process(_delta):
 	if walls.size() == 0:
 		queue_free()
+
+
+func _on_destruction_body_entered(body):
+	var globpos = global_position
+	if body.is_in_group("player"):
+		if body.velocity.x > 0 and (body.global_position.x < globpos.x):
+			destroyObstacle()
+		elif  body.velocity.x < 0 and (body.global_position.x > globpos.x):
+			destroyObstacle()
+		elif body.velocity.y > 0 and (body.global_position.y < globpos.y):
+			destroyObstacle()
+		elif body.velocity.y < 0 and (body.global_position.y > globpos.y):
+			destroyObstacle()

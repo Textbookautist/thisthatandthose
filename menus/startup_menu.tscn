@@ -101,11 +101,11 @@ vertical_alignment = 1
 one_shot = true
 
 [node name="fullwipeBtn" type="Button" parent="."]
-offset_left = 484.0
-offset_top = 293.0
-offset_right = 567.0
-offset_bottom = 316.0
-text = "FullWIPE"
+offset_left = 424.0
+offset_top = 298.0
+offset_right = 573.0
+offset_bottom = 321.0
+text = "Reset Game Data"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

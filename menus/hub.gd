@@ -47,7 +47,7 @@ func update_points():
 
 @onready var guyScene = preload("res://menus/hub_parts/colorhost.tscn")
 func _on_lilspawner_timeout():
-	if ownedColors.size() == 0:
+	if ownedColors.size() < 10:
 		return
 	for i in range(10):
 		var guy = guyScene.instantiate()
