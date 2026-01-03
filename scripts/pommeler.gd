@@ -16,6 +16,7 @@ func slam():
 			entity.take_damage(8, "Pommeler crush")
 	$particles.emitting = true
 	waiting = true
+	$noise.play()
 
 var waiting = false
 var reloading = true
@@ -28,7 +29,8 @@ func _process(_delta):
 		$CollisionShape2D.disabled = true
 		$pommel/CollisionShape2D.disabled = true
 	else:
-		slam()
+		if waiting != true:
+			slam()
 	if waiting != true:
 		status += 60 * _delta
 		if status > 500:

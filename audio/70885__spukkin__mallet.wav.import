@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://tqn5b0jqvurr"
-path="res://.godot/imported/70885__spukkin__mallet.wav-dc49684d0777d2b13d4f65cbe12e7d5e.sample"
+path="res://.godot/imported/70885__spukkin__mallet.wav-87448e1d087201afc6a40901f7e1df01.sample"
 
 [deps]
 
-source_file="res://audio/unassigned/70885__spukkin__mallet.wav"
-dest_files=["res://.godot/imported/70885__spukkin__mallet.wav-dc49684d0777d2b13d4f65cbe12e7d5e.sample"]
+source_file="res://audio/70885__spukkin__mallet.wav"
+dest_files=["res://.godot/imported/70885__spukkin__mallet.wav-87448e1d087201afc6a40901f7e1df01.sample"]
 
 [params]
 

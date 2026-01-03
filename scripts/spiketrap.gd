@@ -44,7 +44,7 @@ func _on_hurty_time_body_entered(body):
 		return
 	else:
 		if body.is_in_group("player") or body.is_in_group("alive"):
-			body.take_damage(5)
+			body.take_damage(5, "Stepped into a spiketrap")
 
 
 func _on_traptimer_timeout():

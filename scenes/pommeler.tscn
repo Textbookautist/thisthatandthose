@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjiltdcr6qslv"]
+[gd_scene load_steps=6 format=3 uid="uid://bjiltdcr6qslv"]
 
 [ext_resource type="Script" uid="uid://bv7du2dh8pjua" path="res://scripts/pommeler.gd" id="1_n37tw"]
+[ext_resource type="AudioStream" uid="uid://tqn5b0jqvurr" path="res://audio/70885__spukkin__mallet.wav" id="2_wjla3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3wxk7"]
 size = Vector2(30, 28)
@@ -75,3 +76,6 @@ initial_velocity_max = 20.0
 angular_velocity_min = -10.0
 angular_velocity_max = 10.0
 scale_amount_max = 2.0
+
+[node name="noise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_wjla3")
