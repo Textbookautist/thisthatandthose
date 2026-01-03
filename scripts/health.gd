@@ -8,7 +8,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	$spinme.rotation_degrees += 60*_delta
 
-
+func destroy():
+	$spinme.queue_free()
+	queue_free()
 
 func _on_detection_body_entered(body) -> void:
 	if body.is_in_group("player"):

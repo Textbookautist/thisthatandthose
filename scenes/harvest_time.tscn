@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf83tnc305gh0"]
+
+[ext_resource type="Script" uid="uid://ci0js8jctwsbx" path="res://scripts/harvest_time.gd" id="1_le5m1"]
+
+[node name="harvest_time" type="Timer"]
+wait_time = 30.0
+one_shot = true
+script = ExtResource("1_le5m1")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

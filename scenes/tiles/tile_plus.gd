@@ -17,6 +17,8 @@ extends StaticBody2D
 @onready var healingShrineScene = preload("res://scenes/health_lantern.tscn")
 @onready var colorChestScene = preload("res://scenes/color_loot_chest.tscn")
 @onready var pommelerScene = preload("res://scenes/pommeler.tscn")
+@onready var harvesTime = preload("res://scenes/harvest_time.tscn")
+@onready var tileStripScene = preload("res://scenes/tilestrip.tscn")
 
 @onready var corridorScene = preload("res://scenes/tiles/tile_corridor.tscn")
 
@@ -106,7 +108,7 @@ func spawnstuff():
 	if originTile or dontSpawnStuff:
 		pass
 	else:
-		if randi_range(1,10) == 1:
+		if randi_range(1,20) == 1:
 			pass
 		elif randi_range(1,10) > 8:
 			var coin = coinScene.instantiate()
@@ -156,6 +158,16 @@ func spawnstuff():
 			var pommeler = pommelerScene.instantiate()
 			add_child(pommeler)
 		elif randi_range(1,10) == 1:
+			queue_free()
+		elif randi_range(1,150) == 1:
+			var harvester = harvesTime.instantiate()
+			harvester.pos = global_position
+			add_child(harvester)
+		elif randi_range(1,10) == 1:
+			var strip = tileStripScene.instantiate()
+			strip.color = $base.color
+			add_sibling(strip)
+			strip.global_position = global_position
 			queue_free()
 
 func _ready():

@@ -1,0 +1,140 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwsinq1xmohkp"]
+
+[ext_resource type="Script" uid="uid://cd2igi803mhok" path="res://scripts/harvester.gd" id="1_7mvrv"]
+[ext_resource type="PackedScene" uid="uid://8pnmn8fv715f" path="res://scenes/minorScripts/tophand.tscn" id="2_7uons"]
+[ext_resource type="AudioStream" uid="uid://02yhfc5qlyv7" path="res://audio/enemies/78539__alienxxx__alien4.wav" id="3_b3fm2"]
+[ext_resource type="AudioStream" uid="uid://c7utm4w8sytnb" path="res://audio/enemies/803687__cvltiv8r__warped-wave-vox-alien-1200.wav" id="4_e23ps"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3fm2"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e23ps"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wj8ac"]
+radius = 7.071068
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1e5p"]
+radius = 7.0
+
+[node name="harvester" type="CharacterBody2D"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 15
+z_as_relative = false
+motion_mode = 1
+script = ExtResource("1_7mvrv")
+
+[node name="structure" type="Node2D" parent="."]
+position = Vector2(0, -27)
+
+[node name="Line2D" type="Line2D" parent="structure"]
+points = PackedVector2Array(0, -40, 32, 32, -32, 32, 0, -40)
+default_color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="structure/Line2D"]
+offset_top = -49.0
+offset_right = 10.0
+offset_bottom = -39.0
+rotation = 0.7853982
+color = Color(0, 0, 0, 1)
+
+[node name="headthing" type="Node2D" parent="structure"]
+position = Vector2(0, -49)
+
+[node name="ColorRect" type="ColorRect" parent="structure/headthing"]
+offset_top = 3.0
+offset_right = 3.999999
+offset_bottom = 7.0
+rotation = 0.7853982
+color = Color(1, 0, 0, 1)
+
+[node name="playerRepresentative" type="ColorRect" parent="."]
+visible = false
+offset_left = 47.0
+offset_top = -44.0
+offset_right = 57.0
+offset_bottom = -34.0
+
+[node name="bigcol" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_b3fm2")
+
+[node name="topcol" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -50)
+shape = SubResource("CircleShape2D_e23ps")
+
+[node name="colright" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(27, 1)
+shape = SubResource("CircleShape2D_wj8ac")
+
+[node name="colleft" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-27, 1)
+shape = SubResource("CircleShape2D_c1e5p")
+
+[node name="leftHand" type="Node2D" parent="."]
+position = Vector2(40, -48)
+
+[node name="tophand" parent="leftHand" instance=ExtResource("2_7uons")]
+
+[node name="rightHand" type="Node2D" parent="."]
+position = Vector2(-40, -46)
+
+[node name="tophand" parent="rightHand" instance=ExtResource("2_7uons")]
+
+[node name="bottomLeft" type="Node2D" parent="."]
+position = Vector2(-40, 10)
+
+[node name="tophand" parent="bottomLeft" instance=ExtResource("2_7uons")]
+
+[node name="bottomRight" type="Node2D" parent="."]
+position = Vector2(40, 10)
+
+[node name="tophand" parent="bottomRight" instance=ExtResource("2_7uons")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+
+[node name="mouth" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mouth"]
+polygon = PackedVector2Array(-25, 0, 0, -54, 24, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="mouth"]
+position = Vector2(0, -18)
+amount = 16
+lifetime = 5.0
+emission_shape = 1
+emission_sphere_radius = 18.07
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 10.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+orbit_velocity_min = -5.0
+orbit_velocity_max = 5.0
+scale_amount_max = 2.0
+color = Color(0, 0, 0, 1)
+
+[node name="noise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b3fm2")
+pitch_scale = 0.8
+
+[node name="noisetimer1" type="Timer" parent="noise"]
+wait_time = 3.35
+one_shot = true
+autostart = true
+
+[node name="noise2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_e23ps")
+autoplay = true
+
+[node name="noisetimer2" type="Timer" parent="noise2"]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="mouth" to="." method="_on_mouth_body_entered"]
+[connection signal="timeout" from="noise/noisetimer1" to="." method="_on_noisetimer_1_timeout"]
+[connection signal="timeout" from="noise2/noisetimer2" to="." method="_on_noisetimer_2_timeout"]

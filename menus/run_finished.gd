@@ -22,10 +22,32 @@ const lossMult = 0.5
 
 var deathMessage = "Cause of death: Unknown"
 
+var winTexts = [
+	"A successful expedition",
+	"May thy world continue having pleasing colors",
+	"Until next time",
+	"Press dash button to skip this screen",
+	"Thy radiance knows no bounds",
+	"Deus Spectral bless thee",
+	"May thy albedo strengthen with the morning light",
+	"Exquisite work",
+	"Seen have I worse",
+	"Greatness, as always",
+	"You have brought illumination",
+	"Yet another sector liberated",
+	"And thus they fail to capture thy light",
+	"Peace and prosperity to the heretics",
+	"A won crusade, is good crusade",
+	"Greatness, at any cost",
+	"Divine work",
+	"Scars will heal. The heretics will not"
+]
+
 func _ready():
 	#new data
 	if data.deathSource != "unknown":
 		deathMessage = data.deathSource
+		
 	$death.text = deathMessage
 	runPoints = data.runPoints
 	runEnding = data.runEnding
@@ -69,6 +91,8 @@ func _ready():
 		wins += 1
 		data.wins = wins
 		data.restock = true
+		winTexts.shuffle()
+		$death.text = winTexts[0]
 
 	totalText.text = "New total: "+str(newTotal)
 	data.collectedPoints = newTotal

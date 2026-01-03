@@ -4,14 +4,15 @@
 [ext_resource type="AudioStream" uid="uid://l7v5hqgeqbvs" path="res://audio/352494_josephlarralde_glic (online-audio-converter.com).wav" id="2_i64fm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i64fm"]
+radius = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kahox"]
-radius = 2.0
+radius = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwqht"]
 
 [node name="coin" type="RigidBody2D"]
-z_index = 1
+z_index = 2
 z_as_relative = false
 mass = 0.001
 gravity_scale = 0.0
@@ -38,15 +39,15 @@ offset_bottom = 5.0
 color = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-visible = false
 shape = SubResource("CircleShape2D_i64fm")
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kahox")
-disabled = true
 
 [node name="detector" type="Area2D" parent="."]
+z_index = 1
+z_as_relative = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
 shape = SubResource("CircleShape2D_rwqht")

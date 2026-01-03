@@ -13,6 +13,7 @@ size = Vector2(10, 10)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 1
+z_as_relative = false
 motion_mode = 1
 script = ExtResource("1_3vyb7")
 

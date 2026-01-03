@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://8pnmn8fv715f"]
+
+[ext_resource type="Script" uid="uid://dvxjrfg603tco" path="res://scenes/minorScripts/tophand.gd" id="1_a6nbh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ngjdi"]
+radius = 142.00352
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a6nbh"]
+
+[node name="tophand" type="Line2D"]
+points = PackedVector2Array(0, 1, 82, 74)
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_a6nbh")
+
+[node name="endhand" type="Line2D" parent="."]
+points = PackedVector2Array(81, 71, 181, 4)
+width = 6.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="detector" type="Area2D" parent="endhand"]
+position = Vector2(179, 5)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="endhand/detector"]
+shape = SubResource("CircleShape2D_ngjdi")
+
+[node name="eat" type="Area2D" parent="endhand"]
+position = Vector2(179, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="endhand/eat"]
+shape = SubResource("CircleShape2D_a6nbh")
+
+[node name="starttimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="endhand/detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_entered" from="endhand/eat" to="." method="_on_eat_body_entered"]
+[connection signal="timeout" from="starttimer" to="." method="_on_starttimer_timeout"]
