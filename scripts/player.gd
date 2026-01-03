@@ -222,6 +222,8 @@ func _process(_delta: float) -> void:
 		lastscore = score
 		if score == root.mapScore:
 			trigger_victory()
+	if score == root.mapScore and vicTriggered != true:
+		trigger_victory()
 	if score == 0:
 		$Camera2D/splitter/Score.visible = false
 	else:
