@@ -20,6 +20,7 @@ var opened = false
 func open():
 	if opened:
 		return
+	$opennoise.play()
 	$lid/CollisionShape2D.disabled = true
 	$CollisionShape2D.disabled = true
 	$left_particle.emitting = true
@@ -48,6 +49,8 @@ func _process(_delta):
 		$lid.modulate.a -= 0.60 * _delta
 	
 	if opened and spinning:
+		if $partynoise.playing != true:
+			_on_partynoise_finished()
 		if raised < 300:
 			$loot.position.y -= 6 * _delta
 		if raised > 100:
@@ -79,3 +82,10 @@ func _on_test_timer_timeout():
 
 func _on_killtimer_timeout():
 	queue_free()
+
+var partyPlayed = false
+func _on_partynoise_finished():
+	if partyPlayed:
+		return
+	partyPlayed = true
+	$partynoise.play()

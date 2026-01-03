@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2bncyjgdsvma"]
+[gd_scene load_steps=7 format=3 uid="uid://c2bncyjgdsvma"]
 
 [ext_resource type="Script" uid="uid://bepx8tjoh7maw" path="res://scripts/color_loot_chest.gd" id="1_kbohf"]
+[ext_resource type="AudioStream" uid="uid://b7qjjmsyn77lr" path="res://audio/676426_leongameryt_open-chest (online-audio-converter.com).wav" id="2_4yy2l"]
+[ext_resource type="AudioStream" uid="uid://c6yj8px62ut8p" path="res://audio/747183_clif_creates_warp-sweep (online-audio-converter.com).wav" id="3_ryj3m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uf35n"]
 size = Vector2(30, 15)
@@ -172,6 +174,13 @@ initial_velocity_max = 10.0
 wait_time = 5.0
 one_shot = true
 
+[node name="opennoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_4yy2l")
+
+[node name="partynoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ryj3m")
+
 [connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
 [connection signal="timeout" from="test_timer" to="." method="_on_test_timer_timeout"]
 [connection signal="timeout" from="killtimer" to="." method="_on_killtimer_timeout"]
+[connection signal="finished" from="partynoise" to="." method="_on_partynoise_finished"]
