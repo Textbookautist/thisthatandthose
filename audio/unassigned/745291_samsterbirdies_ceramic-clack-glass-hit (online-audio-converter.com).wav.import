@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bkj1fjfvoqqmk"
+path="res://.godot/imported/745291_samsterbirdies_ceramic-clack-glass-hit (online-audio-converter.com).wav-d8fde1e1111b2b88c5f4aaaa9cccb8d0.sample"
+
+[deps]
+
+source_file="res://audio/unassigned/745291_samsterbirdies_ceramic-clack-glass-hit (online-audio-converter.com).wav"
+dest_files=["res://.godot/imported/745291_samsterbirdies_ceramic-clack-glass-hit (online-audio-converter.com).wav-d8fde1e1111b2b88c5f4aaaa9cccb8d0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
