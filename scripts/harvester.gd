@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var paused = false
+
 @onready var root = get_tree().root.get_child(0)
 
 @onready var mainHand = $leftHand/tophand
@@ -44,6 +46,8 @@ func get_closest_tendril_to(resource):
 	return best
 
 func _physics_process(delta):
+	if paused:
+		return
 	var target = get_nearest_resource()
 	if target:
 		var dir = (target.global_position - global_position).normalized()
@@ -70,6 +74,7 @@ func unregister_resource(body):
 
 
 func _ready():
+	root.pauseables.append(self)
 	add_to_group("enemy")
 	add_to_group("harvesterEnemy")
 	add_to_group("titan")

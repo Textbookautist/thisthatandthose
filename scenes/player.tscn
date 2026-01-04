@@ -60,15 +60,6 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 
-[node name="infobox" type="ColorRect" parent="Camera2D"]
-visible = false
-custom_minimum_size = Vector2(32, 0)
-offset_left = -288.0
-offset_top = 123.0
-offset_right = -214.0
-offset_bottom = 158.0
-color = Color(0.06735103, 0.051796302, 0.14461392, 1)
-
 [node name="splitter" type="HBoxContainer" parent="Camera2D"]
 offset_left = -258.0
 offset_top = 100.0
@@ -190,7 +181,7 @@ offset_left = -268.0
 offset_top = -142.0
 offset_right = 268.0
 offset_bottom = 142.0
-color = Color(0.8235294, 0, 0.98039216, 0.1764706)
+color = Color(0.8235294, 0, 0.98039216, 0.039215688)
 
 [node name="background" type="ColorRect" parent="."]
 visible = false

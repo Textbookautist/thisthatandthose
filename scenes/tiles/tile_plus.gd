@@ -1,6 +1,9 @@
 extends StaticBody2D
 
-@onready var main = get_parent()
+@onready var main = get_tree().root.get_child(0)
+var selectedColor = null
+
+var colorData = null
 
 @onready var coinScene = preload("res://scenes/coin.tscn")
 @onready var gateScene = preload("res://scenes/transportgate.tscn")
@@ -20,6 +23,7 @@ extends StaticBody2D
 @onready var harvesTime = preload("res://scenes/harvest_time.tscn")
 @onready var tileStripScene = preload("res://scenes/tilestrip.tscn")
 @onready var jawScene = preload("res://scenes/jawtrap.tscn")
+
 
 @onready var corridorScene = preload("res://scenes/tiles/tile_corridor.tscn")
 
@@ -173,11 +177,20 @@ func spawnstuff():
 		elif randi_range(1,15) == 1:
 			var jaws = jawScene.instantiate()
 			add_child(jaws)
-			
 
+var colorDataArray = []
+var seedArray = []
 func _ready():
 	
 	main.tiles.append(self)
+	selectedColor = main.myData.selectedColor
+	colorData = main.colorData
+	colorDataArray = main.colorDataArray
+	for i in colorDataArray:
+		var padded = str(i).pad_zeros(3)
+		for c in padded:
+			seedArray.append(int(c))
+	print(str(seedArray))
 	
 	if color == null:
 		coloration()

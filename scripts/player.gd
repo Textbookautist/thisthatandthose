@@ -233,8 +233,7 @@ func _process(_delta: float) -> void:
 		$Camera2D/splitter/Score/Label.text = str(score) + "/"+str(root.mapScore)
 	if true:
 		$Camera2D/splitter/HP/Label.text = str(hp)+"/"+str(maxhp)
-		$Camera2D/infobox.size.x = $Camera2D/splitter.size.x+6
-		$Camera2D/infobox.size.y = $Camera2D/splitter.size.y+8
+
 
 var dashCooldown = false
 func _on_dashtimer_timeout():

@@ -2,6 +2,7 @@ extends Line2D
 
 var update_chance := 0.50   # 15% chance per frame
 
+var paused = false
 
 @onready var parent = get_parent().get_parent()
 @onready var this = self
@@ -23,6 +24,7 @@ var root_wander_interval := 2.0
 
 
 func _ready():
+	get_tree().root.get_child(0).pauseables.append(self)
 	add_to_group("titan")
 	add_to_group("harvester")
 	add_to_group("enemy")
@@ -91,6 +93,8 @@ func _pick_root_wander_target():
 
 
 func _process(delta):
+	if paused:
+		return
 	if randf() > update_chance:
 		return
 	_update_root_wander(delta)

@@ -8,6 +8,9 @@ var paused = false
 var datapath = "user://files/savedata.tres"
 
 @onready var myData: Resource = load(datapath)
+var selectedColor = null
+var colorData = null
+var colorDataArray = []
 var oldPoints = 0
 
 var tileScene = preload("res://scenes/tiles/tilePlus.tscn")
@@ -44,7 +47,18 @@ func _process(_delta):
 			else:
 				pauseables.erase(p)
 
+
 func _ready() -> void:
+	
+	selectedColor = myData.selectedColor
+	colorData = Color8(int(selectedColor.r * 255), int(selectedColor.g * 255), int(selectedColor.b * 255))
+	var colorDataArray_r = int(selectedColor.r * 255)
+	colorDataArray.append(colorDataArray_r)
+	var colorDataArray_g = int(selectedColor.g * 255)
+	colorDataArray.append(colorDataArray_g)
+	var colorDataArray_b = int(selectedColor.b * 255)
+	colorDataArray.append(colorDataArray_b)
+	
 	oldPoints = myData.collectedPoints
 	#print("Old points: ", str(oldPoints))
 	sizes = []
