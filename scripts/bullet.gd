@@ -10,6 +10,7 @@ var paused = false
 
 var parent = null
 
+var speedDecrease = 1.0
 
 func _ready():
 	root.pauseables.append(self)
@@ -19,6 +20,7 @@ func _ready():
 	add_to_group("hazard")
 	var newPitch = randf_range(0.9, 1.1)
 	$hit.pitch_scale = newPitch
+	speed = speed*speedDecrease
 
 func destroy():
 	var aud = $hit.duplicate()

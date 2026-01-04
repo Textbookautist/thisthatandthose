@@ -112,19 +112,20 @@ var goingRight = false
 var goingLeft = false
 
 var speed = 3600
+var speedBonus = 1
 var sprinting = false
 func _physics_process(_delta: float) -> void:
 	if dead or paused:
 		return
 	var movement = Vector2(0,0)
 	if goingUp:
-		movement.y = -1*speed
+		movement.y = -1*speed*speedBonus
 	if goingDown:
-		movement.y = speed
+		movement.y = speed*speedBonus
 	if goingRight:
-		movement.x = speed
+		movement.x = speed*speedBonus
 	if goingLeft:
-		movement.x = -1*speed
+		movement.x = -1*speed*speedBonus
 	if Input.is_action_pressed("shift"):
 		movement = movement*2
 		sprinting = true
@@ -249,9 +250,16 @@ func checkCollapse():
 		checksDone += 1
 
 var damageCooldown = false
+var damageIgnoreChance = 0
 func take_damage(amount, source="unknown"):
 	if invulnerable or damageCooldown or dead:
 		return
+	if randi_range(1, 100) <= damageIgnoreChance:
+		print("Successfully saved from taking damage")
+		$damageIgnore.emitting = true
+		return
+	else:
+		print("Didn't manage to avoid damage")
 	damageCooldown = true
 	$damageFX.play()
 	if $damagetimer.is_stopped():

@@ -10,6 +10,9 @@ var primeColor = null
 var selectedColor = null
 var ownedColors = []
 
+func updatePoints():
+	points = points-100
+
 func buildmain():
 	var tiles = []
 	var plusx = 0

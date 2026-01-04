@@ -5,6 +5,8 @@ var bulletscene = preload("res://scenes/bullet.tscn")
 @onready var root = get_tree().root.get_child(0)
 var paused = false
 
+var speedDecrease = 1.0
+
 var sUp = true
 var sRight = true
 var sLeft = true
@@ -34,22 +36,22 @@ func _ready():
 	if sUp == false:
 		$up.queue_free()
 	else:
-		$up/uptimer.wait_time = randf_range(0.8, 1.6)
+		$up/uptimer.wait_time = randf_range(0.8, 1.6) * speedDecrease
 		$up/uptimer.start()
 	if sRight == false:
 		$right.queue_free()
 	else:
-		$right/righttimer.wait_time = randf_range(0.8, 1.6)
+		$right/righttimer.wait_time = randf_range(0.8, 1.6) * speedDecrease
 		$right/righttimer.start()
 	if sLeft == false:
 		$left.queue_free()
 	else:
-		$left/lefttimer.wait_time = randf_range(0.8, 1.6)
+		$left/lefttimer.wait_time = randf_range(0.8, 1.6) * speedDecrease
 		$left/lefttimer.start()
 	if sDown == false:
 		$down.queue_free()
 	else:
-		$down/downtimer.wait_time = randf_range(0.8, 1.6)
+		$down/downtimer.wait_time = randf_range(0.8, 1.6) * speedDecrease
 		$down/downtimer.start()
 	
 	if sUp == false and sRight == false and sLeft == false and sDown == false:
@@ -91,6 +93,7 @@ func make_bullet(dir, pos):
 	var bullet = bulletscene.instantiate()
 	dir += Vector2(randf_range(-0.1, 0.1), randf_range(-0.1, 0.1))
 	bullet.direction = dir
+	bullet.speedDecrease = speedDecrease
 	bullet.parent = self
 	add_child(bullet)
 	bullet.global_position = pos
@@ -108,7 +111,7 @@ func shootNoise():
 	shot.play()
 
 func getnewtime():
-	return randf_range(0.8, 1.6)
+	return randf_range(0.8, 1.6) * speedDecrease
 
 func _on_uptimer_timeout():
 	shootNoise()

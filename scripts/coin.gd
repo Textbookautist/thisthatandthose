@@ -49,4 +49,4 @@ func _on_detector_timer_timeout():
 
 		$detector/CollisionShape2D.shape = new_shape
 
-		print("New radius: ", new_radius)
+		#print("New radius: ", new_radius)

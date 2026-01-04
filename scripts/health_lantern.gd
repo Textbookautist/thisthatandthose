@@ -1,9 +1,12 @@
 extends StaticBody2D
 
+var timeDecrease = 1
 
 func _ready():
 	add_to_group("obstacle")
 	add_to_group("beneficial")
+	if timeDecrease != 0:
+		$Timer.wait_time = $Timer.wait_time / timeDecrease
 	
 
 

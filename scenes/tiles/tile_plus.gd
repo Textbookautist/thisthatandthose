@@ -123,7 +123,7 @@ func spawnstuff():
 				coin = coinScene.instantiate()
 				coin.collectDistanceBonus = int(seedArray[6])
 				add_child(coin)
-				print("a duplicate has spawned")
+				#print("a duplicate has spawned")
 		elif randi_range(1,13) == 1:
 			if dontGate != true:
 				var gate = gateScene.instantiate()
@@ -144,9 +144,12 @@ func spawnstuff():
 		elif randi_range(1,10) == 10:
 			var spikes = spikeScene.instantiate()
 			add_child(spikes)
+			
 		elif randi_range(1,16) == 10:
 			var cannon = cannonScene.instantiate()
+			cannon.speedDecrease = 2.0 - (1.0 + float((seedArray[8]/10)))
 			add_child(cannon)
+		
 		elif randi_range(1,10) == 10:
 			var shield = shieldScene.instantiate()
 			add_child(shield)
@@ -161,6 +164,7 @@ func spawnstuff():
 			add_child(sniper)
 		elif randi_range(1,25) == 20:
 			var shrine = healingShrineScene.instantiate()
+			shrine.timeDecrease = seedArray[2]
 			add_child(shrine)
 		elif randi_range(1,25) == 20:
 			var chest = colorChestScene.instantiate()

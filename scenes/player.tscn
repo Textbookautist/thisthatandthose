@@ -205,5 +205,23 @@ one_shot = true
 [node name="damageFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_qhqgy")
 
+[node name="damageIgnore" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.82
+emission_shape = 1
+emission_sphere_radius = 49.76
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+angular_velocity_min = -1.0
+angular_velocity_max = 1.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+scale_amount_max = 3.0
+color = Color(1, 0, 0, 1)
+
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
 [connection signal="timeout" from="damagetimer" to="." method="_on_damagetimer_timeout"]

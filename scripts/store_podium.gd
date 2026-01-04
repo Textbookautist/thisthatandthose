@@ -9,6 +9,7 @@ var datapath = "user://files/savedata.tres"
 @onready var data = load(datapath)
 @onready var box = $square/core
 @onready var parent = get_parent().get_parent()
+@onready var root = get_tree().root.get_child(0)
 
 var hasStock = true
 var wasRestock = false
@@ -41,6 +42,7 @@ func get_color():
 	return c8
 
 func _process(_delta):
+	points = root.points
 	$square.rotation_degrees += randi_range(1,2)*60*_delta
 	if displayed and hasStock:
 		var boxColor = get_color()
@@ -59,6 +61,7 @@ func _process(_delta):
 				data.ownedColors = ownedList
 				ResourceSaver.save(data, datapath)
 				parent.updatePoints(self)
+				root.updatePoints()
 				removeBox()
 				
 
