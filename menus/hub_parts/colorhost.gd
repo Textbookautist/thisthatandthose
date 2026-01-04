@@ -4,7 +4,11 @@ var datapath = "user://files/savedata.tres"
 @onready var kidScene = preload("res://menus/hub_parts/colorhost.tscn")
 @onready var data = load(datapath)
 
+@onready var leftEye = $base/eye_left
+@onready var rightEye = $base/eye_right
+
 var color = null
+var negative = null
 
 # Movement tuning
 var wander_speed = 40.0
@@ -25,6 +29,13 @@ var uniter = 0
 var state = 0
 var states = ["wandering", "idling", "circling", "standing", "chatting"]
 
+func getNegative(value:int):
+	return int(255-value)
+
+func getColor8(myColor):
+	return Color8(int(myColor.r * 255), int(myColor.g * 255), int(myColor.b * 255))
+	
+
 func _ready():
 	add_to_group("alive")
 	add_to_group("colorhost")
@@ -39,11 +50,12 @@ func _ready():
 		uniter = 1
 	$base.color = color
 	
+	
 	if adult != true:
 		scale = Vector2(0.5, 0.5)
 		var colorData = data.ownedColors
 		var myColor = $base.color
-		var myColor8 = Color8(int(myColor.r * 255), int(myColor.g * 255), int(myColor.b * 255))
+		var myColor8 = getColor8(myColor)
 		colorData.append(myColor8)
 		colorData.sort()
 		data.ownedColors = colorData
@@ -92,6 +104,12 @@ func _process(_delta):
 		chatting = false
 		chatProgress = 0
 		chattingTo = null
+	if velocity.y < 0:
+		leftEye.visible = false
+		rightEye.visible = false
+	elif velocity.y > 0:
+		leftEye.visible = true
+		rightEye.visible = true
 
 
 func _physics_process(delta):
@@ -158,3 +176,14 @@ func _on_chat_timer_timeout():
 			chattingTo = host
 			host.chatting = true
 			host.chattingTo = self
+
+
+func _on_eyetimer_timeout():
+	$base/eyetimer.queue_free()
+	var col1 = getColor8($base.color)
+	var neg_r = getNegative(col1.r)
+	var neg_g = getNegative(col1.g)
+	var neg_b = getNegative(col1.b)
+	negative = Color8(neg_r, neg_g, neg_b)
+	leftEye.color = Color8(neg_r, neg_g, neg_b)
+	rightEye.color = Color8(neg_r, neg_g, neg_b)

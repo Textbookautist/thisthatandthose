@@ -20,10 +20,33 @@ offset_top = -4.0
 offset_right = 4.0
 offset_bottom = 4.0
 
+[node name="eye_right" type="ColorRect" parent="base"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 7.0
+offset_bottom = 3.0
+color = Color(0, 0, 0, 1)
+
+[node name="eye_left" type="ColorRect" parent="base"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(0, 0, 0, 1)
+
+[node name="eyetimer" type="Timer" parent="base"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_fagc2")
 
 [node name="pairing" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pairing"]
 shape = SubResource("CircleShape2D_6q28q")
@@ -31,6 +54,7 @@ shape = SubResource("CircleShape2D_6q28q")
 [node name="chatTimer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="timeout" from="base/eyetimer" to="." method="_on_eyetimer_timeout"]
 [connection signal="body_entered" from="pairing" to="." method="_on_pairing_body_entered"]
 [connection signal="body_exited" from="pairing" to="." method="_on_pairing_body_exited"]
 [connection signal="timeout" from="chatTimer" to="." method="_on_chat_timer_timeout"]

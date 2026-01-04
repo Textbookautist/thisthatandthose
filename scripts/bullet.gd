@@ -63,6 +63,8 @@ func _on_detector_body_entered(body):
 			return
 		body.trigger()
 		destroy()
+	else:
+		destroy()
 
 func take_damage(_amount):
 	destroy()

@@ -54,7 +54,7 @@ color = Color(0, 0, 1, 0.1764706)
 shape = SubResource("RectangleShape2D_u8vuu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-z_index = 5
+z_index = 10
 z_as_relative = false
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
@@ -168,7 +168,7 @@ color = Color(0.646029, 0.646029, 0.646029, 1)
 offset_left = 260.0
 offset_top = -142.0
 offset_right = 268.0
-offset_bottom = 141.0
+offset_bottom = 142.0
 color = Color(0.646029, 0.646029, 0.646029, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/frame/subframe"]
@@ -184,6 +184,13 @@ offset_top = 134.0
 offset_right = 260.0
 offset_bottom = 142.0
 color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+
+[node name="filter" type="ColorRect" parent="Camera2D"]
+offset_left = -268.0
+offset_top = -142.0
+offset_right = 268.0
+offset_bottom = 142.0
+color = Color(0.8235294, 0, 0.98039216, 0.1764706)
 
 [node name="background" type="ColorRect" parent="."]
 visible = false

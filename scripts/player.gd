@@ -43,6 +43,8 @@ func _ready() -> void:
 	if maxhp == null:
 		maxhp = hp
 	root = get_tree().root.get_child(0)
+	$Camera2D/filter.color = $ColorRect.color
+	$Camera2D/filter.color.a = 0.2
 
 func healing(amount):
 	hp += amount

@@ -1,0 +1,202 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh55rw8hi64lq"]
+
+[ext_resource type="Script" uid="uid://stn82awfgru4" path="res://scripts/jawtrap.gd" id="1_de07t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fqci"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de07t"]
+size = Vector2(24, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngfkf"]
+
+[node name="jawtrap" type="StaticBody2D"]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_de07t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(1, 1, 1, 0)
+
+[node name="jaw" type="Node2D" parent="."]
+
+[node name="top" type="ColorRect" parent="jaw"]
+offset_left = -18.0
+offset_top = -17.0
+offset_right = 18.0
+offset_bottom = -14.0
+color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+
+[node name="ColorRect" type="ColorRect" parent="jaw/top"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 7.0
+offset_bottom = 7.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="jaw/top"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 3.0
+offset_right = 31.0
+offset_bottom = 7.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="jaw/top"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 11.0
+offset_bottom = 7.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="jaw/top"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 3.0
+offset_right = 27.0
+offset_bottom = 7.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="jaw/top"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 3.0
+offset_right = 15.0
+offset_bottom = 7.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="jaw/top"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 3.0
+offset_right = 23.0
+offset_bottom = 7.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="jaw/top"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 3.0
+offset_right = 19.0
+offset_bottom = 7.0
+color = Color(0, 0, 0, 1)
+
+[node name="bottom" type="ColorRect" parent="jaw"]
+offset_left = -18.0
+offset_top = 15.0
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+
+[node name="ColorRect" type="ColorRect" parent="jaw/bottom"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = -4.0
+offset_right = 19.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="jaw/bottom"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -4.0
+offset_right = 7.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="jaw/bottom"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = -4.0
+offset_right = 11.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="jaw/bottom"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = -4.0
+offset_right = 15.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="jaw/bottom"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = -4.0
+offset_right = 31.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="jaw/bottom"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = -4.0
+offset_right = 27.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="jaw/bottom"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = -4.0
+offset_right = 23.0
+color = Color(0, 0, 0, 1)
+
+[node name="leftSupport" type="ColorRect" parent="jaw"]
+offset_left = -16.0
+offset_top = -14.0
+offset_right = -14.0
+offset_bottom = 15.0
+color = Color(0.09239707, 0.09239706, 0.09239706, 1)
+
+[node name="rightSupport" type="ColorRect" parent="jaw"]
+offset_left = 14.0
+offset_top = -14.0
+offset_right = 16.0
+offset_bottom = 15.0
+color = Color(0.09239707, 0.09239706, 0.09239706, 1)
+
+[node name="btn" type="ColorRect" parent="jaw"]
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+color = Color(0.39215687, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="jaw/btn"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 20.0
+offset_bottom = 8.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="jaw/btn"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 4.0
+offset_bottom = 8.0
+color = Color(0, 0, 0, 1)
+
+[node name="btn" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="btn"]
+shape = SubResource("RectangleShape2D_1fqci")
+
+[node name="bite" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bite"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_de07t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ngfkf")
+disabled = true
+
+[node name="stopper" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+
+[connection signal="body_entered" from="btn" to="." method="_on_btn_body_entered"]
+[connection signal="timeout" from="stopper" to="." method="_on_stopper_timeout"]

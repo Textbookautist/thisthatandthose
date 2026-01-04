@@ -79,3 +79,4 @@ scale_amount_max = 2.0
 
 [node name="noise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_wjla3")
+volume_db = -10.0

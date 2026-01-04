@@ -19,6 +19,7 @@ extends StaticBody2D
 @onready var pommelerScene = preload("res://scenes/pommeler.tscn")
 @onready var harvesTime = preload("res://scenes/harvest_time.tscn")
 @onready var tileStripScene = preload("res://scenes/tilestrip.tscn")
+@onready var jawScene = preload("res://scenes/jawtrap.tscn")
 
 @onready var corridorScene = preload("res://scenes/tiles/tile_corridor.tscn")
 
@@ -159,7 +160,7 @@ func spawnstuff():
 			add_child(pommeler)
 		elif randi_range(1,10) == 1:
 			queue_free()
-		elif randi_range(1,150) == 1:
+		elif randi_range(1,200) == 1:
 			var harvester = harvesTime.instantiate()
 			harvester.pos = global_position
 			add_child(harvester)
@@ -169,6 +170,10 @@ func spawnstuff():
 			add_sibling(strip)
 			strip.global_position = global_position
 			queue_free()
+		elif randi_range(1,15) == 1:
+			var jaws = jawScene.instantiate()
+			add_child(jaws)
+			
 
 func _ready():
 	
@@ -179,17 +184,12 @@ func _ready():
 	
 	add_to_group("terrain")
 	spawnstuff()
-	
-	
 
 
 func _on_safe_body_entered(body):
 	if body.is_in_group("player") or body.is_in_group("alive"):
 		body.safeMove(self, 1)
 
-
-
 func _on_safe_body_exited(body):
-	
 	if body.is_in_group("player") or body.is_in_group("alive"):
 		body.safeMove(self, -1)

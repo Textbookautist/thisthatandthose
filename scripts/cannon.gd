@@ -89,6 +89,7 @@ func make_bullet(dir, pos):
 	if paused:
 		return
 	var bullet = bulletscene.instantiate()
+	dir += Vector2(randf_range(-0.1, 0.1), randf_range(-0.1, 0.1))
 	bullet.direction = dir
 	bullet.parent = self
 	add_child(bullet)

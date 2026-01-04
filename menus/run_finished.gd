@@ -36,11 +36,14 @@ var winTexts = [
 	"You have brought illumination",
 	"Yet another sector liberated",
 	"And thus they fail to capture thy light",
-	"Peace and prosperity to the heretics",
+	"Peace and quiet for the heretics slain today",
 	"A won crusade, is good crusade",
 	"Greatness, at any cost",
 	"Divine work",
-	"Scars will heal. The heretics will not"
+	"Scars will heal. The heretics will not",
+	"Long ago was the Grayscale Crusade, yet its scars still linger",
+	"Shackled is the soul unwilling to see the progress made today",
+	"You have changed, you have brought change. Find pride in it"
 ]
 
 func _ready():

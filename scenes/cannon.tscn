@@ -83,8 +83,7 @@ color = Color(0.099985994, 0.09998601, 0.099985965, 1)
 [node name="shot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_pxhkx")
 volume_db = 1.0
-max_distance = 500.0
-attenuation = 0.59460354
+max_distance = 200.0
 
 [connection signal="timeout" from="up/uptimer" to="." method="_on_uptimer_timeout"]
 [connection signal="timeout" from="right/righttimer" to="." method="_on_righttimer_timeout"]

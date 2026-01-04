@@ -7,6 +7,10 @@ func destroyObstacle():
 	p.connect("finished", Callable(p, "queue_free"))
 	parent.add_sibling(p)
 	p.emitting = true
+	var c = $crack.duplicate()
+	c.connect("finished", Callable(c, "queue_free"))
+	get_parent().add_sibling(c)
+	c.play()
 	parent.remove(self)
 	queue_free()
 
