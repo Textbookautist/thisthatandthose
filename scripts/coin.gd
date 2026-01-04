@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var spindirection = 60
-
+var collectDistanceBonus = null
 var pos = null
 
 func _ready():
@@ -36,3 +36,17 @@ func _process(_delta):
 			aud.play()
 			e.score += 1
 			destroy()
+
+
+func _on_detector_timer_timeout():
+	$detector/detectorTimer.queue_free()
+
+	if collectDistanceBonus != null:
+		var new_radius = 10 + (collectDistanceBonus * 2)
+
+		var new_shape := CircleShape2D.new()
+		new_shape.radius = new_radius
+
+		$detector/CollisionShape2D.shape = new_shape
+
+		print("New radius: ", new_radius)

@@ -11,6 +11,7 @@ var datapath = "user://files/savedata.tres"
 var selectedColor = null
 var colorData = null
 var colorDataArray = []
+var seedArray = []
 var oldPoints = 0
 
 var tileScene = preload("res://scenes/tiles/tilePlus.tscn")
@@ -51,6 +52,8 @@ func _process(_delta):
 func _ready() -> void:
 	
 	selectedColor = myData.selectedColor
+	if selectedColor == null:
+		selectedColor = myData.primeColor
 	colorData = Color8(int(selectedColor.r * 255), int(selectedColor.g * 255), int(selectedColor.b * 255))
 	var colorDataArray_r = int(selectedColor.r * 255)
 	colorDataArray.append(colorDataArray_r)
@@ -58,6 +61,12 @@ func _ready() -> void:
 	colorDataArray.append(colorDataArray_g)
 	var colorDataArray_b = int(selectedColor.b * 255)
 	colorDataArray.append(colorDataArray_b)
+	
+	for i in colorDataArray:
+		var padded = str(i).pad_zeros(3)
+		for c in padded:
+			seedArray.append(int(c))
+	print(str(seedArray))
 	
 	oldPoints = myData.collectedPoints
 	#print("Old points: ", str(oldPoints))
@@ -80,6 +89,7 @@ func _ready() -> void:
 func _on_spawntimer_timeout():
 	$Camera2D.queue_free()
 	var player = playerScene.instantiate()
+	player.maxhp = int(round(10 + seedArray[0]))
 	player.dev = false
 	player.global_position = Vector2(0,0)
 	add_child(player)

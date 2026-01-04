@@ -52,6 +52,11 @@ z_as_relative = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
 shape = SubResource("CircleShape2D_rwqht")
 
+[node name="detectorTimer" type="Timer" parent="detector"]
+wait_time = 0.009999999999999998
+one_shot = true
+autostart = true
+
 [node name="ColorRect2" type="ColorRect" parent="."]
 offset_left = -2.0
 offset_top = 4.0
@@ -62,3 +67,5 @@ color = Color(0, 0, 0, 0.3529412)
 [node name="pick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_i64fm")
 max_distance = 500.0
+
+[connection signal="timeout" from="detector/detectorTimer" to="." method="_on_detector_timer_timeout"]

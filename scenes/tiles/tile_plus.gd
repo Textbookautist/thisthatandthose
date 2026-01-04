@@ -115,9 +115,15 @@ func spawnstuff():
 	else:
 		if randi_range(1,20) == 1:
 			pass
-		elif randi_range(1,10) > 8:
+		elif randi_range(1,100) > int(80 - seedArray[3]):
 			var coin = coinScene.instantiate()
+			coin.collectDistanceBonus = int(seedArray[5])
 			add_child(coin)
+			if randi_range(1,50) <= int(seedArray[4]):
+				coin = coinScene.instantiate()
+				coin.collectDistanceBonus = int(seedArray[6])
+				add_child(coin)
+				print("a duplicate has spawned")
 		elif randi_range(1,13) == 1:
 			if dontGate != true:
 				var gate = gateScene.instantiate()
@@ -186,11 +192,7 @@ func _ready():
 	selectedColor = main.myData.selectedColor
 	colorData = main.colorData
 	colorDataArray = main.colorDataArray
-	for i in colorDataArray:
-		var padded = str(i).pad_zeros(3)
-		for c in padded:
-			seedArray.append(int(c))
-	print(str(seedArray))
+	seedArray = main.seedArray
 	
 	if color == null:
 		coloration()
