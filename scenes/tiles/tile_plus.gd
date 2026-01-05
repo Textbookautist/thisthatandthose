@@ -23,6 +23,7 @@ var colorData = null
 @onready var harvesTime = preload("res://scenes/harvest_time.tscn")
 @onready var tileStripScene = preload("res://scenes/tilestrip.tscn")
 @onready var jawScene = preload("res://scenes/jawtrap.tscn")
+@onready var enemySpawner = preload("res://scenes/enemyspawner.tscn")
 
 
 @onready var corridorScene = preload("res://scenes/tiles/tile_corridor.tscn")
@@ -136,7 +137,7 @@ func spawnstuff():
 				coin.collectDistanceBonus = int(seedArray[6])
 				add_child(coin)
 				#print("a duplicate has spawned")
-		elif randi_range(1,13) == 1:
+		elif randi_range(1,100) <= 10 + (seedArray[0]*2):
 			if dontGate != true:
 				var gate = gateScene.instantiate()
 				add_child(gate)
@@ -147,7 +148,7 @@ func spawnstuff():
 			else:
 				var wall = partWallScene.instantiate()
 				add_child(wall)
-		elif randi_range(1,10) == 10:
+		elif randi_range(1,100) <= 10 + (seedArray[3]*2):
 			var bomb = bombScene.instantiate()
 			add_child(bomb)
 		elif randi_range(1,10) == 10:
@@ -157,48 +158,53 @@ func spawnstuff():
 			var spikes = spikeScene.instantiate()
 			add_child(spikes)
 			
-		elif randi_range(1,16) == 10:
+		elif randi_range(1,100) <= 10 + (seedArray[6]*2):
 			var cannon = cannonScene.instantiate()
 			cannon.speedDecrease = 2.0 - (1.0 + float((seedArray[8]/10)))
 			add_child(cannon)
 		
-		elif randi_range(1,10) == 10:
+		elif randi_range(1,100) <= 8 + (seedArray[4]):
 			var shield = shieldScene.instantiate()
 			add_child(shield)
-		elif randi_range(1,16) == 10:
+		elif randi_range(1,100) <= 10 + (seedArray[1]+seedArray[4]) - seedArray[7]:
 			var spinner = spinnerScene.instantiate()
 			add_child(spinner)
-		elif randi_range(1,20) == 10:
+		elif randi_range(1,100) <= 8 + (seedArray[6]):
 			var health = healthScene.instantiate()
 			add_child(health)
-		elif randi_range(1,50) == 1:
+		elif randi_range(1,150) <= seedArray[0]+seedArray[3]+seedArray[6]:
 			var sniper = sniperScene.instantiate()
 			add_child(sniper)
-		elif randi_range(1,25) == 20:
+		elif randi_range(1,250) <= 10 + (seedArray[3]):
 			var shrine = healingShrineScene.instantiate()
 			shrine.timeDecrease = seedArray[2]
 			add_child(shrine)
-		elif randi_range(1,25) == 20:
+		elif randi_range(1,250) <= 10 + (seedArray[6] - (seedArray[3]*2)):
 			var chest = colorChestScene.instantiate()
 			add_child(chest)
-		elif randi_range(1,20) == 15:
+		elif randi_range(1,100) <= 9 + (seedArray[7]) - seedArray[5]:
 			var pommeler = pommelerScene.instantiate()
 			add_child(pommeler)
 		elif randi_range(1,10) == 1:
 			queue_free()
-		elif randi_range(1,200) == 1:
+		elif randi_range(1,250) <=(seedArray[0] + seedArray[3] + seedArray[6]):
 			var harvester = harvesTime.instantiate()
 			harvester.pos = global_position
 			add_child(harvester)
-		elif randi_range(1,10) == 1:
+		elif randi_range(1,100) <= 10 + (seedArray[3]*5):
 			var strip = tileStripScene.instantiate()
 			strip.color = $base.color
 			add_sibling(strip)
 			strip.global_position = global_position
 			queue_free()
-		elif randi_range(1,15) == 1:
+		elif randi_range(1,100) <= 10 + seedArray[8] - seedArray[2]:
 			var jaws = jawScene.instantiate()
 			add_child(jaws)
+		elif randi_range(1,100) <= 10 + seedArray[0]:
+			var spawner = enemySpawner.instantiate()
+			spawner.global_position = global_position
+			spawner.wait_time = randf_range(15.0, 35.0)
+			add_child(spawner)
 
 var colorDataArray = []
 var seedArray = []

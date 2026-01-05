@@ -8,6 +8,7 @@
 size = Vector2(40, 40)
 
 [node name="tile" type="StaticBody2D"]
+z_index = -1
 z_as_relative = false
 script = ExtResource("1_cjm6x")
 

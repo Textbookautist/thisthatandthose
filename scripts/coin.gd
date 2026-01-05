@@ -8,6 +8,8 @@ func _ready():
 	pos = global_position
 	add_to_group("resource")
 	add_to_group("coin")
+	$RigidBody2D.add_to_group("resource")
+	$RigidBody2D.add_to_group("coin")
 	if randi_range(1,2) == 1:
 		spindirection = 60
 	else:

@@ -14,16 +14,19 @@ func invulnerability(state):
 	invulnerable = state
 
 func die():
-	var explosive = deadnimation.instantiate()
-	explosive.amount = 12
-	explosive.global_position = global_position
 	
-	add_sibling.call_deferred(explosive)
+	await get_tree().process_frame
 	queue_free()
 
 func take_damage(amount, _source=null):
 	if invulnerable:
 		return
+	var explosive = deadnimation.instantiate()
+	explosive.amount = 12
+	
+	
+	add_sibling.call_deferred(explosive)
+	explosive.global_position = global_position
 	hp -= amount
 	if hp <= 0:
 		die()

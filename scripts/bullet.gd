@@ -65,8 +65,10 @@ func _on_detector_body_entered(body):
 			return
 		body.trigger()
 		destroy()
+	elif body.is_in_group("resource"):
+		return
 	else:
-		destroy()
+		queue_free()
 
 func take_damage(_amount):
 	destroy()
