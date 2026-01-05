@@ -181,7 +181,7 @@ offset_left = -268.0
 offset_top = -142.0
 offset_right = 268.0
 offset_bottom = 142.0
-color = Color(0.8235294, 0, 0.98039216, 0.039215688)
+color = Color(0.8235294, 0, 0.98039216, 0.019607844)
 
 [node name="background" type="ColorRect" parent="."]
 visible = false

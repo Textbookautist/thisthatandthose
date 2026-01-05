@@ -20,6 +20,7 @@ config/icon="uid://vb0fhqbdyrsy"
 
 window/size/resizable=false
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 window/vsync/vsync_mode=2
 
 [gui]
@@ -68,3 +69,4 @@ shift={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+shading/overrides/force_vertex_shading=true
