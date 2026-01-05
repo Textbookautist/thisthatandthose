@@ -48,6 +48,7 @@ func _process(_delta):
 			else:
 				pauseables.erase(p)
 
+var tiletypes = ["mountain", "snow", "field", "aberrant", "gloom", "radiant", "random"]
 
 func _ready() -> void:
 	
@@ -76,7 +77,8 @@ func _ready() -> void:
 		sizes.append(list)
 
 	var tile = tileScene.instantiate()
-	tile.color = Color8(randi_range(0,255), randi_range(0,255), randi_range(0,255))
+	tiletypes.shuffle()
+	tile.tileType = tiletypes[0]
 	var value = sizes[0]
 	
 	tile.horizon = value[0]

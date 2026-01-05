@@ -91,7 +91,7 @@ func safeMove(tile, mode):
 		if teleporting:
 			teleporting = false
 			return
-		take_damage(10, "Fell from color")
+		take_damage(20, "Fell from color")
 		
 
 #gameplay statistics

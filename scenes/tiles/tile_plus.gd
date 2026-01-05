@@ -49,12 +49,20 @@ var edgeRight = false
 
 var tileType = "default"
 
-var types = ["mountain", "field", "snow"]
+var types = ["mountain", "snow", "field", "aberrant", "gloom", "radiant", "random"]
 
 var color = Color("white")
 
 func coloration():
 	match tileType:
+		"aberrant":
+			base.color = Color8(200, 0, 200)
+		"gloom":
+			base.color = Color8(140, 90, 100)
+		"radiant":
+			base.color = Color8(255,255,0)
+		"random":
+			base.color = Color8(randi_range(0,255), randi_range(0,255), randi_range(0,255))
 		"field":
 			base.color = Color8(0,200,0)
 		"mountain":
@@ -71,6 +79,7 @@ func spawnstuff():
 		lilTile.color = color
 		lilTile.originTile = false
 		lilTile.dontGate = dontGate
+		lilTile.tileType = tileType
 		lilTile.horizon = 0
 		lilTile.depth = depth
 		lilTile.global_position = global_position
@@ -81,6 +90,7 @@ func spawnstuff():
 		lilTile.color = color
 		lilTile.originTile = false
 		lilTile.dontGate = dontGate
+		lilTile.tileType = tileType
 		lilTile.horizon = 0
 		lilTile.depth = depth
 		lilTile.global_position = global_position
@@ -94,6 +104,7 @@ func spawnstuff():
 		lilTile.color = color
 		lilTile.dontGate = dontGate
 		lilTile.originTile = false
+		lilTile.tileType = tileType
 		lilTile.depth = 0
 		lilTile.horizon = 0
 		lilTile.global_position = global_position
@@ -104,6 +115,7 @@ func spawnstuff():
 		lilTile.color = color
 		lilTile.originTile = false
 		lilTile.dontGate = dontGate
+		lilTile.tileType = tileType
 		lilTile.depth = 0
 		lilTile.horizon = 0
 		lilTile.global_position = global_position
@@ -199,6 +211,8 @@ func _ready():
 	seedArray = main.seedArray
 	
 	if color == null:
+		coloration()
+	if tileType != null:
 		coloration()
 	
 	add_to_group("terrain")

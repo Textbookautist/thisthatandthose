@@ -95,13 +95,15 @@ func _on_finder_timeout():
 func _on_cooldowntimer_timeout():
 	cooldown = false
 
+var tileTypes = ["mountain", "snow", "field", "aberrant", "gloom", "radiant", "random"]
 
 func _on_expansiongate_timeout():
 	print("Expanding to the world")
 	var tile = (load("res://scenes/tiles/tilePlus.tscn")).instantiate()
 	tile.horizon = randi_range(3,6)
 	tile.depth = randi_range(3,6)
-	tile.tileType = "mountain"
+	tileTypes.shuffle()
+	tile.tileType = tileTypes[0]
 	tile.dontGate = true
 	var randx = randi_range(1000, 2000)
 	var randy = randi_range(1000, 2000)
