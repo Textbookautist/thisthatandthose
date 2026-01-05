@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://ickx8n8ihk84"]
+
+[ext_resource type="Script" uid="uid://7bqiqiefslr4" path="res://audioScenes/song_1.gd" id="1_8cypa"]
+[ext_resource type="AudioStream" uid="uid://cvpcd7a1p648i" path="res://audio/music/guitar/838381__theendofacycle__baritone-guitar-f-chord-reverb.wav" id="2_leeqo"]
+[ext_resource type="AudioStream" uid="uid://c60yj2p3xgntm" path="res://audio/music/guitar/838382__theendofacycle__baritone-guitar-small-f-chord-reverb.wav" id="3_28lqw"]
+[ext_resource type="AudioStream" uid="uid://bcgxtc68rr66v" path="res://audio/music/guitar/838383__theendofacycle__baritone-guitar-g-chord-reverb.wav" id="4_m362y"]
+[ext_resource type="AudioStream" uid="uid://crtko16ma1ku5" path="res://audio/music/guitar/838384__theendofacycle__baritone-guitar-g-chord-2-reverb.wav" id="5_ekc4i"]
+[ext_resource type="AudioStream" uid="uid://d1ivofhaga47b" path="res://audio/music/guitar/838385__theendofacycle__baritone-guitar-g-chord-3-reverb.wav" id="6_c3fbs"]
+
+[node name="song1" type="Node2D"]
+script = ExtResource("1_8cypa")
+
+[node name="baritonef" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_leeqo")
+
+[node name="baritonesmall" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_28lqw")
+
+[node name="baritoneg1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_m362y")
+
+[node name="baritoneg2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ekc4i")
+
+[node name="baritoneg3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_c3fbs")
+
+[node name="noteTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="noteTimer" to="." method="_on_note_timer_timeout"]

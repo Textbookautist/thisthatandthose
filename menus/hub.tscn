@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://curysibcdqx22"]
+[gd_scene load_steps=7 format=3 uid="uid://curysibcdqx22"]
 
 [ext_resource type="Script" uid="uid://cqo1w1j7xjlna" path="res://menus/hub.gd" id="1_0uyqe"]
 [ext_resource type="PackedScene" uid="uid://c16o4coswoppr" path="res://menus/hub_parts/hub_gate.tscn" id="2_hluti"]
 [ext_resource type="PackedScene" uid="uid://bc5dhv71dsywb" path="res://menus/hub_parts/hub_player.tscn" id="3_re5vl"]
 [ext_resource type="PackedScene" uid="uid://l2vocjl76xau" path="res://menus/hub_parts/colorstation_btn.tscn" id="4_740q0"]
 [ext_resource type="PackedScene" uid="uid://ukifwmki2oyf" path="res://scenes/store.tscn" id="4_scqd4"]
+[ext_resource type="PackedScene" uid="uid://ickx8n8ihk84" path="res://audioScenes/song_1.tscn" id="6_egr82"]
 
 [node name="hub" type="Node2D"]
 script = ExtResource("1_0uyqe")
@@ -30,5 +31,7 @@ autostart = true
 
 [node name="hosts" type="Node2D" parent="."]
 position = Vector2(231, 228)
+
+[node name="song1" parent="." instance=ExtResource("6_egr82")]
 
 [connection signal="timeout" from="lilspawner" to="." method="_on_lilspawner_timeout"]
