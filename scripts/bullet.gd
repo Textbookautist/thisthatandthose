@@ -10,6 +10,8 @@ var paused = false
 
 var parent = null
 
+var player = null
+
 var speedDecrease = 1.0
 
 func _ready():
@@ -42,8 +44,21 @@ func _process(_delta):
 		destroy()
 	prevCoordinates = global_position
 
+func checkplayer():
+	if player == null:
+		player = root.find_child("player")
+	if is_instance_valid(player) == false:
+		return
+	else:
+		var distance = global_position.distance_to(player.global_position)
+		if distance > 1500:
+			paused = true
+		else:
+			if player.paused != true:
+				paused = false
+
 func _physics_process(_delta):
-	
+	checkplayer()
 	if paused:
 		return
 	linear_velocity = direction*speed*_delta

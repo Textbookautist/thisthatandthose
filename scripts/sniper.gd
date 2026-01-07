@@ -11,7 +11,19 @@ func _ready():
 	var newPitch = randf_range(0.9,1.1)
 	$shot.pitch_scale = newPitch
 
+func checkplayer():
+	if is_instance_valid(player) == false:
+		return
+	else:
+		var distance = global_position.distance_to(player.global_position)
+		if distance > 1500:
+			paused = true
+		else:
+			if player.paused != true:
+				paused = false
+
 func _process(_delta):
+	checkplayer()
 	if paused:
 		return
 	var pos = global_position
@@ -85,3 +97,7 @@ func _on_timer_timeout():
 			s.play()
 			b.take_damage(5, "Sniper takedown")
 			queue_free()
+
+
+func _on_player_finder_timeout():
+	player = root.find_child("player")

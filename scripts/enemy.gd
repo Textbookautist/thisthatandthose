@@ -10,6 +10,17 @@ var invulnerable = false
 var hp = 4
 
 
+func checkplayer():
+	if is_instance_valid(player) == false:
+		return
+	else:
+		var distance = global_position.distance_to(player.global_position)
+		if distance > 1500:
+			paused = true
+		else:
+			if player.paused != true:
+				paused = false
+
 func invulnerability(state):
 	invulnerable = state
 
@@ -96,6 +107,7 @@ func safeMove(tile, mode):
 var paused = false
 var lifetime = 0
 func _process(_delta):
+	checkplayer()
 	if paused:
 		return
 	if lifetime < 15:
@@ -203,3 +215,7 @@ func _on_timer_timeout():
 var collisionCooldown = false
 func _on_collision_timer_timeout():
 	collisionCooldown = false
+
+
+func _on_playerfinder_timeout():
+	player = root.find_child("player")

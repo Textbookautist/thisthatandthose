@@ -9,6 +9,17 @@ var active = true
 @onready var root = get_tree().root.get_child(0)
 var paused = false
 
+func checkplayer():
+	if is_instance_valid(player) == false:
+		return
+	else:
+		var distance = global_position.distance_to(player.global_position)
+		if distance > 1500:
+			paused = true
+		else:
+			if player.paused != true:
+				paused = false
+
 func toggle():
 	active = !active
 
@@ -30,6 +41,7 @@ func _ready() -> void:
 	$spinnoise.play()
 
 func _process(_delta: float) -> void:
+	checkplayer()
 	if paused:
 		return
 	if active != true:
@@ -50,3 +62,7 @@ func _on_damager_body_entered(body: Node2D) -> void:
 func _on_spinnoise_finished():
 	if active:
 		$spinnoise.play()
+
+var player = null
+func _on_player_finder_timeout():
+	player = root.find_child("player")

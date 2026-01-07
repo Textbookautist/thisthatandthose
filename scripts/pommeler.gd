@@ -18,11 +18,26 @@ func slam():
 	waiting = true
 	$noise.play()
 
+func checkplayer():
+	if is_instance_valid(player) == false:
+		return
+	else:
+		var distance = global_position.distance_to(player.global_position)
+		if distance > 1500:
+			paused = true
+		else:
+			if player.paused != true:
+				paused = false
+
 var waiting = false
 var reloading = true
 var status = 0
 var hanging = 0
+var paused = false
 func _process(_delta):
+	checkplayer()
+	if paused:
+		return
 	if reloading:
 		$pommel.position.y -= 60 * _delta
 		$pommel.modulate.a -= 0.60 * _delta
@@ -42,3 +57,7 @@ func _process(_delta):
 			hanging = 0
 			waiting = false
 			reloading = true
+
+var player = null
+func _on_playerfinder_timeout():
+	player = get_tree().root.get_child(0).find_child("player")

@@ -151,6 +151,12 @@ max_distance = 500.0
 attenuation = 0.3789293
 script = ExtResource("3_84slv")
 
+[node name="playerFinder" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="boomtimer" to="." method="_on_boomtimer_timeout"]
 [connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
 [connection signal="finished" from="boom" to="boom" method="_on_finished"]
+[connection signal="timeout" from="playerFinder" to="." method="_on_player_finder_timeout"]

@@ -7,6 +7,8 @@ var particle = preload("res://scenes/particles/explosive.tscn")
 
 var phase = 0
 
+var primed = false
+
 func _ready():
 	root.pauseables.append(self)
 	add_to_group("hazard")
@@ -29,7 +31,19 @@ func trigger():
 	$last0/last1/last2/last3/last4/last5/last6/last7.color = Color("yellow")
 	$boomtimer.start()
 
+func checkplayer():
+	if is_instance_valid(player) == false:
+		return
+	else:
+		var distance = global_position.distance_to(player.global_position)
+		if distance > 1500:
+			paused = true
+		else:
+			if player.paused != true:
+				paused = false
+
 func explode():
+	checkplayer()
 	var parent = get_parent()
 	var boom = $boom.duplicate()
 	parent.add_child(boom)
@@ -108,3 +122,8 @@ func _on_boomtimer_timeout():
 			$last0.queue_free()
 			$boomtimer.queue_free()
 			explode()
+
+var player = null
+func _on_player_finder_timeout():
+	player = root.find_child("player")
+	primed = true

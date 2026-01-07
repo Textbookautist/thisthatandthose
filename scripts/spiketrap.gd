@@ -11,7 +11,9 @@ func _ready():
 		for c in h.get_children():
 			spikes.append(c)
 			c.visible = false
-
+	if randi_range(1,2) == 1:
+		var coin = load("res://scenes/coin.tscn").instantiate()
+		add_child(coin)
 
 
 

@@ -93,5 +93,11 @@ angular_velocity_max = 163.3
 scale_amount_max = 2.0
 color = Color(0.099985994, 0.09998601, 0.099985965, 1)
 
+[node name="playerFinder" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="spinner/spinner1/damager" to="." method="_on_damager_body_entered"]
 [connection signal="finished" from="spinnoise" to="." method="_on_spinnoise_finished"]
+[connection signal="timeout" from="playerFinder" to="." method="_on_player_finder_timeout"]
