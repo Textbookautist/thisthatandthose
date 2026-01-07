@@ -137,7 +137,7 @@ func spawnstuff():
 				coin.collectDistanceBonus = int(seedArray[6])
 				add_child(coin)
 				#print("a duplicate has spawned")
-		elif randi_range(1,100) <= 10 + (seedArray[0]*2):
+		elif randi_range(1,100) <= (10 + (seedArray[0]*2)) - (main.gatesSpawned*2):
 			if dontGate != true:
 				var gate = gateScene.instantiate()
 				add_child(gate)

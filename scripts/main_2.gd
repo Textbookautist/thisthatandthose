@@ -4,6 +4,7 @@ extends Node2D
 var mapScore := 0
 var pauseables := []
 var paused = false
+var gatesSpawned := 0
 
 var datapath = "user://files/savedata.tres"
 
