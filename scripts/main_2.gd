@@ -94,7 +94,10 @@ func _on_spawntimer_timeout():
 	var player = playerScene.instantiate()
 	player.maxhp = int(round(10 + (seedArray[0]*2)))
 	if seedArray[6] != 0:
-		player.speedBonus = int(round(seedArray[6]))
+		var Val = seedArray[6]
+		var floatti = float(Val/10)
+		var newVal = 1.0+floatti
+		player.speedBonus = newVal
 	player.damageIgnoreChance = seedArray[2]
 	player.dev = false
 	player.global_position = Vector2(0,0)

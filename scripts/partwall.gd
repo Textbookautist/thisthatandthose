@@ -12,7 +12,7 @@ extends StaticBody2D
 func remove(w):
 	walls.erase(w)
 	if walls.size() == 0:
-		queue_free()
+		call_deferred("queue_free")
 
 func _ready():
 	add_to_group("obstacle")
@@ -20,11 +20,11 @@ func _ready():
 		if randi_range(1,3) == 1:
 			w.destroyObstacle()
 	if walls.size() == 0:
-		queue_free()
+		call_deferred("queue_free")
 
 func destroyObstacle():
 	if walls.size() == 0:
-		queue_free()
+		call_deferred("queue_free")
 	walls.shuffle()
 	var to_remove = []
 	
@@ -40,7 +40,7 @@ func destroyObstacle():
 
 func _process(_delta):
 	if walls.size() == 0:
-		queue_free()
+		call_deferred("queue_free")
 
 
 func _on_destruction_body_entered(body):

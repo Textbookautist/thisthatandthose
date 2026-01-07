@@ -112,7 +112,7 @@ var goingRight = false
 var goingLeft = false
 
 var speed = 3600
-var speedBonus = 1
+var speedBonus = 1.0
 var sprinting = false
 func _physics_process(_delta: float) -> void:
 	if dead or paused:

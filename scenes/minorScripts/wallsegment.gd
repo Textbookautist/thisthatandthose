@@ -12,7 +12,7 @@ func destroyObstacle():
 	get_parent().add_sibling(c)
 	c.play()
 	parent.remove(self)
-	queue_free()
+	call_deferred("queue_free")
 
 func _on_detection_body_entered(body):
 	var globpos = global_position

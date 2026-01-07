@@ -2,6 +2,8 @@ extends StaticBody2D
 
 var twin = null
 
+@onready var main = get_tree().root.get_child(0)
+
 func _ready():
 	add_to_group("transportgate")
 
@@ -98,6 +100,9 @@ func _on_cooldowntimer_timeout():
 var tileTypes = ["mountain", "snow", "field", "aberrant", "gloom", "radiant", "random"]
 
 func _on_expansiongate_timeout():
+	if main.gatesSpawned > 3:
+		queue_free()
+	main.gatesSpawned += 1
 	print("Expanding to the world")
 	var tile = (load("res://scenes/tiles/tilePlus.tscn")).instantiate()
 	tile.horizon = randi_range(3,6)

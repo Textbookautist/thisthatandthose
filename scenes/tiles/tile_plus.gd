@@ -126,8 +126,9 @@ func spawnstuff():
 	if originTile or dontSpawnStuff:
 		pass
 	else:
-		if randi_range(1,20) == 1:
-			pass
+		if randi_range(1,10) == 1:
+			if randi_range(1,10) == 1:
+				call_deferred("queue_free")
 		elif randi_range(1,100) > int(80 - seedArray[3]):
 			var coin = coinScene.instantiate()
 			coin.collectDistanceBonus = int(seedArray[5])
@@ -137,7 +138,7 @@ func spawnstuff():
 				coin.collectDistanceBonus = int(seedArray[6])
 				add_child(coin)
 				#print("a duplicate has spawned")
-		elif randi_range(1,100) <= (10 + (seedArray[0]*2)) - (main.gatesSpawned*2):
+		elif randi_range(1,100) <= (10 + (seedArray[0]*2)):
 			if dontGate != true:
 				var gate = gateScene.instantiate()
 				add_child(gate)
@@ -185,8 +186,7 @@ func spawnstuff():
 		elif randi_range(1,100) <= 9 + (seedArray[7]) - seedArray[5]:
 			var pommeler = pommelerScene.instantiate()
 			add_child(pommeler)
-		elif randi_range(1,10) == 1:
-			queue_free()
+		
 		elif randi_range(1,250) <=(seedArray[0] + seedArray[3] + seedArray[6]):
 			var harvester = harvesTime.instantiate()
 			harvester.pos = global_position
@@ -222,7 +222,7 @@ func _ready():
 		coloration()
 	
 	add_to_group("terrain")
-	spawnstuff()
+	call_deferred("spawnstuff")
 
 
 func _on_safe_body_entered(body):
