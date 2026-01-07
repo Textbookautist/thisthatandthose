@@ -39,6 +39,7 @@ offset_bottom = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8tegq")
+disabled = true
 
 [node name="collisionTimer" type="Timer" parent="CollisionShape2D"]
 wait_time = 0.1

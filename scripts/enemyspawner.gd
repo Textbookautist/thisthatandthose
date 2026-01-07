@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var enemyScene = preload("res://scenes/enemy.tscn")
 @onready var parent = get_parent()
+@onready var main = get_tree().root.get_child(0)
 
 var wait_time := 15.0
 @onready var timer = $spawntimer
@@ -14,8 +15,8 @@ func _ready():
 
 func spawnOne():
 	var enemy = enemyScene.instantiate()
-	add_sibling(enemy)
 	enemy.global_position = parent.global_position
+	main.add_child(enemy)
 
 func _on_spawntimer_timeout():
 	cycles += 1

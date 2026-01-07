@@ -131,9 +131,9 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("shift"):
 		movement = movement*2
 		sprinting = true
-	else:
+	elif Input.is_action_just_released("shift"):
 		sprinting = false
-	if (goingUp and goingLeft) or (goingUp and goingRight) or (goingDown and goingLeft) or (goingDown and goingRight):
+	if ((goingUp and goingLeft)) or ((goingUp and goingRight)) or ((goingDown and goingLeft)) or ((goingDown and goingRight)):
 		movement = movement*0.75
 	if Input.is_action_pressed("space") and dashCooldown == false:
 		if sprinting:
@@ -263,11 +263,12 @@ func take_damage(amount, source="unknown"):
 	if invulnerable or damageCooldown or dead:
 		return
 	if randi_range(1, 100) <= damageIgnoreChance:
-		print("Successfully saved from taking damage")
+		#print("Successfully saved from taking damage")
 		$damageIgnore.emitting = true
 		return
 	else:
-		print("Didn't manage to avoid damage")
+		pass
+		#print("Didn't manage to avoid damage")
 	damageCooldown = true
 	$damageFX.play()
 	if $damagetimer.is_stopped():

@@ -94,14 +94,20 @@ func safeMove(tile, mode):
 		take_damage(10)
 
 var paused = false
+var lifetime = 0
 func _process(_delta):
 	if paused:
 		return
-	if collisionCooldown:
-		$CollisionShape2D.disabled = true
+	if lifetime < 15:
+		lifetime += _delta
 	else:
 		if $CollisionShape2D.disabled:
 			$CollisionShape2D.disabled = false
+		if collisionCooldown:
+			$CollisionShape2D.disabled = true
+		else:
+			if $CollisionShape2D.disabled:
+				$CollisionShape2D.disabled = false
 	
 	checkGs()
 	

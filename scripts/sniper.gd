@@ -5,6 +5,7 @@ var speed = 2400
 @onready var root = get_tree().root.get_child(0)
 var paused = false
 func _ready():
+	visible = false
 	root.pauseables.append(self)
 	add_to_group("hazard")
 	var newPitch = randf_range(0.9,1.1)
@@ -28,6 +29,12 @@ func _process(_delta):
 	if pos2 != null and seesPlayer:
 		var direction = (pos2 - pos).normalized()
 		linear_velocity = direction*speed*_delta
+	
+	if _distance != null:
+		if _distance > 100:
+			modulate.a -= 0.60*_delta
+		else:
+			modulate.a += 0.60*_delta
 
 var player = null
 var seesPlayer = false
@@ -35,6 +42,7 @@ func _on_detection_body_entered(body):
 	if body.is_in_group("player"):
 		player = body
 		seesPlayer = true
+		visible = true
 
 
 func _on_detection_body_exited(body):
@@ -42,6 +50,7 @@ func _on_detection_body_exited(body):
 		if player == null:
 			player = body
 		seesPlayer = false
+		visible = false
 
 
 func _on_shooty_body_entered(body):

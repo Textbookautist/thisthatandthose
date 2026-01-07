@@ -37,8 +37,15 @@ func explode():
 	boom.play()
 	var playable = particle.instantiate()
 	add_sibling(playable)
+	var targets = []
 	var things = $detector.get_overlapping_bodies()
+	var areasSeen = $detector.get_overlapping_areas()
+	for e in areasSeen:
+		targets.append(e)
+		#print("Area seen: " + str(e.name))
 	for t in things:
+		targets.append(t)
+	for t in targets:
 		if t.is_in_group("player") or t.is_in_group("alive"):
 			var dist = global_position.distance_to(t.global_position)
 			var damage = 10 - int(dist/10)
@@ -52,6 +59,9 @@ func explode():
 					t.toggle()
 		if "destroyObstacle" in t:
 			t.destroyObstacle()
+		if t.is_in_group("bombMe"):
+			t.call_deferred("queue_free")
+			
 	queue_free()
 
 func _on_boomtimer_timeout():

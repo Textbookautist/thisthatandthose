@@ -24,7 +24,8 @@ var colorData = null
 @onready var tileStripScene = main.tileStripScene
 @onready var jawScene = main.jawScene
 @onready var enemySpawner = main.enemySpawner
-
+@onready var utilityTower = main.uTowerScene
+@onready var uLever = main.uLever
 
 @onready var thistile = main.tileScene
 
@@ -83,7 +84,7 @@ func spawnstuff():
 		lilTile.depth = depth
 		lilTile.global_position = global_position
 		lilTile.global_position.x -= moveVal*index
-		add_sibling.call_deferred(lilTile)
+		main.add_child.call_deferred(lilTile)
 		
 		lilTile = thistile.instantiate()
 		lilTile.color = color
@@ -94,7 +95,7 @@ func spawnstuff():
 		lilTile.depth = depth
 		lilTile.global_position = global_position
 		lilTile.global_position.x += moveVal*index
-		add_sibling.call_deferred(lilTile)
+		main.add_child.call_deferred(lilTile)
 	
 	for i in range(depth):
 		var index = i + 1
@@ -108,7 +109,7 @@ func spawnstuff():
 		lilTile.horizon = 0
 		lilTile.global_position = global_position
 		lilTile.global_position.y -= moveVal*index
-		add_sibling.call_deferred(lilTile)
+		main.add_child.call_deferred(lilTile)
 		
 		lilTile = thistile.instantiate()
 		lilTile.color = color
@@ -119,7 +120,7 @@ func spawnstuff():
 		lilTile.horizon = 0
 		lilTile.global_position = global_position
 		lilTile.global_position.y += moveVal*index
-		add_sibling.call_deferred(lilTile)
+		main.add_child.call_deferred(lilTile)
 
 	if originTile or dontSpawnStuff:
 		pass
@@ -156,7 +157,8 @@ func spawnstuff():
 			
 		elif randi_range(1,10) == 10:
 			var enemy = enemyScene.instantiate()
-			add_child(enemy)
+			enemy.global_position = global_position
+			main.add_child(enemy)
 			
 		elif randi_range(1,10) == 10:
 			var spikes = spikeScene.instantiate()
@@ -217,6 +219,17 @@ func spawnstuff():
 			spawner.global_position = global_position
 			spawner.wait_time = randf_range(15.0, 35.0)
 			add_child(spawner)
+		
+		elif randi_range(1,100) < 10:
+			var tower = utilityTower.instantiate()
+			add_child(tower)
+		
+		elif randi_range(1,200) < 8:
+			if main.utilities.size() == 0:
+				pass
+			else:
+				var lever = uLever.instantiate()
+				add_child(lever)
 
 var colorDataArray = []
 var seedArray = []

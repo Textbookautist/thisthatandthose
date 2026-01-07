@@ -100,7 +100,7 @@ func _on_cooldowntimer_timeout():
 var tileTypes = ["mountain", "snow", "field", "aberrant", "gloom", "radiant", "random"]
 
 func _on_expansiongate_timeout():
-	if main.gatesSpawned > 5:
+	if main.gatesSpawned > 4:
 		call_deferred("queue_free")
 		return
 	main.gatesSpawned += 1

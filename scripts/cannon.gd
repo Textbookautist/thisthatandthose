@@ -95,7 +95,7 @@ func make_bullet(dir, pos):
 	bullet.direction = dir
 	bullet.speedDecrease = speedDecrease
 	bullet.parent = self
-	add_child(bullet)
+	root.add_child.call_deferred(bullet)
 	bullet.global_position = pos
 	
 
