@@ -100,7 +100,7 @@ func _on_cooldowntimer_timeout():
 var tileTypes = ["mountain", "snow", "field", "aberrant", "gloom", "radiant", "random"]
 
 func _on_expansiongate_timeout():
-	if main.gatesSpawned > 3:
+	if main.gatesSpawned > 5:
 		call_deferred("queue_free")
 		return
 	main.gatesSpawned += 1
@@ -111,8 +111,8 @@ func _on_expansiongate_timeout():
 	tileTypes.shuffle()
 	tile.tileType = tileTypes[0]
 	tile.dontGate = true
-	var randx = randi_range(1000, 2000)
-	var randy = randi_range(1000, 2000)
+	var randx = randi_range(10000, 20000)
+	var randy = randi_range(10000, 20000)
 	if randi_range(1,2) == 1:
 		randx = -1*randx
 	if randi_range(1,2) == 1:

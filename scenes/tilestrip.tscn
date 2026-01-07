@@ -22,7 +22,7 @@ offset_bottom = 4.0
 shape = SubResource("RectangleShape2D_3aqj5")
 
 [node name="coinTimer" type="Timer" parent="."]
-wait_time = 0.009999999999999998
+wait_time = 0.00999999999999999
 one_shot = true
 autostart = true
 

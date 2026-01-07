@@ -32,7 +32,7 @@ offset_right = 5.0
 offset_bottom = 5.0
 color = Color(0.6713229, 0.673428, 0.9738408, 1)
 
-[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+[node name="highlight" type="ColorRect" parent="ColorRect"]
 z_index = -1
 layout_mode = 0
 offset_left = -1.0

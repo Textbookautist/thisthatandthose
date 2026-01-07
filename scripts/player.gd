@@ -151,6 +151,12 @@ var paused = false
 var timer = 0
 func _process(_delta: float) -> void:
 	#lifetime += 1
+	if velocity.x > 0:
+		$ColorRect.rotation_degrees = 10
+	elif velocity.x < 0:
+		$ColorRect.rotation_degrees = -10
+	else:
+		$ColorRect.rotation_degrees = 0
 	if invulnerable:
 		$shield.visible = true
 		$shield.rotation_degrees += 6*60*_delta
