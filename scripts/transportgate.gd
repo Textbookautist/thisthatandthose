@@ -101,7 +101,8 @@ var tileTypes = ["mountain", "snow", "field", "aberrant", "gloom", "radiant", "r
 
 func _on_expansiongate_timeout():
 	if main.gatesSpawned > 3:
-		queue_free()
+		call_deferred("queue_free")
+		return
 	main.gatesSpawned += 1
 	print("Expanding to the world")
 	var tile = main.tileScene.instantiate()
@@ -118,7 +119,7 @@ func _on_expansiongate_timeout():
 		randy = -1*randy
 	tile.global_position = global_position + Vector2(randx, randy)
 	get_parent().add_sibling(tile)
-	var gate = (load("res://scenes/transportgate.tscn")).instantiate()
+	var gate = main.gateScene.instantiate()
 	tile.add_child(gate)
 	gate.twin = self
 	twin = gate

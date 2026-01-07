@@ -38,6 +38,7 @@ func _process(_delta):
 			aud.play()
 			e.score += 1
 			destroy()
+	$RigidBody2D.global_position = global_position
 
 
 func _on_detector_timer_timeout():

@@ -3,7 +3,7 @@ extends CharacterBody2D
 var player = null
 var playerLastSeen = null
 
-var deadnimation = preload("res://scenes/particles/explosive.tscn")
+@onready var deadnimation = preload("res://scenes/particles/explosive.tscn")
 @onready var root = get_tree().root.get_child(0)
 
 var invulnerable = false

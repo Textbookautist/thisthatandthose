@@ -4,6 +4,8 @@ var datapath = "user://files/savedata.tres"
 @onready var data = load_or_create_savedata()
 @onready var pColor = $ColorRect
 
+@onready var notificationScene = preload("res://scenes/notification.tscn")
+
 var damaged = preload("res://scenes/player_damage.tscn")
 
 var dev = false
@@ -204,14 +206,14 @@ func _process(_delta: float) -> void:
 	
 	if hp > lasthp:
 		var difference = hp - lasthp
-		var notif = (load("res://scenes/notification.tscn")).instantiate()
+		var notif = notificationScene.instantiate()
 		notif.notificationType = "health"
 		notif.content = "+" + str(difference)
 		add_child(notif)
 		lasthp = hp
 	elif hp < lasthp:
 		var difference = lasthp - hp
-		var notif = (load("res://scenes/notification.tscn")).instantiate()
+		var notif = notificationScene.instantiate()
 		notif.notificationType = "healthbad"
 		notif.content = "-"+str(difference)
 		add_child(notif)
@@ -219,7 +221,7 @@ func _process(_delta: float) -> void:
 	
 	if score > lastscore:
 		var difference = score-lastscore
-		var notif = (load("res://scenes/notification.tscn")).instantiate()
+		var notif = notificationScene.instantiate()
 		notif.content = "+" + str(difference)
 		add_child(notif)
 		lastscore = score
