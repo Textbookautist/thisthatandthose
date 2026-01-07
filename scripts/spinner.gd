@@ -2,7 +2,7 @@ extends StaticBody2D
 
 var blades = []
 
-var speed = 900
+var speed = 150
 
 var active = true
 
@@ -25,6 +25,7 @@ func _ready() -> void:
 	for blade in $spinner.get_children():
 		blades.append(blade)
 	var pitch = randf_range(0.9,1.1)
+	$spinner.rotate(randf_range(0.0, 180.0))
 	$spinnoise.pitch_scale = pitch
 	$spinnoise.play()
 

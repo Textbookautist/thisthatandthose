@@ -12,14 +12,16 @@ func _ready():
 	timer.wait_time = wait_time
 	timer.start()
 
+func spawnOne():
+	var enemy = enemyScene.instantiate()
+	add_sibling(enemy)
+	enemy.global_position = parent.global_position
+
 func _on_spawntimer_timeout():
 	cycles += 1
 	$CPUParticles2D.emitting = true
 	for i in range(randi_range(cycles, (cycles*2))):
-		var enemy = enemyScene.instantiate()
-		
-		add_sibling(enemy)
-		enemy.global_position = parent.global_position
+		call_deferred("spawnOne")
 	wait_time = wait_time*2
 	timer.wait_time = wait_time
 	timer.start()

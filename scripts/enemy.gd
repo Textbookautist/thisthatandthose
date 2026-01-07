@@ -16,7 +16,7 @@ func invulnerability(state):
 func die():
 	
 	await get_tree().process_frame
-	queue_free()
+	call_deferred("queue_free")
 
 func take_damage(amount, _source=null):
 	if invulnerable:
@@ -27,6 +27,7 @@ func take_damage(amount, _source=null):
 	
 	add_sibling.call_deferred(explosive)
 	explosive.global_position = global_position
+	explosive.emitting = true
 	hp -= amount
 	if hp <= 0:
 		die()

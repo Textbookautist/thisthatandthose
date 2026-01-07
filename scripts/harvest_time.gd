@@ -4,7 +4,7 @@ extends Timer
 var pos
 
 func _ready():
-	var waitTime = randf_range(25.0, 45.0)
+	var waitTime = randf_range(180.0, 300.0)
 	wait_time = waitTime
 	start()
 
@@ -12,4 +12,4 @@ func _on_timeout():
 	var harvester = scene.instantiate()
 	add_sibling(harvester)
 	harvester.global_position = pos
-	queue_free()
+	call_deferred("queue_free")

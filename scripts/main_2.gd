@@ -15,14 +15,34 @@ var colorDataArray = []
 var seedArray = []
 var oldPoints = 0
 
-var tileScene = preload("res://scenes/tiles/tilePlus.tscn")
+@onready var tileScene = preload("res://scenes/tiles/tilePlus.tscn")
 
 var playerScene = preload("res://scenes/player.tscn")
 
-var sizes = [[5,6], [5,13], [9, 9]]
-var types = ["mountain", "field", "snow"]
+@onready var coinScene = preload("res://scenes/coin.tscn")
+@onready var gateScene = preload("res://scenes/transportgate.tscn")
+@onready var innerwallScene = preload("res://scenes/innerwall.tscn")
+@onready var partWallScene = preload("res://scenes/partwall.tscn")
+@onready var bombScene = preload("res://scenes/bomb.tscn")
+@onready var enemyScene = preload("res://scenes/enemy.tscn")
+@onready var spikeScene = preload("res://scenes/spiketrap.tscn")
+@onready var cannonScene = preload("res://scenes/cannon.tscn")
+@onready var shieldScene = preload("res://scenes/shield_tile.tscn")
+@onready var spinnerScene = preload("res://scenes/spinner.tscn")
+@onready var healthScene = preload("res://scenes/health.tscn")
+@onready var sniperScene = preload("res://scenes/sniper.tscn")
+@onready var healingShrineScene = preload("res://scenes/health_lantern.tscn")
+@onready var colorChestScene = preload("res://scenes/color_loot_chest.tscn")
+@onready var pommelerScene = preload("res://scenes/pommeler.tscn")
+@onready var harvesTime = preload("res://scenes/harvest_time.tscn")
+@onready var tileStripScene = preload("res://scenes/tilestrip.tscn")
+@onready var jawScene = preload("res://scenes/jawtrap.tscn")
+@onready var enemySpawner = preload("res://scenes/enemyspawner.tscn")
 
-var massive = [11, 11]
+
+
+var sizes = [[5,6], [5,13], [9, 9]]
+
 
 func victory():
 	return
@@ -85,8 +105,6 @@ func _ready() -> void:
 	tile.horizon = value[0]
 	tile.depth = value[1]
 	add_child(tile)
-	
-	
 
 
 func _on_spawntimer_timeout():

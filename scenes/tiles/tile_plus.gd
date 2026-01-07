@@ -5,30 +5,28 @@ var selectedColor = null
 
 var colorData = null
 
-@onready var coinScene = preload("res://scenes/coin.tscn")
-@onready var gateScene = preload("res://scenes/transportgate.tscn")
-@onready var innerwallScene = preload("res://scenes/innerwall.tscn")
-@onready var partWallScene = preload("res://scenes/partwall.tscn")
-@onready var bombScene = preload("res://scenes/bomb.tscn")
-@onready var enemyScene = preload("res://scenes/enemy.tscn")
-@onready var spikeScene = preload("res://scenes/spiketrap.tscn")
-@onready var cannonScene = preload("res://scenes/cannon.tscn")
-@onready var shieldScene = preload("res://scenes/shield_tile.tscn")
-@onready var spinnerScene = preload("res://scenes/spinner.tscn")
-@onready var healthScene = preload("res://scenes/health.tscn")
-@onready var sniperScene = preload("res://scenes/sniper.tscn")
-@onready var healingShrineScene = preload("res://scenes/health_lantern.tscn")
-@onready var colorChestScene = preload("res://scenes/color_loot_chest.tscn")
-@onready var pommelerScene = preload("res://scenes/pommeler.tscn")
-@onready var harvesTime = preload("res://scenes/harvest_time.tscn")
-@onready var tileStripScene = preload("res://scenes/tilestrip.tscn")
-@onready var jawScene = preload("res://scenes/jawtrap.tscn")
-@onready var enemySpawner = preload("res://scenes/enemyspawner.tscn")
+@onready var coinScene = main.coinScene
+@onready var gateScene = main.gateScene
+@onready var innerwallScene = main.innerwallScene
+@onready var partWallScene = main.partWallScene
+@onready var bombScene = main.bombScene
+@onready var enemyScene = main.enemyScene
+@onready var spikeScene = main.spikeScene
+@onready var cannonScene = main.cannonScene
+@onready var shieldScene = main.shieldScene
+@onready var spinnerScene = main.spinnerScene
+@onready var healthScene = main.healthScene
+@onready var sniperScene = main.sniperScene
+@onready var healingShrineScene = main.healingShrineScene
+@onready var colorChestScene = main.colorChestScene
+@onready var pommelerScene = main.pommelerScene
+@onready var harvesTime = main.harvesTime
+@onready var tileStripScene = main.tileStripScene
+@onready var jawScene = main.jawScene
+@onready var enemySpawner = main.enemySpawner
 
 
-@onready var corridorScene = preload("res://scenes/tiles/tile_corridor.tscn")
-
-@onready var thistile = preload("res://scenes/tiles/tilePlus.tscn")
+@onready var thistile = main.tileScene
 
 @onready var base = $base
 
@@ -126,9 +124,9 @@ func spawnstuff():
 	if originTile or dontSpawnStuff:
 		pass
 	else:
-		if randi_range(1,10) == 1:
-			if randi_range(1,10) == 1:
-				call_deferred("queue_free")
+		if randi_range(1,30) == 1:
+			call_deferred("queue_free")
+		
 		elif randi_range(1,100) > int(80 - seedArray[3]):
 			var coin = coinScene.instantiate()
 			coin.collectDistanceBonus = int(seedArray[5])
@@ -138,10 +136,12 @@ func spawnstuff():
 				coin.collectDistanceBonus = int(seedArray[6])
 				add_child(coin)
 				#print("a duplicate has spawned")
+		
 		elif randi_range(1,100) <= (10 + (seedArray[0]*2)):
 			if dontGate != true:
 				var gate = gateScene.instantiate()
 				add_child(gate)
+		
 		elif randi_range(1,10) == 10:
 			if randi_range(1,2) == 1:
 				var wall = innerwallScene.instantiate()
@@ -149,12 +149,15 @@ func spawnstuff():
 			else:
 				var wall = partWallScene.instantiate()
 				add_child(wall)
+		
 		elif randi_range(1,100) <= 10 + (seedArray[3]*2):
 			var bomb = bombScene.instantiate()
 			add_child(bomb)
+			
 		elif randi_range(1,10) == 10:
 			var enemy = enemyScene.instantiate()
 			add_child(enemy)
+			
 		elif randi_range(1,10) == 10:
 			var spikes = spikeScene.instantiate()
 			add_child(spikes)
@@ -167,22 +170,28 @@ func spawnstuff():
 		elif randi_range(1,100) <= 8 + (seedArray[4]):
 			var shield = shieldScene.instantiate()
 			add_child(shield)
+	
 		elif randi_range(1,100) <= 10 + (seedArray[1]+seedArray[4]) - seedArray[7]:
 			var spinner = spinnerScene.instantiate()
 			add_child(spinner)
+			
 		elif randi_range(1,100) <= 8 + (seedArray[6]):
 			var health = healthScene.instantiate()
 			add_child(health)
+	
 		elif randi_range(1,150) <= seedArray[0]+seedArray[3]+seedArray[6]:
 			var sniper = sniperScene.instantiate()
 			add_child(sniper)
+		
 		elif randi_range(1,250) <= 10 + (seedArray[3]):
 			var shrine = healingShrineScene.instantiate()
 			shrine.timeDecrease = seedArray[2]
 			add_child(shrine)
+		
 		elif randi_range(1,250) <= 10 + (seedArray[6] - (seedArray[3]*2)):
 			var chest = colorChestScene.instantiate()
 			add_child(chest)
+		
 		elif randi_range(1,100) <= 9 + (seedArray[7]) - seedArray[5]:
 			var pommeler = pommelerScene.instantiate()
 			add_child(pommeler)
@@ -191,15 +200,18 @@ func spawnstuff():
 			var harvester = harvesTime.instantiate()
 			harvester.pos = global_position
 			add_child(harvester)
+		
 		elif randi_range(1,100) <= 10 + (seedArray[3]*5):
 			var strip = tileStripScene.instantiate()
 			strip.color = $base.color
 			add_sibling(strip)
 			strip.global_position = global_position
-			queue_free()
+			call_deferred("queue_free")
+		
 		elif randi_range(1,100) <= 10 + seedArray[8] - seedArray[2]:
 			var jaws = jawScene.instantiate()
 			add_child(jaws)
+
 		elif randi_range(1,100) <= 10 + seedArray[0]:
 			var spawner = enemySpawner.instantiate()
 			spawner.global_position = global_position

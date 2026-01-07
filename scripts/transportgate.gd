@@ -104,7 +104,7 @@ func _on_expansiongate_timeout():
 		queue_free()
 	main.gatesSpawned += 1
 	print("Expanding to the world")
-	var tile = (load("res://scenes/tiles/tilePlus.tscn")).instantiate()
+	var tile = main.tileScene.instantiate()
 	tile.horizon = randi_range(3,6)
 	tile.depth = randi_range(3,6)
 	tileTypes.shuffle()

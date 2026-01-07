@@ -27,13 +27,6 @@ offset_right = 23.0
 offset_bottom = 2.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-
 [node name="pillar_left" type="ColorRect" parent="."]
 z_index = 4
 z_as_relative = false
