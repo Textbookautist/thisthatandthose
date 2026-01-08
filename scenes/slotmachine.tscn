@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjphpwgqsj70m"]
+[gd_scene load_steps=7 format=3 uid="uid://cjphpwgqsj70m"]
 
 [ext_resource type="Script" uid="uid://qhmtdgwccc3y" path="res://scripts/slotmachine.gd" id="1_4wb0h"]
+[ext_resource type="AudioStream" uid="uid://bkj1fjfvoqqmk" path="res://audio/unassigned/745291_samsterbirdies_ceramic-clack-glass-hit (online-audio-converter.com).wav" id="2_45a0w"]
+[ext_resource type="AudioStream" uid="uid://2japus2qy6c4" path="res://audio/unassigned/515612__mashedtatoes2__ding1.wav" id="3_o0fbp"]
+[ext_resource type="AudioStream" uid="uid://cxffso652ic46" path="res://audio/unassigned/611112__5ro4__bell-ding-2.wav" id="4_qt7wu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45a0w"]
 size = Vector2(34, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4wb0h"]
+radius = 25.0
 
 [node name="slotmachine" type="StaticBody2D"]
 script = ExtResource("1_4wb0h")
@@ -43,123 +49,123 @@ shape = SubResource("RectangleShape2D_45a0w")
 [node name="colors" type="Node2D" parent="."]
 
 [node name="a1" type="ColorRect" parent="colors"]
-offset_left = -12.0
+offset_left = -11.0
 offset_top = -20.0
-offset_right = -8.0
+offset_right = -7.0
 offset_bottom = -17.0
 
 [node name="a2" type="ColorRect" parent="colors"]
-offset_left = -12.0
+offset_left = -11.0
 offset_top = -16.0
-offset_right = -8.0
+offset_right = -7.0
 offset_bottom = -13.0
 
 [node name="a3" type="ColorRect" parent="colors"]
-offset_left = -12.0
+offset_left = -11.0
 offset_top = -12.0
-offset_right = -8.0
+offset_right = -7.0
 offset_bottom = -9.0
 
 [node name="a4" type="ColorRect" parent="colors"]
-offset_left = -12.0
+offset_left = -11.0
 offset_top = -8.0
-offset_right = -8.0
+offset_right = -7.0
 offset_bottom = -5.0
 
 [node name="a5" type="ColorRect" parent="colors"]
-offset_left = -12.0
+offset_left = -11.0
 offset_top = -4.0
-offset_right = -8.0
+offset_right = -7.0
 offset_bottom = -1.0
 
 [node name="b1" type="ColorRect" parent="colors"]
-offset_left = -6.0
+offset_left = -5.0
 offset_top = -20.0
-offset_right = -2.0
+offset_right = -1.0
 offset_bottom = -17.0
 
 [node name="b2" type="ColorRect" parent="colors"]
-offset_left = -6.0
+offset_left = -5.0
 offset_top = -16.0
-offset_right = -2.0
+offset_right = -1.0
 offset_bottom = -13.0
 
 [node name="b3" type="ColorRect" parent="colors"]
-offset_left = -6.0
+offset_left = -5.0
 offset_top = -12.0
-offset_right = -2.0
+offset_right = -1.0
 offset_bottom = -9.0
 
 [node name="b4" type="ColorRect" parent="colors"]
-offset_left = -6.0
+offset_left = -5.0
 offset_top = -8.0
-offset_right = -2.0
+offset_right = -1.0
 offset_bottom = -5.0
 
 [node name="b5" type="ColorRect" parent="colors"]
-offset_left = -6.0
+offset_left = -5.0
 offset_top = -4.0
-offset_right = -2.0
+offset_right = -1.0
 offset_bottom = -1.0
 
 [node name="c1" type="ColorRect" parent="colors"]
-offset_left = 2.0
+offset_left = 1.0
 offset_top = -20.0
-offset_right = 6.0
+offset_right = 5.0
 offset_bottom = -17.0
 
 [node name="c2" type="ColorRect" parent="colors"]
-offset_left = 2.0
+offset_left = 1.0
 offset_top = -16.0
-offset_right = 6.0
+offset_right = 5.0
 offset_bottom = -13.0
 
 [node name="c3" type="ColorRect" parent="colors"]
-offset_left = 2.0
+offset_left = 1.0
 offset_top = -12.0
-offset_right = 6.0
+offset_right = 5.0
 offset_bottom = -9.0
 
 [node name="c4" type="ColorRect" parent="colors"]
-offset_left = 2.0
+offset_left = 1.0
 offset_top = -8.0
-offset_right = 6.0
+offset_right = 5.0
 offset_bottom = -5.0
 
 [node name="c5" type="ColorRect" parent="colors"]
-offset_left = 2.0
+offset_left = 1.0
 offset_top = -4.0
-offset_right = 6.0
+offset_right = 5.0
 offset_bottom = -1.0
 
 [node name="d1" type="ColorRect" parent="colors"]
-offset_left = 8.0
+offset_left = 7.0
 offset_top = -20.0
-offset_right = 12.0
+offset_right = 11.0
 offset_bottom = -17.0
 
 [node name="d2" type="ColorRect" parent="colors"]
-offset_left = 8.0
+offset_left = 7.0
 offset_top = -16.0
-offset_right = 12.0
+offset_right = 11.0
 offset_bottom = -13.0
 
 [node name="d3" type="ColorRect" parent="colors"]
-offset_left = 8.0
+offset_left = 7.0
 offset_top = -12.0
-offset_right = 12.0
+offset_right = 11.0
 offset_bottom = -9.0
 
 [node name="d4" type="ColorRect" parent="colors"]
-offset_left = 8.0
+offset_left = 7.0
 offset_top = -8.0
-offset_right = 12.0
+offset_right = 11.0
 offset_bottom = -5.0
 
 [node name="d5" type="ColorRect" parent="colors"]
-offset_left = 8.0
+offset_left = 7.0
 offset_top = -4.0
-offset_right = 12.0
+offset_right = 11.0
 offset_bottom = -1.0
 
 [node name="btn" type="ColorRect" parent="."]
@@ -168,3 +174,30 @@ offset_top = 1.0
 offset_right = 15.0
 offset_bottom = 8.0
 color = Color(1, 0, 0, 1)
+
+[node name="detection" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_4wb0h")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="slotroller" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_45a0w")
+
+[node name="done" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qt7wu")
+
+[node name="phaseDone" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_o0fbp")
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
+[connection signal="timeout" from="slotroller" to="." method="_on_slotroller_timeout"]
