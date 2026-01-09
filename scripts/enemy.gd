@@ -25,8 +25,6 @@ func invulnerability(state):
 	invulnerable = state
 
 func die():
-	
-	await get_tree().process_frame
 	call_deferred("queue_free")
 
 func take_damage(amount, _source=null):
@@ -48,6 +46,7 @@ func _ready():
 	add_to_group("enemy")
 	add_to_group("hazard")
 	add_to_group("alive")
+	add_to_group("grayscale")
 	
 var checktime = 0
 var gLeft = false
@@ -139,7 +138,7 @@ func _process(_delta):
 				aggro = false
 		checktime = 0
 
-var speed = 3300
+var speed = 45
 var aggro = false
 var patroltimer = 0
 var patroldirection = Vector2(0,0)
@@ -169,11 +168,11 @@ func _physics_process(_delta):
 	
 	var direction = (pos2 - pos).normalized()
 	if aggro:
-		velocity = direction*speed * _delta
+		velocity = direction*speed
 	else:
-		velocity = direction*(speed*0.2) * _delta
+		velocity = direction*(speed*0.2)
 	if pos.distance_to(patroldirection) < 1.0:
-		velocity = Vector2.ZERO * _delta
+		velocity = Vector2.ZERO
 
 	move_and_slide()
 

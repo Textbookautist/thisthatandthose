@@ -23,6 +23,9 @@ func _ready():
 	var newPitch = randf_range(0.9, 1.1)
 	$hit.pitch_scale = newPitch
 	speed = speed*speedDecrease
+	if parent != null:
+		if parent.name == "spectralTurret":
+			print("Woah I was shot by a turret")
 
 func destroy():
 	var aud = $hit.duplicate()

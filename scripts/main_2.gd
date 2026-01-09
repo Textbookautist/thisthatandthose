@@ -42,6 +42,7 @@ var playerScene = preload("res://scenes/player.tscn")
 @onready var enemySpawner = preload("res://scenes/enemyspawner.tscn")
 @onready var uTowerScene = preload("res://scenes/utility_tower.tscn")
 @onready var uLever = preload("res://scenes/power_lever.tscn")
+@onready var turretScene = preload("res://scenes/spectral_turret.tscn")
 
 
 

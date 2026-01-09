@@ -4,7 +4,7 @@ extends StaticBody2D
 
 var initialized = false
 var master = false
-var active = true
+var active = false
 var peers = []
 var peerLeft = null
 var peerRight = null

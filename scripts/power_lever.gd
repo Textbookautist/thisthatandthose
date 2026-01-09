@@ -14,8 +14,9 @@ func toggle(status=null):
 			t.active = status
 			active = status
 		else:
-			t.active = !t.active
-			active = !active
+			if "active" in t:
+				t.active = !t.active
+				active = !active
 	if active:
 		$lever.rotation = onRotation
 		$lever/shaft/tip.color = Color8(255,255,0)
@@ -45,7 +46,7 @@ func _ready():
 	var closest = main.utilities[0]
 	var towerDistance = global_position.distance_to(closest.global_position)
 	for u in main.utilities:
-		if u.is_in_group("uLever"):
+		if u.is_in_group("uLever") or u.is_in_group("turret"):
 			continue
 		if u.connectedLever == null and (global_position.distance_to(u.global_position) < towerDistance):
 			closest = u
@@ -56,5 +57,5 @@ func _ready():
 	active = connectedTower.active
 
 func _on_detector_body_entered(body):
-	if body.is_in_group("player") or body.is_in_group("alive"):
+	if body.is_in_group("player"):
 		toggle()

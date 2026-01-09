@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2a33xkosjvc8"]
 
-[ext_resource type="Script" uid="uid://bku8ntet6u2ej" path="res://scripts/enemy.gd" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://5wlf2tqcgol4" path="res://scripts/enemyscript2.gd" id="1_7p1mj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tegq"]
 size = Vector2(6, 6)
@@ -39,7 +39,6 @@ offset_bottom = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8tegq")
-disabled = true
 
 [node name="collisionTimer" type="Timer" parent="CollisionShape2D"]
 wait_time = 0.1

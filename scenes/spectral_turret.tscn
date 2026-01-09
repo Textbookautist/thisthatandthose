@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5iglfdfde2bb"]
+
+[ext_resource type="Script" uid="uid://cva2a21vun0g6" path="res://scripts/spectral_turret.gd" id="1_674tm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jki7o"]
+radius = 148.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p263y"]
+
+[node name="spectralTurret" type="StaticBody2D"]
+z_index = 5
+z_as_relative = false
+script = ExtResource("1_674tm")
+
+[node name="base" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+
+[node name="stand" type="ColorRect" parent="base"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0, 0, 0, 1)
+
+[node name="turret" type="Node2D" parent="."]
+
+[node name="core" type="ColorRect" parent="turret"]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[node name="rightBarrel" type="ColorRect" parent="turret/core"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -21.0
+offset_right = 12.0
+offset_bottom = 11.0
+color = Color(0.08627451, 0.08627451, 0.08627451, 1)
+
+[node name="rightMuzzle" type="ColorRect" parent="turret/core/rightBarrel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 5.0
+offset_bottom = 3.0
+color = Color(0.21176471, 0.21176471, 0.21176471, 1)
+
+[node name="rightShot" type="Node2D" parent="turret/core/rightBarrel/rightMuzzle"]
+position = Vector2(3, -1)
+
+[node name="leftBarrel" type="ColorRect" parent="turret/core"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -21.0
+offset_bottom = 11.0
+color = Color(0.08468992, 0.08468992, 0.08468992, 1)
+
+[node name="leftMuzzle" type="ColorRect" parent="turret/core/leftBarrel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 5.0
+offset_bottom = 3.0
+color = Color(0.21230483, 0.21230483, 0.21230483, 1)
+
+[node name="leftShot" type="Node2D" parent="turret/core/leftBarrel/leftMuzzle"]
+position = Vector2(3, -1)
+
+[node name="powerIndicator" type="ColorRect" parent="turret/core"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 6.0
+offset_bottom = 6.0
+
+[node name="pointer" type="Node2D" parent="turret"]
+position = Vector2(0, -23)
+
+[node name="detector" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+shape = SubResource("CircleShape2D_jki7o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p263y")
+
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="detector" to="." method="_on_detector_body_exited"]

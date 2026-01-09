@@ -26,6 +26,7 @@ var colorData = null
 @onready var enemySpawner = main.enemySpawner
 @onready var utilityTower = main.uTowerScene
 @onready var uLever = main.uLever
+@onready var turretScene = main.turretScene
 
 @onready var thistile = main.tileScene
 
@@ -125,7 +126,7 @@ func spawnstuff():
 	if originTile or dontSpawnStuff:
 		pass
 	else:
-		if randi_range(1,30) == 1:
+		if randi_range(1,15) == 1:
 			call_deferred("queue_free")
 		
 		elif randi_range(1,100) > int(80 - seedArray[3]):
@@ -224,12 +225,19 @@ func spawnstuff():
 			var tower = utilityTower.instantiate()
 			add_child(tower)
 		
-		elif randi_range(1,200) < 8:
+		elif randi_range(1,200) < 20:
 			if main.utilities.size() == 0:
 				pass
 			else:
 				var lever = uLever.instantiate()
 				add_child(lever)
+		
+		elif randi_range(1,150) < 15:
+			if main.utilities.size() == 0:
+				pass
+			else:
+				var turret = turretScene.instantiate()
+				add_child(turret)
 
 var colorDataArray = []
 var seedArray = []
