@@ -21,7 +21,7 @@ func _ready():
 
 func destroy():
 	$RigidBody2D.queue_free()
-	queue_free()
+	call_deferred("queue_free")
 
 
 func _process(_delta):

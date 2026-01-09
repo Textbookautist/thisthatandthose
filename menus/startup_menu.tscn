@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://btlc50u4bidcd"]
+[gd_scene load_steps=5 format=3 uid="uid://btlc50u4bidcd"]
 
 [ext_resource type="Script" uid="uid://c2utk4qnieq6c" path="res://menus/startup_menu.gd" id="1_1wl7q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fr6ne"]
-font_size = 64
-font_color = Color(0, 0, 0, 1)
-outline_size = 12
+font_size = 100
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1wl7q"]
 font_size = 21
+
+[sub_resource type="LabelSettings" id="LabelSettings_e75j3"]
 
 [node name="startupMenu" type="Node2D"]
 script = ExtResource("1_1wl7q")
@@ -16,14 +18,16 @@ script = ExtResource("1_1wl7q")
 [node name="structures" type="Node2D" parent="."]
 
 [node name="back" type="ColorRect" parent="structures"]
+z_index = -2
 offset_left = -699.0
 offset_top = -378.0
 offset_right = 733.0
 offset_bottom = 402.0
-color = Color(0.6748146, 0.67481464, 0.6748144, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="btn_start" type="Button" parent="structures/back"]
-modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1, 1, 0, 1)
+z_as_relative = false
 layout_mode = 0
 offset_left = 586.0
 offset_top = 322.0
@@ -33,11 +37,11 @@ disabled = true
 text = "START"
 
 [node name="Label" type="Label" parent="structures"]
-offset_left = -237.0
-offset_top = -378.0
-offset_right = 240.0
-offset_bottom = -59.0
-text = "ARGEBIE"
+offset_left = -380.0
+offset_top = -409.0
+offset_right = 381.0
+offset_bottom = -90.0
+text = "A R G E B I E"
 label_settings = SubResource("LabelSettings_fr6ne")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -89,16 +93,29 @@ text = "B"
 
 [node name="Label" type="Label" parent="structures/colors"]
 offset_left = -179.0
-offset_top = -92.0
+offset_top = -170.0
 offset_right = 180.0
-offset_bottom = -62.0
-text = "Choose your starter color"
+offset_bottom = -63.0
+text = "Choose your starter color. It will never run out during crafting"
 label_settings = SubResource("LabelSettings_1wl7q")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="colortimer" type="Timer" parent="structures/colors"]
 one_shot = true
+
+[node name="infotext" type="Label" parent="structures/colors"]
+offset_left = -130.0
+offset_top = 67.0
+offset_right = 130.0
+offset_bottom = 156.0
+text = "You can find all nearly 17 million colors from the countless sectors of Argebie.
+"
+label_settings = SubResource("LabelSettings_e75j3")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="fullwipeBtn" type="Button" parent="."]
 offset_left = 424.0
@@ -110,8 +127,14 @@ text = "Reset Game Data"
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="pressed" from="structures/back/btn_start" to="." method="_on_btn_start_pressed"]
+[connection signal="mouse_entered" from="structures/colors/cContainer/btn_R" to="." method="_on_btn_r_mouse_entered"]
+[connection signal="mouse_exited" from="structures/colors/cContainer/btn_R" to="." method="_on_btn_r_mouse_exited"]
 [connection signal="pressed" from="structures/colors/cContainer/btn_R" to="." method="_on_btn_r_pressed"]
+[connection signal="mouse_entered" from="structures/colors/cContainer/btn_G" to="." method="_on_btn_g_mouse_entered"]
+[connection signal="mouse_exited" from="structures/colors/cContainer/btn_G" to="." method="_on_btn_g_mouse_exited"]
 [connection signal="pressed" from="structures/colors/cContainer/btn_G" to="." method="_on_btn_g_pressed"]
+[connection signal="mouse_entered" from="structures/colors/cContainer/btn_B" to="." method="_on_btn_b_mouse_entered"]
+[connection signal="mouse_exited" from="structures/colors/cContainer/btn_B" to="." method="_on_btn_b_mouse_exited"]
 [connection signal="pressed" from="structures/colors/cContainer/btn_B" to="." method="_on_btn_b_pressed"]
 [connection signal="timeout" from="structures/colors/colortimer" to="." method="_on_colortimer_timeout"]
 [connection signal="pressed" from="fullwipeBtn" to="." method="_on_fullwipe_btn_pressed"]

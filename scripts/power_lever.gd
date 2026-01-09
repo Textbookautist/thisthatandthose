@@ -17,20 +17,20 @@ func toggle(status=null):
 			if "active" in t:
 				t.active = !t.active
 				active = !active
+			if "powered" in t:
+				t.powered = !t.powered
+			if t.is_in_group("uLever"):
+				t.fixLever()
+	print("Turned myself ", str(active))
+	fixLever()
+
+func fixLever():
 	if active:
 		$lever.rotation = onRotation
 		$lever/shaft/tip.color = Color8(255,255,0)
 	else:
 		$lever.rotation = offRotation
 		$lever/shaft/tip.color = Color8(255,0,0)
-
-func togglesss(status=null):
-	if status == null:
-		active = !active
-	else:
-		active = status
-	if connectedTower.active != active:
-		connectedTower.toggle(active)
 
 func _process(_delta):
 	if active:

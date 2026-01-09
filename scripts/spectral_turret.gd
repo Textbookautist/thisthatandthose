@@ -15,7 +15,7 @@ const SPRITE_FORWARD_ANGLE := -PI / 2.0  # the angle (in radians) your barrel po
 var targets: Array = []
 var current_target: Node2D = null
 
-var fire_rate := 0.3
+var fire_rate := 0.1
 var fire_cooldown := 0.0
 var rotation_speed := 6.0
 var last_barrel := "right"
@@ -118,7 +118,7 @@ func fire_bullet(direction: Vector2):
 		last_barrel = "right"
 		rightMoved = 5.0
 		$turret/core/rightBarrel.position.y += 5
-
+	bullet.damage = 1
 	bullet.global_position = spawn_pos
 	get_tree().current_scene.add_child(bullet)
 

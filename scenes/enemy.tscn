@@ -12,7 +12,7 @@ radius = 121.004135
 radius = 6.0
 
 [node name="enemy" type="CharacterBody2D"]
-z_index = 1
+z_index = 2
 z_as_relative = false
 script = ExtResource("1_7p1mj")
 

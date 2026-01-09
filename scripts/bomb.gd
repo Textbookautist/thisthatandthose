@@ -76,7 +76,7 @@ func explode():
 		if t.is_in_group("bombMe"):
 			t.call_deferred("queue_free")
 			
-	queue_free()
+	call_deferred("queue_free")
 
 func _on_boomtimer_timeout():
 	if paused:

@@ -7,6 +7,11 @@ var datapath = "user://files/savedata.tres"
 var data: Resource
 var color = null
 
+var infotextBase = "You can find all nearly 17 million colors from the countless sectors of Argebie."
+var redText = "Survivor Colors: Reds grant you more health, faster healing from timed sources, and a greater chance of ignoring damage of any kind.\n"
+var greenText = "Economy Colors: Greens are all about point-economy. Greater chance of more points spawning, duplicate points spawning and collection distance.\n"
+var blueText = "Chaos Colors: Blues are about speed, luck and time manipulation."
+
 func fullWipe():
 	var user_path = "user://files/savedata.tres"
 
@@ -120,3 +125,27 @@ func _on_colortimer_timeout():
 
 func _on_fullwipe_btn_pressed():
 	fullWipe()
+
+@onready var infobox = $structures/colors/infotext
+func _on_btn_r_mouse_entered():
+	infobox.text = redText
+
+
+func _on_btn_r_mouse_exited():
+	infobox.text = infotextBase
+
+
+func _on_btn_g_mouse_entered():
+	infobox.text = greenText
+
+
+func _on_btn_g_mouse_exited():
+	infobox.text = infotextBase
+
+
+func _on_btn_b_mouse_entered():
+	infobox.text = blueText
+
+
+func _on_btn_b_mouse_exited():
+	infobox.text = infotextBase

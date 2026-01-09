@@ -126,8 +126,11 @@ func spawnstuff():
 	if originTile or dontSpawnStuff:
 		pass
 	else:
-		if randi_range(1,15) == 1:
+		if randi_range(1,20) == 1:
 			call_deferred("queue_free")
+		
+		elif randi_range(1,100) <= 15 - seedArray[0] - seedArray[3] - seedArray[6]:
+			pass
 		
 		elif randi_range(1,100) > int(80 - seedArray[3]):
 			var coin = coinScene.instantiate()

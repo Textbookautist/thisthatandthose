@@ -30,28 +30,7 @@ func _ready():
 	add_to_group("structure")
 	main.utilities.append(self)
 
-func toggleSignal(source):
-	if source.active:
-		active = true
-	else:
-		active = false
-	if source == peerRight:
-		peerLeft.toggleSignal(self)
-	else:
-		peerRight.toggleSignal(self)
 
-func toggle(status = null):
-	if status != null:
-		active = status
-	else:
-		active = !active
-	if peerLeft != null:
-		peerLeft.toggleSignal(self)
-	if peerRight != null:
-		peerRight.toggleSignal(self)
-	if connectedLever != null:
-		if connectedLever.active != active:
-			connectedLever.toggle(active)
 
 func build_network():
 	var towers = main.utilities.filter(func(u): return u.is_in_group("utility_tower"))
