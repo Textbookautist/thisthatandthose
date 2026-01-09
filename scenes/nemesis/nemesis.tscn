@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cijacikqf4oue"]
+
+[ext_resource type="Script" uid="uid://djb5p81veo18b" path="res://scenes/nemesis/nemesis.gd" id="1_3tqjb"]
+
+[node name="Nemesis" type="CharacterBody2D"]
+script = ExtResource("1_3tqjb")

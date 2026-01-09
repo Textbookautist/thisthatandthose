@@ -54,6 +54,7 @@ var listD = []
 
 var running = false
 var dev = true
+var rolltimer = 0
 func _process(_delta):
 	if dev and Input.is_action_just_pressed("interact"):
 		start()
@@ -65,33 +66,37 @@ func _process(_delta):
 			if Input.is_action_just_pressed("interact"):
 				start()
 	else:
-		for i in range(5):
-			var _index = i-1
-			aSlots[i].color = listA[i]
-			bSlots[i].color = listB[i]
-			cSlots[i].color = listC[i]
-			dSlots[i].color = listD[i]
-		var updateThese = []
-		if phase <= 4:
-			if randi_range(1,5) == 5:
-				var clone = $audio.duplicate()
-				clone.connect("finished", Callable(clone, "queue_free"))
-				add_child(clone)
-				clone.play()
-			
-			if randi_range(1,3) != 1:
-				updateThese.append(listD)
-			if phase <= 3:
+		if rolltimer <= 0:
+			rolltimer = 2
+			for i in range(5):
+				var _index = i-1
+				aSlots[i].color = listA[i]
+				bSlots[i].color = listB[i]
+				cSlots[i].color = listC[i]
+				dSlots[i].color = listD[i]
+			var updateThese = []
+			if phase <= 4:
+				if randi_range(1,5) == 5:
+					var clone = $audio.duplicate()
+					clone.connect("finished", Callable(clone, "queue_free"))
+					add_child(clone)
+					clone.play()
+				
 				if randi_range(1,3) != 1:
-					updateThese.append(listC)
-				if phase <= 2:
+					updateThese.append(listD)
+				if phase <= 3:
 					if randi_range(1,3) != 1:
-						updateThese.append(listB)
-					if phase == 1:
+						updateThese.append(listC)
+					if phase <= 2:
 						if randi_range(1,3) != 1:
-							updateThese.append(listA)
-		for l in updateThese:
-			popColorList(l)
+							updateThese.append(listB)
+						if phase == 1:
+							if randi_range(1,3) != 1:
+								updateThese.append(listA)
+			for l in updateThese:
+				popColorList(l)
+		else:
+			rolltimer -= 1
 		
 		
 		
